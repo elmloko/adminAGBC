@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'sysRECLAMOS',
+    'title' => 'adminagbc',
     'title_prefix' => '',
     'title_postfix' => '| AGBC',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>sys</b>RECLAMOS',
+    'logo' => '<b>admin</b>AGBC',
     'logo_img' => 'vendor/adminlte/dist/img/AGBClogo.png',
     'logo_img_class' => 'brand-image img-circle',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'sysReclamos',
+    'logo_img_alt' => 'adminAGBC',
 
     /*
     |--------------------------------------------------------------------------
