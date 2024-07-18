@@ -13,6 +13,9 @@ class Package extends Component
     use WithPagination;
 
     public $search = '';
+    public $date = '';
+    public $ventanilla = '';
+    public $ciudad = '';
     public $filteredPackages = [];
 
     public function updatingSearch()
@@ -23,6 +26,24 @@ class Package extends Component
     public function searchPackages()
     {
         $this->resetPage(); // Reset paginación al buscar
+        $this->filteredPackages = $this->getFilteredPackages();
+    }
+
+    public function filterByDate()
+    {
+        $this->resetPage(); // Reset paginación al filtrar
+        $this->filteredPackages = $this->getFilteredPackages();
+    }
+
+    public function filterByVentanilla()
+    {
+        $this->resetPage(); // Reset paginación al filtrar por ventanilla
+        $this->filteredPackages = $this->getFilteredPackages();
+    }
+
+    public function filterByCiudad()
+    {
+        $this->resetPage(); // Reset paginación al filtrar por ciudad
         $this->filteredPackages = $this->getFilteredPackages();
     }
 
@@ -49,6 +70,27 @@ class Package extends Component
             $packages = array_filter($packages, function($package) {
                 return stripos($package['CODIGO'], $this->search) !== false || 
                        stripos($package['DESTINATARIO'], $this->search) !== false;
+            });
+        }
+
+        // Filtrar los paquetes según la fecha
+        if (!empty($this->date)) {
+            $packages = array_filter($packages, function($package) {
+                return Carbon::parse($package['deleted_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
+            });
+        }
+
+        // Filtrar los paquetes según la ventanilla
+        if (!empty($this->ventanilla)) {
+            $packages = array_filter($packages, function($package) {
+                return $package['VENTANILLA'] === $this->ventanilla;
+            });
+        }
+
+        // Filtrar los paquetes según la ciudad
+        if (!empty($this->ciudad)) {
+            $packages = array_filter($packages, function($package) {
+                return stripos($package['CUIDAD'], $this->ciudad) !== false;
             });
         }
 
