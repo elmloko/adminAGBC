@@ -12,38 +12,59 @@ class Package extends Component
 {
     use WithPagination;
 
-    public function render()
-    {
-        // Obtener los paquetes desde el primer endpoint
-        $responsePackages = Http::withHeaders([
-            'Authorization' => 'Bearer nOWnqwk1kUgFb416NuxpeWq8c75in6UUPsgLtEagTNVAXt44Ht9KWQQxJGDPZn9m'
-        ])->get('http://172.65.10.52/api/packages');
+    public $search = '';
+    public $filteredPackages = [];
 
-        // Obtener los paquetes eliminados suavemente desde el segundo endpoint
-        $responseSoftDeletes = Http::withHeaders([
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
+    public function searchPackages()
+    {
+        $this->resetPage(); // Reset paginación al buscar
+        $this->filteredPackages = $this->getFilteredPackages();
+    }
+
+    public function getFilteredPackages()
+    {
+        $response = Http::withHeaders([
             'Authorization' => 'Bearer nOWnqwk1kUgFb416NuxpeWq8c75in6UUPsgLtEagTNVAXt44Ht9KWQQxJGDPZn9m'
         ])->get('http://172.65.10.52/api/softdeletes');
 
         $packages = [];
-
-        // Verificar si ambas solicitudes fueron exitosas
-        if ($responsePackages->successful() && $responseSoftDeletes->successful()) {
-            $packages = array_merge($responsePackages->json(), $responseSoftDeletes->json());
-
+        if ($response->successful()) {
+            $packages = $response->json();
+            
             // Formatear las fechas
             foreach ($packages as &$package) {
-                if (isset($package['created_at'])) {
-                    $package['created_at'] = Carbon::parse($package['created_at'])->format('d-m-Y H:i:s');
-                }
                 if (isset($package['deleted_at'])) {
                     $package['deleted_at'] = Carbon::parse($package['deleted_at'])->format('d-m-Y H:i:s');
                 }
             }
+        }
 
-            // Ordenar los paquetes por fecha de creación descendente
-            usort($packages, function ($a, $b) {
-                return strtotime($b['created_at']) - strtotime($a['created_at']);
+        // Filtrar los paquetes según la búsqueda
+        if (!empty($this->search)) {
+            $packages = array_filter($packages, function($package) {
+                return stripos($package['CODIGO'], $this->search) !== false || 
+                       stripos($package['DESTINATARIO'], $this->search) !== false;
             });
+        }
+
+        // Ordenar los paquetes en orden descendente (asumiendo que tienen una clave 'id')
+        usort($packages, function ($a, $b) {
+            return $b['deleted_at'] <=> $a['deleted_at'];
+        });
+
+        return $packages;
+    }
+
+    public function render()
+    {
+        $packages = $this->filteredPackages;
+        if (empty($packages)) {
+            $packages = $this->getFilteredPackages();
         }
 
         // Convertir el array de paquetes en una colección paginada

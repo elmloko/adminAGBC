@@ -5,8 +5,12 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('TODA CORRESPONDENCIA POSTAL') }}
+                            {{ __('CORRESPONDENCIA ENTREGADA') }}
                         </span>
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" wire:model="search" placeholder="Buscar por código o destinatario..." class="form-control mr-6">
+                            <button wire:click="searchPackages" class="btn btn-primary">Buscar</button>
+                        </div>
                     </div>
                 </div>
                 @if (session()->has('success'))
@@ -14,7 +18,6 @@
                         <p>{{ session('success') }}</p>
                     </div>
                 @endif
-
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -28,7 +31,6 @@
                                     <th>VENTANILLA</th>
                                     <th>PESO</th>
                                     <th>ESTADO</th>
-                                    <th>CREACION</th>
                                     <th>ENTREGADO</th>
                                 </tr>
                             </thead>
@@ -43,7 +45,6 @@
                                         <td>{{ $package['VENTANILLA'] }}</td>
                                         <td>{{ $package['PESO'] }}</td>
                                         <td>{{ $package['ESTADO'] }}</td>
-                                        <td>{{ $package['created_at'] }}</td>
                                         <td>{{ $package['deleted_at'] }}</td>
                                     </tr>
                                 @endforeach
