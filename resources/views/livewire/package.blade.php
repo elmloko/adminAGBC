@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('Administracion Permisos TrackinBO') }}
+                            {{ __('TODA CORRESPONDENCIA POSTAL') }}
                         </span>
                     </div>
                 </div>
@@ -54,6 +54,9 @@
             </div>
             <div class="d-flex justify-content-center">
                 {{ $packages->links('pagination::bootstrap-4') }}
+            </div>
+            <div class="d-flex justify-content-center">
+                Se encontraron {{ $packages->total() }} registros en total
             </div>
         </div>
     </div>
