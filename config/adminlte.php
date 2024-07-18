@@ -350,7 +350,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Estadisticas Ordinaria',
-                    'url' => 'estadisticao',
+                    'url' => 'estadisticaso',
                     'icon' => 'fas fa-user',
                 ],
                 [

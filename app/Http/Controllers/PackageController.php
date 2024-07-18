@@ -18,4 +18,8 @@ class PackageController extends Controller
     {
         return view('packages.ventanilla');
     }
+    public function getEstadisticaso()
+    {
+        return view('packages.estadisticaso');
+    }
 }
