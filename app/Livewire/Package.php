@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Carbon\Carbon;
+use PDF;
 
 class Package extends Component
 {
@@ -25,25 +26,13 @@ class Package extends Component
 
     public function searchPackages()
     {
-        $this->resetPage(); // Reset paginación al buscar
+        $this->resetPage();
         $this->filteredPackages = $this->getFilteredPackages();
     }
 
-    public function filterByDate()
+    public function applyFilters()
     {
-        $this->resetPage(); // Reset paginación al filtrar
-        $this->filteredPackages = $this->getFilteredPackages();
-    }
-
-    public function filterByVentanilla()
-    {
-        $this->resetPage(); // Reset paginación al filtrar por ventanilla
-        $this->filteredPackages = $this->getFilteredPackages();
-    }
-
-    public function filterByCiudad()
-    {
-        $this->resetPage(); // Reset paginación al filtrar por ciudad
+        $this->resetPage();
         $this->filteredPackages = $this->getFilteredPackages();
     }
 
@@ -57,7 +46,6 @@ class Package extends Component
         if ($response->successful()) {
             $packages = $response->json();
             
-            // Formatear las fechas
             foreach ($packages as &$package) {
                 if (isset($package['deleted_at'])) {
                     $package['deleted_at'] = Carbon::parse($package['deleted_at'])->format('d-m-Y H:i:s');
@@ -65,7 +53,6 @@ class Package extends Component
             }
         }
 
-        // Filtrar los paquetes según la búsqueda
         if (!empty($this->search)) {
             $packages = array_filter($packages, function($package) {
                 return stripos($package['CODIGO'], $this->search) !== false || 
@@ -73,33 +60,38 @@ class Package extends Component
             });
         }
 
-        // Filtrar los paquetes según la fecha
         if (!empty($this->date)) {
             $packages = array_filter($packages, function($package) {
                 return Carbon::parse($package['deleted_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
             });
         }
 
-        // Filtrar los paquetes según la ventanilla
         if (!empty($this->ventanilla)) {
             $packages = array_filter($packages, function($package) {
                 return $package['VENTANILLA'] === $this->ventanilla;
             });
         }
 
-        // Filtrar los paquetes según la ciudad
         if (!empty($this->ciudad)) {
             $packages = array_filter($packages, function($package) {
                 return stripos($package['CUIDAD'], $this->ciudad) !== false;
             });
         }
 
-        // Ordenar los paquetes en orden descendente (asumiendo que tienen una clave 'id')
         usort($packages, function ($a, $b) {
             return $b['deleted_at'] <=> $a['deleted_at'];
         });
 
         return $packages;
+    }
+
+    public function generatePDF()
+    {
+        $packages = $this->getFilteredPackages();
+        $pdf = PDF::loadView('livewire.package-pdf', compact('packages'));
+        return response()->streamDownload(function() use ($pdf) {
+            echo $pdf->stream();
+        }, 'correspondencia_entregada.pdf');
     }
 
     public function render()
@@ -109,9 +101,8 @@ class Package extends Component
             $packages = $this->getFilteredPackages();
         }
 
-        // Convertir el array de paquetes en una colección paginada
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 100; // Define el número de elementos por página
+        $perPage = 100;
         $currentItems = array_slice($packages, ($currentPage - 1) * $perPage, $perPage);
         $paginatedItems = new LengthAwarePaginator($currentItems, count($packages), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),

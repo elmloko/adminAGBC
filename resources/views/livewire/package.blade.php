@@ -13,19 +13,17 @@
                             class="form-control mr-2">
                         <button wire:click="searchPackages" class="btn btn-primary mr-2">Buscar</button>
                         <input type="date" wire:model="date" class="form-control mr-2">
-                        <button wire:click="filterByDate" class="btn btn-secondary mr-2">Filtrar por Fecha</button>
                         <select wire:model="ventanilla" class="form-control mr-2">
                             <option value="">Todas las Ventanillas</option>
-                            <!-- Asumiendo que las ventanillas son 'Ventanilla 1', 'Ventanilla 2', etc. -->
                             <option value="DD">DD</option>
                             <option value="DND">DND</option>
                             <option value="ENCOMIENDAS">ENCOMIENDAS</option>
                             <option value="ECA">ECA</option>
+                            <option value="UNICA">UNICA</option>
+                            <option value="CASILLAS">CASILLAS</option>
                         </select>
-                        <button wire:click="filterByVentanilla" class="btn btn-secondary">Filtrar por Ventanilla</button>
                         <select wire:model="ciudad" class="form-control mr-2">
                             <option value="">Todas las Ciudades</option>
-                            <!-- Asumiendo que las ciudades son 'La Paz', 'Cochabamba', etc. -->
                             <option value="LA PAZ">LA PAZ</option>
                             <option value="COCHABAMBA">COCHABAMBA</option>
                             <option value="SANTA CRUZ">SANTA CRUZ</option>
@@ -35,9 +33,9 @@
                             <option value="BENI">BENI</option>
                             <option value="PANDO">PANDO</option>
                             <option value="TARIJA">TARIJA</option>
-                            <!-- Añadir más opciones según sea necesario -->
                         </select>
-                        <button wire:click="filterByCiudad" class="btn btn-secondary">Filtrar por Ciudad</button>
+                        <button wire:click="applyFilters" class="btn btn-secondary">Aplicar Filtros</button>
+                        <button wire:click="generatePDF" class="btn btn-danger">Generar PDF</button>
                     </div>
                 </div>
             </div>
