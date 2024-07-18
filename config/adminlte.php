@@ -349,23 +349,33 @@ return [
             // 'can'  => 'users.index',
             'submenu' => [
                 [
-                    'text' => 'Correspondencia Registrada',
-                    'url' => 'generados',
+                    'text' => 'Estadisticas Ordinaria',
+                    'url' => 'estadisticao',
                     'icon' => 'fas fa-user',
                 ],
                 [
-                    'text' => 'Correspondencia Ventanilla',
-                    'url' => 'ventanilla',
-                    'icon' => 'fas fa-user',
+                    'text' => 'Paqueteria Ordinaria',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Correspondencia Registrada',
+                            'url' => 'generados',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Correspondencia Ventanilla',
+                            'url' => 'ventanilla',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Correspondencia Entregada',
+                            'url' => 'packages',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
                 ],
-                [
-                    'text' => 'Correspondencia Entregada',
-                    'url' => 'packages',
-                    'icon' => 'fas fa-user',
-                ],
-                
             ],
-        ],
+        ],        
     ],
 
     /*
