@@ -10,4 +10,8 @@ class PackageController extends Controller
     {
         return view('packages.packages');
     }
+    public function getGenerados()
+    {
+        return view('packages.generados');
+    }
 }

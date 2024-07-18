@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('CORRESPONDENCIA ENTREGADA') }}
+                            {{ __('CORRESPONDENCIA CREADA') }}
                         </span>
                     </div>
                     <div style="display: flex; align-items: center;">
@@ -66,7 +66,7 @@
                                 <th>VENTANILLA</th>
                                 <th>PESO</th>
                                 <th>ESTADO</th>
-                                <th>ENTREGADO</th>
+                                <th>CREADO EN</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,7 +80,7 @@
                                     <td>{{ $package['VENTANILLA'] }}</td>
                                     <td>{{ $package['PESO'] }}</td>
                                     <td>{{ $package['ESTADO'] }}</td>
-                                    <td>{{ $package['deleted_at'] }}</td>
+                                    <td>{{ $package['created_at'] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

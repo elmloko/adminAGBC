@@ -349,10 +349,16 @@ return [
             // 'can'  => 'users.index',
             'submenu' => [
                 [
-                    'text' => 'Consulta Correspondencia',
+                    'text' => 'Correspondencia Registrada',
+                    'url' => 'generados',
+                    'icon' => 'fas fa-user',
+                ],
+                [
+                    'text' => 'Correspondencia Entregada',
                     'url' => 'packages',
                     'icon' => 'fas fa-user',
                 ],
+                
             ],
         ],
     ],

@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use PDF;
 use Excel;
 
-class Package extends Component
+class Generados extends Component
 {
     use WithPagination;
 
@@ -42,46 +42,55 @@ class Package extends Component
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer nOWnqwk1kUgFb416NuxpeWq8c75in6UUPsgLtEagTNVAXt44Ht9KWQQxJGDPZn9m'
-        ])->get('http://172.65.10.52/api/softdeletes');
+        ])->get('http://172.65.10.52/api/packages');
 
         $packages = [];
         if ($response->successful()) {
             $packages = $response->json();
-            
+
             foreach ($packages as &$package) {
-                if (isset($package['deleted_at'])) {
-                    $package['deleted_at'] = Carbon::parse($package['deleted_at'])->format('d-m-Y H:i:s');
+                if (isset($package['created_at'])) {
+                    $package['created_at'] = Carbon::parse($package['created_at'])->format('d-m-Y H:i:s');
                 }
             }
         }
 
+        // Filtrar los paquetes según la búsqueda
         if (!empty($this->search)) {
-            $packages = array_filter($packages, function($package) {
-                return stripos($package['CODIGO'], $this->search) !== false || 
-                       stripos($package['DESTINATARIO'], $this->search) !== false;
+            $packages = array_filter($packages, function ($package) {
+                return stripos($package['CODIGO'], $this->search) !== false ||
+                    stripos($package['DESTINATARIO'], $this->search) !== false;
             });
         }
 
+        // Filtrar los paquetes según la fecha
         if (!empty($this->date)) {
-            $packages = array_filter($packages, function($package) {
-                return Carbon::parse($package['deleted_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
+            $packages = array_filter($packages, function ($package) {
+                return Carbon::parse($package['created_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
             });
         }
 
+        // Filtrar los paquetes según la ventanilla
         if (!empty($this->ventanilla)) {
-            $packages = array_filter($packages, function($package) {
+            $packages = array_filter($packages, function ($package) {
                 return $package['VENTANILLA'] === $this->ventanilla;
             });
         }
 
+        // Filtrar los paquetes según la ciudad
         if (!empty($this->ciudad)) {
-            $packages = array_filter($packages, function($package) {
+            $packages = array_filter($packages, function ($package) {
                 return stripos($package['CUIDAD'], $this->ciudad) !== false;
             });
         }
 
+        // Filtrar los paquetes cuyo estado sea "DESPACHO" o "CLASIFICACION"
+        $packages = array_filter($packages, function ($package) {
+            return $package['ESTADO'] === 'DESPACHO' || $package['ESTADO'] === 'CLASIFICACION';
+        });
+
         usort($packages, function ($a, $b) {
-            return Carbon::parse($b['deleted_at']) <=> Carbon::parse($a['deleted_at']);
+            return Carbon::parse($b['created_at']) <=> Carbon::parse($a['created_at']);
         });
 
         return $packages;
@@ -91,7 +100,7 @@ class Package extends Component
     {
         $packages = $this->getFilteredPackages();
         $pdf = PDF::loadView('livewire.package-pdf', compact('packages'));
-        return response()->streamDownload(function() use ($pdf) {
+        return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
         }, 'correspondencia_entregada.pdf');
     }
@@ -116,7 +125,7 @@ class Package extends Component
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
 
-        return view('livewire.package', [
+        return view('livewire.generados', [
             'packages' => $paginatedItems
         ]);
     }

@@ -70,6 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/role-has-permission/{roleHasPermission}', [RoleHasPermissionController::class, 'destroy'])->name('role-has-permissions.destroy');
 
     Route::get('/packages', [PackageController::class, 'getPackages']);
+    Route::get('/generados', [PackageController::class, 'getGenerados']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
