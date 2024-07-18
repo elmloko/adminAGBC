@@ -22,13 +22,16 @@ class Package extends Component
         if ($response->successful()) {
             $packages = $response->json();
             
-            // Formatear las fechas
-            foreach ($packages as &$package) {
-                if (isset($package['created_at'])) {
-                    $package['created_at'] = Carbon::parse($package['created_at'])->format('d-m-Y H:i:s');
-                }
+        // Formatear las fechas
+        foreach ($packages as &$package) {
+            if (isset($package['created_at'])) {
+                $package['created_at'] = Carbon::parse($package['created_at'])->format('d-m-Y H:i:s');
+            }
+            if (isset($package['deleted_at'])) {
+                $package['deleted_at'] = Carbon::parse($package['deleted_at'])->format('d-m-Y H:i:s');
             }
         }
+    }
         
         // Ordenar los paquetes en orden descendente (asumiendo que tienen una clave 'id')
         usort($packages, function ($a, $b) {

@@ -28,7 +28,8 @@
                                     <th>VENTANILLA</th>
                                     <th>PESO</th>
                                     <th>ESTADO</th>
-                                    <th>CREATED_AT</th>
+                                    <th>CREACION</th>
+                                    <th>ENTREGADO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +44,7 @@
                                         <td>{{ $package['PESO'] }}</td>
                                         <td>{{ $package['ESTADO'] }}</td>
                                         <td>{{ $package['created_at'] }}</td>
+                                        <td>{{ $package['deleted_at'] }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
