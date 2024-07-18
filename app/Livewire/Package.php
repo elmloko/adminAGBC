@@ -6,8 +6,10 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Exports\PackagesExport;
 use Carbon\Carbon;
 use PDF;
+use Excel;
 
 class Package extends Component
 {
@@ -92,6 +94,12 @@ class Package extends Component
         return response()->streamDownload(function() use ($pdf) {
             echo $pdf->stream();
         }, 'correspondencia_entregada.pdf');
+    }
+
+    public function generateExcel()
+    {
+        $packages = $this->getFilteredPackages();
+        return Excel::download(new PackagesExport($packages), 'correspondencia_entregada.xlsx');
     }
 
     public function render()
