@@ -28,6 +28,7 @@ class PackagesExport implements FromCollection, WithHeadings, WithStyles
                 'VENTANILLA' => $package['VENTANILLA'],
                 'PESO' => $package['PESO'],
                 'ESTADO' => $package['ESTADO'],
+                'REGISTRADO' => $package['created_at'],
                 'ENTREGADO' => $package['deleted_at'],
             ];
         });
@@ -44,6 +45,7 @@ class PackagesExport implements FromCollection, WithHeadings, WithStyles
             'VENTANILLA',
             'PESO',
             'ESTADO',
+            'REGISTRADO',
             'ENTREGADO',
         ];
     }
