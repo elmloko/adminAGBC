@@ -354,6 +354,11 @@ return [
                     'icon' => 'fas fa-user',
                 ],
                 [
+                    'text' => 'Correspondencia Ventanilla',
+                    'url' => 'ventanilla',
+                    'icon' => 'fas fa-user',
+                ],
+                [
                     'text' => 'Correspondencia Entregada',
                     'url' => 'packages',
                     'icon' => 'fas fa-user',

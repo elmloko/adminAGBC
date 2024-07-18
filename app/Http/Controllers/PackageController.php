@@ -14,4 +14,8 @@ class PackageController extends Controller
     {
         return view('packages.generados');
     }
+    public function getVentanilla()
+    {
+        return view('packages.ventanilla');
+    }
 }
