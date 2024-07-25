@@ -41,7 +41,7 @@ class Ventanilla extends Component
     public function getFilteredPackages()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer nOWnqwk1kUgFb416NuxpeWq8c75in6UUPsgLtEagTNVAXt44Ht9KWQQxJGDPZn9m'
+            'Authorization' => 'Bearer cl7kXbLo9resWfbE4PpmJmWrlpcHXauYCisKc7c5PmYQlx90VEnUP8oGv78bauuY'
         ])->get('http://172.65.10.52/api/packages');
 
         $packages = [];

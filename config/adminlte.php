@@ -374,6 +374,37 @@ return [
                         ],
                     ],
                 ],
+                [
+                    'text' => 'Estadisticas Casillas',
+                    'url' => 'estadisticaso',
+                    'icon' => 'fas fa-user',
+                ],
+                [
+                    'text' => 'Casillas',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Casillas Alquiladas',
+                            'url' => 'alquiladas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Libres',
+                            'url' => 'libres',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Vencidas',
+                            'url' => 'vencidas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Mantenimiento',
+                            'url' => 'mantenimiento',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
+                ],
             ],
         ],        
     ],

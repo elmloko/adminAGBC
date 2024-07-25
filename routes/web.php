@@ -6,6 +6,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\CasillasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,6 +74,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/generados', [PackageController::class, 'getGenerados']);
     Route::get('/ventanilla', [PackageController::class, 'getVentanilla']);
     Route::get('/estadisticaso', [PackageController::class, 'getEstadisticaso']);
+    Route::get('/alquiladas', [CasillasController::class, 'getAlquiladas']);
+    Route::get('/libres', [CasillasController::class, 'getLibres']);
+    Route::get('/mantenimiento', [CasillasController::class, 'getMantenimiento']);
+    Route::get('/vencidas', [CasillasController::class, 'getVencidas']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
