@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use GuzzleHttp\Client;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
