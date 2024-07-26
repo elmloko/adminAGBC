@@ -349,14 +349,14 @@ return [
             // 'can'  => 'users.index',
             'submenu' => [
                 [
-                    'text' => 'Estadisticas Ordinaria',
-                    'url' => 'estadisticaso',
-                    'icon' => 'fas fa-user',
-                ],
-                [
                     'text' => 'Paqueteria Ordinaria',
                     'icon' => 'fas fa-envelope',
                     'submenu' => [
+                        [
+                            'text' => 'Estadisticas Ordinaria',
+                            'url' => 'estadisticaso',
+                            'icon' => 'fas fa-user',
+                        ],
                         [
                             'text' => 'Correspondencia Registrada',
                             'url' => 'generados',
@@ -375,14 +375,14 @@ return [
                     ],
                 ],
                 [
-                    'text' => 'Estadisticas Casillas',
-                    'url' => 'estadisticaso',
-                    'icon' => 'fas fa-user',
-                ],
-                [
                     'text' => 'Casillas',
                     'icon' => 'fas fa-envelope',
                     'submenu' => [
+                        [
+                            'text' => 'Estadisticas Casillas',
+                            'url' => 'estadisticaso',
+                            'icon' => 'fas fa-user',
+                        ],
                         [
                             'text' => 'Casillas Alquiladas',
                             'url' => 'alquiladas',
