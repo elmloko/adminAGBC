@@ -25,6 +25,14 @@ class CasillasController extends Controller
 
     public function getVencidas()
     {
-        return view('casillas.Vencidas');
+        return view('casillas.vencidas');
+    }
+    public function getCorrespondencia()
+    {
+        return view('casillas.correspondencia');
+    }
+    public function getReservadas()
+    {
+        return view('casillas.reservadas');
     }
 }

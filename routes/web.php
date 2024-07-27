@@ -78,6 +78,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/libres', [CasillasController::class, 'getLibres']);
     Route::get('/mantenimiento', [CasillasController::class, 'getMantenimiento']);
     Route::get('/vencidas', [CasillasController::class, 'getVencidas']);
+    Route::get('/correspondencia', [CasillasController::class, 'getCorrespondencia']);
+    Route::get('/reservadas', [CasillasController::class, 'getReservadas']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

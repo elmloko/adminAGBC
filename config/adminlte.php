@@ -403,6 +403,16 @@ return [
                             'url' => 'mantenimiento',
                             'icon' => 'fas fa-user',
                         ],
+                        [
+                            'text' => 'Casillas Correspondencia',
+                            'url' => 'correspondencia',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Reservadas',
+                            'url' => 'reservadas',
+                            'icon' => 'fas fa-user',
+                        ],
                     ],
                 ],
             ],
