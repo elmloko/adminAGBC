@@ -317,6 +317,11 @@ return [
             'icon' => 'fas fa-user',
         ],
         [
+            'text' => 'Rendimiento',
+            'url' => '/pulse',
+            'icon' => 'fas fa-user',
+        ],
+        [
             'text' => 'Gestion Usuarios',
             'icon' => 'fas fa-users',
             // 'can'  => 'users.index',
