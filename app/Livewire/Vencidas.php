@@ -6,7 +6,10 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Exports\CasillasExport;
 use Carbon\Carbon;
+use PDF;
+use Excel;
 
 class Vencidas extends Component
 {
@@ -92,6 +95,20 @@ class Vencidas extends Component
         });
 
         return $packages;
+    }
+    public function generatePDF()
+    {
+        $packages = $this->getFilteredPackages();
+        $pdf = PDF::loadView('livewire.casillas-pdf', compact('packages'));
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, 'correspondencia_entregada.pdf');
+    }
+
+    public function generateExcel()
+    {
+        $packages = $this->getFilteredPackages();
+        return Excel::download(new CasillasExport($packages), 'Reporte Casillas.xlsx');
     }
 
     public function getCategoriaNombre($categoriaId)

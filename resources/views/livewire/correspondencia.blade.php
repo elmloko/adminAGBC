@@ -20,6 +20,8 @@
                             <option value="4">CAJON</option>
                         </select>
                         <button wire:click="applyFilters" class="btn btn-secondary">Aplicar Filtros</button>
+                        <button wire:click="generatePDF" class="btn btn-danger">Generar PDF</button>
+                        <button wire:click="generateExcel" class="btn btn-success">Generar Excel</button>
                     </div>
                 </div>
             </div>

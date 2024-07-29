@@ -108,7 +108,7 @@ class Generados extends Component
     public function generateExcel()
     {
         $packages = $this->getFilteredPackages();
-        return Excel::download(new PackagesExport($packages), 'correspondencia_entregada.xlsx');
+        return Excel::download(new PackagesExport($packages), 'Reporte Paquetes Ordinarios.xlsx');
     }
 
     public function render()
