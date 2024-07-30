@@ -49,8 +49,8 @@ class Ventanilla extends Component
             $packages = $response->json();
 
             foreach ($packages as &$package) {
-                if (isset($package['created_at'])) {
-                    $package['created_at'] = Carbon::parse($package['created_at'])->format('d-m-Y H:i:s');
+                if (isset($package['updated_at'])) {
+                    $package['updated_at'] = Carbon::parse($package['updated_at'])->format('d-m-Y H:i:s');
                 }
             }
         }

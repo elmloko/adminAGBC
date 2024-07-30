@@ -34,6 +34,12 @@
                             <option value="UNICA">UNICA</option>
                             <option value="CASILLAS">CASILLAS</option>
                         </select>
+                        <select wire:model="estado" class="form-control mr-2">
+                            <option value="">Todos las estados</option>
+                            <option value="CLASIFICACION">CLASIFICACION</option>
+                            <option value="VENTANILLA">VENTANILLA</option>
+                            <option value="ENTREGADO">ENTREGADO</option>
+                        </select>
                         <button wire:click="applyFilters" class="btn btn-secondary">Aplicar Filtros</button>
                         <button wire:click="generatePDF" class="btn btn-danger">Generar PDF</button>
                         <button wire:click="generateExcel" class="btn btn-success">Generar Excel</button>

@@ -80,7 +80,7 @@
                                     <td>{{ $package['VENTANILLA'] }}</td>
                                     <td>{{ $package['PESO'] }}</td>
                                     <td>{{ $package['ESTADO'] }}</td>
-                                    <td>{{ $package['created_at'] }}</td>
+                                    <td>{{ $package['updated_at'] }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
