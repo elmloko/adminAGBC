@@ -36,61 +36,10 @@ class CasillasController extends Controller
     {
         return view('casillas.reservadas');
     }
+
     public function getEstadisticasc()
     {
-        $client = new Client();
-        $response = $client->get('http://172.65.10.33:8000/cajero/libres/');
-        $data = json_decode($response->getBody(), true);
-
-        // Procesar los datos por mes
-        $estadisticasPorMes = $this->procesarDatosPorMes($data);
-        // Procesar los datos por tamaño
-        $estadisticasPorTamano = $this->procesarDatosPorTamano($data);
-        // Calcular el total de casillas libres
-        $totalCasillasLibres = array_sum($estadisticasPorTamano);
-
-        return view('casillas.estadisticasc', compact('estadisticasPorMes', 'estadisticasPorTamano', 'totalCasillasLibres'));
+        return view('casillas.estadisticasc');
     }
 
-    private function procesarDatosPorMes($data)
-    {
-        $estadisticas = [];
-
-        foreach ($data as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = 0;
-            }
-            $estadisticas[$mes]++;
-        }
-
-        return $estadisticas;
-    }
-
-    private function procesarDatosPorTamano($data)
-    {
-        $tamanoLabels = [
-            1 => 'PEQUEÑA',
-            2 => 'MEDIANA',
-            3 => 'GABETA',
-            4 => 'CAJON'
-        ];
-
-        $estadisticas = [
-            'PEQUEÑA' => 0,
-            'MEDIANA' => 0,
-            'GABETA' => 0,
-            'CAJON' => 0
-        ];
-
-        foreach ($data as $item) {
-            $tamanoId = $item['casilla']['categoria_id'];
-            if (isset($tamanoLabels[$tamanoId])) {
-                $tamano = $tamanoLabels[$tamanoId];
-                $estadisticas[$tamano]++;
-            }
-        }
-
-        return $estadisticas;
-    }
 }
