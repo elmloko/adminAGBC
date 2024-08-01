@@ -35,4 +35,8 @@ class CasillasController extends Controller
     {
         return view('casillas.reservadas');
     }
+    public function getEstadisticasc()
+    {
+        return view('casillas.estadisticasc');
+    }
 }

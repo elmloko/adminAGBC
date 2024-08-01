@@ -385,7 +385,7 @@ return [
                     'submenu' => [
                         [
                             'text' => 'Estadisticas Casillas',
-                            'url' => 'estadisticaso',
+                            'url' => 'estadisticasc',
                             'icon' => 'fas fa-user',
                         ],
                         [

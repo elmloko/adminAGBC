@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/vencidas', [CasillasController::class, 'getVencidas']);
     Route::get('/correspondencia', [CasillasController::class, 'getCorrespondencia']);
     Route::get('/reservadas', [CasillasController::class, 'getReservadas']);
+    Route::get('/estadisticasc', [CasillasController::class, 'getEstadisticasc']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
