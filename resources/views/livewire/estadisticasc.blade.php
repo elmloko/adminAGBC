@@ -55,6 +55,42 @@
             </div>
         </div>
     </div>
+    <div class="card card-dark">
+        <div class="card-header">
+            <h3 class="card-title">Estadísticas del Sistema Casillas Alquiladas / Libre</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Gráfico de Reservadas -->
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="reservadasVencidasChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gráfico de Vencidas y Correspondencia -->
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Vencidas y de Correspondencia</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="vencidasCorrespondenciaChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card card-green">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Libre</h3>
@@ -79,27 +115,6 @@
                     </div>
                 </div>
 
-                <!-- Gráfico de Paquetes por Ciudad -->
-                <div class="col-md-3">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Casillas libres por tamaño</h3>
-                        </div>
-                        <div class="box-body">
-                            <canvas id="estadisticasPorTamanoChart" width="400" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Casillas alquiladas por tamaño</h3>
-                        </div>
-                        <div class="box-body">
-                            <canvas id="estadisticasOcupadasPorTamanoChart" width="400" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -112,6 +127,10 @@
             const estadisticasPorMes = @json($estadisticasPorMes);
             const estadisticasPorTamano = @json($estadisticasPorTamano);
             const estadisticasOcupadasPorTamano = @json($estadisticasOcupadasPorTamano);
+            const reservadas = @json($reservadas);
+            const correspondencia = @json($correspondencia);
+            const vencidas = @json($vencidas);
+            const mantenimiento = @json($mantenimiento);
 
             const labelsPorMes = Object.keys(estadisticasPorMes);
             const dataLibresPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['libres']);
@@ -120,6 +139,77 @@
             const dataPorTamano = Object.values(estadisticasPorTamano);
             const labelsOcupadasPorTamano = Object.keys(estadisticasOcupadasPorTamano);
             const dataOcupadasPorTamano = Object.values(estadisticasOcupadasPorTamano);
+            const configBarChart = (canvasId, labels, datasets) => {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                return new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            // Configuración del gráfico de Reservadas y Vencidas
+            configBarChart('reservadasVencidasChart', ['Casillas'],
+                [
+                    {
+                        label: 'Casillas Reservadas',
+                        data: [reservadas.length],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Casillas Vencidas',
+                        data: [vencidas.length],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            );
+
+            // Configuración del gráfico de Vencidas y Correspondencia
+            configBarChart('vencidasCorrespondenciaChart', ['Casillas'],
+                [
+                    {
+                        label: 'Casillas Vencidas',
+                        data: [vencidas.length],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Casillas de Correspondencia',
+                        data: [correspondencia.length],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            );
 
             // Gráfico de barras apiladas por mes
             const ctxPorMes = document.getElementById('estadisticasPorMesChart').getContext('2d');

@@ -10,7 +10,11 @@ class Estadisticasc extends Component
 {
     public $estadisticasPorMes = [];
     public $estadisticasPorTamano = [];
-    public $estadisticasOcupadasPorTamano = []; // Define la variable aquí
+    public $estadisticasOcupadasPorTamano = []; 
+    public $reservadas = [];
+    public $correspondencia = [];
+    public $vencidas = [];
+    public $mantenimiento = [];
     public $totalCasillasLibres = 0;
 
     public function mount()
@@ -29,6 +33,22 @@ class Estadisticasc extends Component
         // Obtener datos de casillas ocupadas
         $responseOcupadas = $client->get('http://172.65.10.33:8000/cajero/ocupadas/');
         $dataOcupadas = json_decode($responseOcupadas->getBody(), true);
+
+        // Obtener datos de casillas reservadas
+        $responseReservadas = $client->get('http://172.65.10.33:8000/cajero/reservadas/');
+        $this->reservadas = json_decode($responseReservadas->getBody(), true);
+
+        // Obtener datos de correspondencia
+        $responseCorrespondencia = $client->get('http://172.65.10.33:8000/cajero/correspondencia/');
+        $this->correspondencia = json_decode($responseCorrespondencia->getBody(), true);
+
+        // Obtener datos de casillas vencidas
+        $responseVencidas = $client->get('http://172.65.10.33:8000/cajero/vencidas/');
+        $this->vencidas = json_decode($responseVencidas->getBody(), true);
+
+        // Obtener datos de mantenimiento
+        $responseMantenimiento = $client->get('http://172.65.10.33:8000/cajero/mantenimiento/');
+        $this->mantenimiento = json_decode($responseMantenimiento->getBody(), true);
 
         // Procesar los datos por mes
         $this->estadisticasPorMes = $this->procesarDatosPorMes($dataLibres, $dataOcupadas);
@@ -94,7 +114,11 @@ class Estadisticasc extends Component
         return view('livewire.estadisticasc', [
             'estadisticasPorMes' => $this->estadisticasPorMes,
             'estadisticasPorTamano' => $this->estadisticasPorTamano,
-            'estadisticasOcupadasPorTamano' => $this->estadisticasOcupadasPorTamano // Pasa la variable a la vista
+            'estadisticasOcupadasPorTamano' => $this->estadisticasOcupadasPorTamano,
+            'reservadas' => $this->reservadas,
+            'correspondencia' => $this->correspondencia,
+            'vencidas' => $this->vencidas,
+            'mantenimiento' => $this->mantenimiento,
         ]);
     }
 }
