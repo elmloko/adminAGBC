@@ -9,6 +9,54 @@
 @section('content')
     <div class="card card-dark">
         <div class="card-header">
+            <h3 class="card-title">Estadísticas del Sistema Casillas Alquiladas / Libre</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Gráfico de Estado de Paquetes por Mes -->
+                <div class="col-md-3">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Alquiladas / Libre por mes</h3>
+                            <h5 class="box-title">Inventario desde 01/2024</h5>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasPorMesChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gráfico de Paquetes por Ciudad -->
+                <div class="col-md-3">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas libres por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasPorTamanoChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas alquiladas por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasOcupadasPorTamanoChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-green">
+        <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Libre</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -88,7 +136,7 @@
                             borderWidth: 1
                         },
                         {
-                            label: 'Casillas Ocupadas',
+                            label: 'Casillas Alquiladas',
                             data: dataOcupadasPorMes,
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             borderColor: 'rgba(255, 99, 132, 1)',
