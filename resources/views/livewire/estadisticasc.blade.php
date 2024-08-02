@@ -42,13 +42,13 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-3 col-sm-6 col-12">
-                    <div class="info-box bg-info h-100">
-                        <span class="info-box-icon"><i class="fas fa-envelope-open-text"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Casillas Libres</span>
-                            <span class="info-box-number">{{ $totalCasillasLibres }}</span>
+                <div class="col-md-3">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas alquiladas por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasOcupadasPorTamanoChart" width="400" height="300"></canvas>
                         </div>
                     </div>
                 </div>
@@ -63,36 +63,67 @@
         document.addEventListener('DOMContentLoaded', function () {
             const estadisticasPorMes = @json($estadisticasPorMes);
             const estadisticasPorTamano = @json($estadisticasPorTamano);
+            const estadisticasOcupadasPorTamano = @json($estadisticasOcupadasPorTamano);
 
             const labelsPorMes = Object.keys(estadisticasPorMes);
-            const dataPorMes = Object.values(estadisticasPorMes);
+            const dataLibresPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['libres']);
+            const dataOcupadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['ocupadas']);
             const labelsPorTamano = Object.keys(estadisticasPorTamano);
             const dataPorTamano = Object.values(estadisticasPorTamano);
+            const labelsOcupadasPorTamano = Object.keys(estadisticasOcupadasPorTamano);
+            const dataOcupadasPorTamano = Object.values(estadisticasOcupadasPorTamano);
 
-            // Gráfico de barras por mes
+            // Gráfico de barras apiladas por mes
             const ctxPorMes = document.getElementById('estadisticasPorMesChart').getContext('2d');
             const estadisticasPorMesChart = new Chart(ctxPorMes, {
                 type: 'bar',
                 data: {
                     labels: labelsPorMes,
-                    datasets: [{
-                        label: '# de Casillas',
-                        data: dataPorMes,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
+                    datasets: [
+                        {
+                            label: 'Casillas Libres',
+                            data: dataLibresPorMes,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Casillas Ocupadas',
+                            data: dataOcupadasPorMes,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
                 },
                 options: {
                     scales: {
                         y: {
                             beginAtZero: true
+                        },
+                        x: {
+                            stacked: true
+                        },
+                        y: {
+                            stacked: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
+                                }
+                            }
                         }
                     }
                 }
             });
 
-            // Gráfico de pastel por tamaño
+            // Gráfico de pastel por tamaño (libres)
             const ctxPorTamano = document.getElementById('estadisticasPorTamanoChart').getContext('2d');
             const estadisticasPorTamanoChart = new Chart(ctxPorTamano, {
                 type: 'pie',
@@ -101,6 +132,48 @@
                     datasets: [{
                         label: '# de Casillas',
                         data: dataPorTamano,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico de pastel por tamaño (ocupadas)
+            const ctxOcupadasPorTamano = document.getElementById('estadisticasOcupadasPorTamanoChart').getContext('2d');
+            const estadisticasOcupadasPorTamanoChart = new Chart(ctxOcupadasPorTamano, {
+                type: 'pie',
+                data: {
+                    labels: labelsOcupadasPorTamano,
+                    datasets: [{
+                        label: '# de Casillas',
+                        data: dataOcupadasPorTamano,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',

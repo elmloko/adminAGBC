@@ -8,4 +8,5 @@
 
 @section('content')
     @livewire('estadisticaso')
+    @include('footer')
 @stop

@@ -10,6 +10,7 @@ class Estadisticasc extends Component
 {
     public $estadisticasPorMes = [];
     public $estadisticasPorTamano = [];
+    public $estadisticasOcupadasPorTamano = []; // Define la variable aquí
     public $totalCasillasLibres = 0;
 
     public function mount()
@@ -20,27 +21,42 @@ class Estadisticasc extends Component
     public function getEstadisticasc()
     {
         $client = new Client();
-        $response = $client->get('http://172.65.10.33:8000/cajero/libres/');
-        $data = json_decode($response->getBody(), true);
+
+        // Obtener datos de casillas libres
+        $responseLibres = $client->get('http://172.65.10.33:8000/cajero/libres/');
+        $dataLibres = json_decode($responseLibres->getBody(), true);
+
+        // Obtener datos de casillas ocupadas
+        $responseOcupadas = $client->get('http://172.65.10.33:8000/cajero/ocupadas/');
+        $dataOcupadas = json_decode($responseOcupadas->getBody(), true);
 
         // Procesar los datos por mes
-        $this->estadisticasPorMes = $this->procesarDatosPorMes($data);
+        $this->estadisticasPorMes = $this->procesarDatosPorMes($dataLibres, $dataOcupadas);
         // Procesar los datos por tamaño
-        $this->estadisticasPorTamano = $this->procesarDatosPorTamano($data);
+        $this->estadisticasPorTamano = $this->procesarDatosPorTamano($dataLibres);
+        $this->estadisticasOcupadasPorTamano = $this->procesarDatosPorTamano($dataOcupadas); // Añade este procesamiento
         // Calcular el total de casillas libres
         $this->totalCasillasLibres = array_sum($this->estadisticasPorTamano);
     }
 
-    private function procesarDatosPorMes($data)
+    private function procesarDatosPorMes($dataLibres, $dataOcupadas)
     {
         $estadisticas = [];
 
-        foreach ($data as $item) {
+        foreach ($dataLibres as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = 0;
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0];
             }
-            $estadisticas[$mes]++;
+            $estadisticas[$mes]['libres']++;
+        }
+
+        foreach ($dataOcupadas as $item) {
+            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+            if (!isset($estadisticas[$mes])) {
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0];
+            }
+            $estadisticas[$mes]['ocupadas']++;
         }
 
         return $estadisticas;
@@ -75,6 +91,10 @@ class Estadisticasc extends Component
 
     public function render()
     {
-        return view('livewire.estadisticasc');
+        return view('livewire.estadisticasc', [
+            'estadisticasPorMes' => $this->estadisticasPorMes,
+            'estadisticasPorTamano' => $this->estadisticasPorTamano,
+            'estadisticasOcupadasPorTamano' => $this->estadisticasOcupadasPorTamano // Pasa la variable a la vista
+        ]);
     }
 }
