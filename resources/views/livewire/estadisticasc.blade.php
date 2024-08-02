@@ -19,7 +19,7 @@
         <div class="card-body">
             <div class="row">
                 <!-- Gráfico de Estado de Paquetes por Mes -->
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Alquiladas / Libre por mes</h3>
@@ -32,7 +32,7 @@
                 </div>
 
                 <!-- Gráfico de Paquetes por Ciudad -->
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas libres por tamaño</h3>
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas alquiladas por tamaño</h3>
