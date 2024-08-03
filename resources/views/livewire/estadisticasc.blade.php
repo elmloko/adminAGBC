@@ -67,7 +67,7 @@
         <div class="card-body">
             <div class="row">
                 <!-- Gráfico de Reservadas -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <!-- Gráfico de Vencidas y Correspondencia -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Vencidas y de Correspondencia</h3>
@@ -135,10 +135,15 @@
             const labelsPorMes = Object.keys(estadisticasPorMes);
             const dataLibresPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['libres']);
             const dataOcupadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['ocupadas']);
+            const dataReservadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['reservadas']);
+            const dataVencidasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['vencidas']);
+            const dataCorrespondenciaPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['correspondencia']);
+
             const labelsPorTamano = Object.keys(estadisticasPorTamano);
             const dataPorTamano = Object.values(estadisticasPorTamano);
             const labelsOcupadasPorTamano = Object.keys(estadisticasOcupadasPorTamano);
             const dataOcupadasPorTamano = Object.values(estadisticasOcupadasPorTamano);
+
             const configBarChart = (canvasId, labels, datasets) => {
                 const ctx = document.getElementById(canvasId).getContext('2d');
                 return new Chart(ctx, {
@@ -172,18 +177,18 @@
             };
 
             // Configuración del gráfico de Reservadas y Vencidas
-            configBarChart('reservadasVencidasChart', ['Casillas'],
+            configBarChart('reservadasVencidasChart', labelsPorMes,
                 [
                     {
                         label: 'Casillas Reservadas',
-                        data: [reservadas.length],
+                        data: dataReservadasPorMes,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
                         borderColor: 'rgba(54, 162, 235, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Casillas Vencidas',
-                        data: [vencidas.length],
+                        data: dataVencidasPorMes,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
@@ -192,18 +197,18 @@
             );
 
             // Configuración del gráfico de Vencidas y Correspondencia
-            configBarChart('vencidasCorrespondenciaChart', ['Casillas'],
+            configBarChart('vencidasCorrespondenciaChart', labelsPorMes,
                 [
                     {
                         label: 'Casillas Vencidas',
-                        data: [vencidas.length],
+                        data: dataVencidasPorMes,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
                     },
                     {
                         label: 'Casillas de Correspondencia',
-                        data: [correspondencia.length],
+                        data: dataCorrespondenciaPorMes,
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
@@ -230,6 +235,27 @@
                             data: dataOcupadasPorMes,
                             backgroundColor: 'rgba(255, 99, 132, 0.2)',
                             borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Casillas Reservadas',
+                            data: dataReservadasPorMes,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Casillas Vencidas',
+                            data: dataVencidasPorMes,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Casillas de Correspondencia',
+                            data: dataCorrespondenciaPorMes,
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderColor: 'rgba(153, 102, 255, 1)',
                             borderWidth: 1
                         }
                     ]

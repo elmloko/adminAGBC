@@ -10,7 +10,7 @@ class Estadisticasc extends Component
 {
     public $estadisticasPorMes = [];
     public $estadisticasPorTamano = [];
-    public $estadisticasOcupadasPorTamano = []; 
+    public $estadisticasOcupadasPorTamano = [];
     public $reservadas = [];
     public $correspondencia = [];
     public $vencidas = [];
@@ -51,7 +51,7 @@ class Estadisticasc extends Component
         $this->mantenimiento = json_decode($responseMantenimiento->getBody(), true);
 
         // Procesar los datos por mes
-        $this->estadisticasPorMes = $this->procesarDatosPorMes($dataLibres, $dataOcupadas);
+        $this->estadisticasPorMes = $this->procesarDatosPorMes($dataLibres, $dataOcupadas, $this->reservadas, $this->vencidas, $this->correspondencia);
         // Procesar los datos por tamaño
         $this->estadisticasPorTamano = $this->procesarDatosPorTamano($dataLibres);
         $this->estadisticasOcupadasPorTamano = $this->procesarDatosPorTamano($dataOcupadas); // Añade este procesamiento
@@ -59,14 +59,14 @@ class Estadisticasc extends Component
         $this->totalCasillasLibres = array_sum($this->estadisticasPorTamano);
     }
 
-    private function procesarDatosPorMes($dataLibres, $dataOcupadas)
+    private function procesarDatosPorMes($dataLibres, $dataOcupadas, $dataReservadas, $dataVencidas, $dataCorrespondencia)
     {
         $estadisticas = [];
 
         foreach ($dataLibres as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0];
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0];
             }
             $estadisticas[$mes]['libres']++;
         }
@@ -74,9 +74,33 @@ class Estadisticasc extends Component
         foreach ($dataOcupadas as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0];
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0];
             }
             $estadisticas[$mes]['ocupadas']++;
+        }
+
+        foreach ($dataReservadas as $item) {
+            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+            if (!isset($estadisticas[$mes])) {
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0];
+            }
+            $estadisticas[$mes]['reservadas']++;
+        }
+
+        foreach ($dataVencidas as $item) {
+            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+            if (!isset($estadisticas[$mes])) {
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0];
+            }
+            $estadisticas[$mes]['vencidas']++;
+        }
+
+        foreach ($dataCorrespondencia as $item) {
+            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+            if (!isset($estadisticas[$mes])) {
+                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0];
+            }
+            $estadisticas[$mes]['correspondencia']++;
         }
 
         return $estadisticas;
