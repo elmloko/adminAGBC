@@ -66,8 +66,6 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <!-- Gráfico de Reservadas -->
-                
                 <!-- Gráfico de Vencidas y Correspondencia -->
                 <div class="col-md-4">
                     <div class="box box-primary">
@@ -76,6 +74,28 @@
                         </div>
                         <div class="box-body">
                             <canvas id="vencidasCorrespondenciaChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gráfico de Casillas Correspondencia por tamaño -->
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Correspondencia por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasCorrespondenciaPorTamanoChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gráfico de Casillas Mantenimiento por tamaño -->
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Mantenimiento por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasMantenimientoPorTamanoChart" width="400" height="300"></canvas>
                         </div>
                     </div>
                 </div>
@@ -101,6 +121,28 @@
                         </div>
                         <div class="box-body">
                             <canvas id="reservadasVencidasChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gráfico de Casillas Reservadas por tamaño -->
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Reservadas por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasReservadasPorTamanoChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gráfico de Casillas Vencidas por tamaño -->
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Vencidas por tamaño</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="estadisticasVencidasPorTamanoChart" width="400" height="300"></canvas>
                         </div>
                     </div>
                 </div>
@@ -133,7 +175,62 @@
             const dataPorTamano = Object.values(estadisticasPorTamano);
             const labelsOcupadasPorTamano = Object.keys(estadisticasOcupadasPorTamano);
             const dataOcupadasPorTamano = Object.values(estadisticasOcupadasPorTamano);
+            const dataReservadasPorTamano = Object.values(reservadas);
+            const dataCorrespondenciaPorTamano = Object.values(correspondencia);
+            const dataVencidasPorTamano = Object.values(vencidas);
+            const dataMantenimientoPorTamano = Object.values(mantenimiento);
 
+            const configPieChart = (canvasId, labels, data) => {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                return new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '# de Casillas',
+                            data: data,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            // Configuración de gráficos por tamaño
+            configPieChart('estadisticasPorTamanoChart', labelsPorTamano, dataPorTamano);
+            configPieChart('estadisticasOcupadasPorTamanoChart', labelsOcupadasPorTamano, dataOcupadasPorTamano);
+            configPieChart('estadisticasReservadasPorTamanoChart', labelsPorTamano, dataReservadasPorTamano);
+            configPieChart('estadisticasCorrespondenciaPorTamanoChart', labelsPorTamano, dataCorrespondenciaPorTamano);
+            configPieChart('estadisticasVencidasPorTamanoChart', labelsPorTamano, dataVencidasPorTamano);
+            configPieChart('estadisticasMantenimientoPorTamanoChart', labelsPorTamano, dataMantenimientoPorTamano);
+            
             const configBarChart = (canvasId, labels, datasets) => {
                 const ctx = document.getElementById(canvasId).getContext('2d');
                 return new Chart(ctx, {

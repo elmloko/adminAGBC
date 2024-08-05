@@ -55,6 +55,11 @@ class Estadisticasc extends Component
         // Procesar los datos por tamaño
         $this->estadisticasPorTamano = $this->procesarDatosPorTamano($dataLibres);
         $this->estadisticasOcupadasPorTamano = $this->procesarDatosPorTamano($dataOcupadas); // Añade este procesamiento
+        $this->reservadas = $this->procesarDatosPorTamano($this->reservadas);
+        $this->correspondencia = $this->procesarDatosPorTamano($this->correspondencia);
+        $this->vencidas = $this->procesarDatosPorTamano($this->vencidas);
+        $this->mantenimiento = $this->procesarDatosPorTamano($this->mantenimiento);
+        
         // Calcular el total de casillas libres
         $this->totalCasillasLibres = array_sum($this->estadisticasPorTamano);
     }
