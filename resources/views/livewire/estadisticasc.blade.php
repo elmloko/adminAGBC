@@ -57,7 +57,7 @@
     </div>
     <div class="card card-dark">
         <div class="card-header">
-            <h3 class="card-title">Estadísticas del Sistema Casillas Alquiladas / Libre</h3>
+            <h3 class="card-title">Estadísticas del Sistema Casillas Correspondencia / Mantenimiento</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -67,16 +67,7 @@
         <div class="card-body">
             <div class="row">
                 <!-- Gráfico de Reservadas -->
-                <div class="col-md-4">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
-                        </div>
-                        <div class="box-body">
-                            <canvas id="reservadasVencidasChart" width="400" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
+                
                 <!-- Gráfico de Vencidas y Correspondencia -->
                 <div class="col-md-4">
                     <div class="box box-primary">
@@ -103,18 +94,16 @@
         <div class="card-body">
             <div class="row">
                 <!-- Gráfico de Estado de Paquetes por Mes -->
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Casillas libres por mes</h3>
-                            <h5 class="box-title">Inventario desde 01/2024</h5>
+                            <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasPorMesChart" width="400" height="200"></canvas>
+                            <canvas id="reservadasVencidasChart" width="400" height="300"></canvas>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -138,6 +127,7 @@
             const dataReservadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['reservadas']);
             const dataVencidasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['vencidas']);
             const dataCorrespondenciaPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['correspondencia']);
+            const dataMantenimientoPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['mantenimiento']);
 
             const labelsPorTamano = Object.keys(estadisticasPorTamano);
             const dataPorTamano = Object.values(estadisticasPorTamano);
@@ -200,8 +190,8 @@
             configBarChart('vencidasCorrespondenciaChart', labelsPorMes,
                 [
                     {
-                        label: 'Casillas Vencidas',
-                        data: dataVencidasPorMes,
+                        label: 'Casillas Mantenimiento',
+                        data: dataMantenimientoPorMes,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                         borderColor: 'rgba(255, 99, 132, 1)',
                         borderWidth: 1
@@ -237,27 +227,6 @@
                             borderColor: 'rgba(255, 99, 132, 1)',
                             borderWidth: 1
                         },
-                        {
-                            label: 'Casillas Reservadas',
-                            data: dataReservadasPorMes,
-                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                            borderColor: 'rgba(255, 206, 86, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Casillas Vencidas',
-                            data: dataVencidasPorMes,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Casillas de Correspondencia',
-                            data: dataCorrespondenciaPorMes,
-                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                            borderColor: 'rgba(153, 102, 255, 1)',
-                            borderWidth: 1
-                        }
                     ]
                 },
                 options: {
