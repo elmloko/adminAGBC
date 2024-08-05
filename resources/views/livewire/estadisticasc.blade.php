@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="card card-dark">
+    <div class="card card-blue">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Correspondencia / Mantenimiento</h3>
             <div class="card-tools">
@@ -72,7 +72,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Casillas Vencidas y de Correspondencia</h3>
+                            <h3 class="box-title">Casillas Correspondencia / Mantenimiento</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="vencidasCorrespondenciaChart" width="400" height="300"></canvas>
@@ -84,7 +84,7 @@
     </div>
     <div class="card card-green">
         <div class="card-header">
-            <h3 class="card-title">Estadísticas del Sistema Casillas Libre</h3>
+            <h3 class="card-title">Estadísticas del Sistema Casillas Reservadas / Vencidas</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
