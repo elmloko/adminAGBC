@@ -161,13 +161,13 @@
         <div class="card-body">
             <div class="row">
                 <!-- Gráfico de Estado de Paquetes por Mes -->
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Total Ingresos mensuales Sistema Casillas</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="graficoIngresosMensuales" width="400" height="300"></canvas>
+                            <canvas id="graficoIngresosMensuales" width="400" height="100"></canvas>
                         </div>
                     </div>
                 </div>
