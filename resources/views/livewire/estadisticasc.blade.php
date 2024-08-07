@@ -164,7 +164,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
+                            <h3 class="box-title">Total Ingresos mensuales Sistema Casillas</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="graficoIngresosMensuales" width="400" height="300"></canvas>
