@@ -320,11 +320,12 @@ return [
             'text' => 'Rendimiento',
             'url' => '/pulse',
             'icon' => 'fas fa-user',
+            'can'  => 'packages',
         ],
         [
             'text' => 'Gestion Usuarios',
             'icon' => 'fas fa-users',
-            // 'can'  => 'users.index',
+            'can'  => 'users.index',
             'submenu' => [
                 [
                     'text' => 'Personal AGBC',
