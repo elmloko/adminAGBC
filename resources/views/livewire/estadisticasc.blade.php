@@ -149,12 +149,37 @@
             </div>
         </div>
     </div>
+    <div class="card card-yellow">
+        <div class="card-header">
+            <h3 class="card-title">Estadísticas del Sistema Casillas Ingresos</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Gráfico de Estado de Paquetes por Mes -->
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="graficoIngresosMensuales" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const estadisticasPorMes = @json($estadisticasPorMes);
             const estadisticasPorTamano = @json($estadisticasPorTamano);
             const estadisticasOcupadasPorTamano = @json($estadisticasOcupadasPorTamano);
@@ -162,6 +187,7 @@
             const correspondencia = @json($correspondencia);
             const vencidas = @json($vencidas);
             const mantenimiento = @json($mantenimiento);
+            const ingresosMensualesData = @json($ingresosMensuales);
 
             const labelsPorMes = Object.keys(estadisticasPorMes);
             const dataLibresPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['libres']);
@@ -179,6 +205,33 @@
             const dataCorrespondenciaPorTamano = Object.values(correspondencia);
             const dataVencidasPorTamano = Object.values(vencidas);
             const dataMantenimientoPorTamano = Object.values(mantenimiento);
+
+            var ctx = document.getElementById('graficoIngresosMensuales').getContext('2d');
+            var ingresosMensuales = @json($ingresosMensuales);
+
+            var labels = Object.keys(ingresosMensuales);
+            var data = Object.values(ingresosMensuales);
+
+            var chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Ingresos Mensuales',
+                        data: data,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
 
             const configPieChart = (canvasId, labels, data) => {
                 const ctx = document.getElementById(canvasId).getContext('2d');
@@ -227,10 +280,11 @@
             configPieChart('estadisticasPorTamanoChart', labelsPorTamano, dataPorTamano);
             configPieChart('estadisticasOcupadasPorTamanoChart', labelsOcupadasPorTamano, dataOcupadasPorTamano);
             configPieChart('estadisticasReservadasPorTamanoChart', labelsPorTamano, dataReservadasPorTamano);
-            configPieChart('estadisticasCorrespondenciaPorTamanoChart', labelsPorTamano, dataCorrespondenciaPorTamano);
+            configPieChart('estadisticasCorrespondenciaPorTamanoChart', labelsPorTamano,
+                dataCorrespondenciaPorTamano);
             configPieChart('estadisticasVencidasPorTamanoChart', labelsPorTamano, dataVencidasPorTamano);
             configPieChart('estadisticasMantenimientoPorTamanoChart', labelsPorTamano, dataMantenimientoPorTamano);
-            
+
             const configBarChart = (canvasId, labels, datasets) => {
                 const ctx = document.getElementById(canvasId).getContext('2d');
                 return new Chart(ctx, {
@@ -265,8 +319,7 @@
 
             // Configuración del gráfico de Reservadas y Vencidas
             configBarChart('reservadasVencidasChart', labelsPorMes,
-                [
-                    {
+                [{
                         label: 'Casillas Reservadas',
                         data: dataReservadasPorMes,
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -285,8 +338,7 @@
 
             // Configuración del gráfico de Vencidas y Correspondencia
             configBarChart('vencidasCorrespondenciaChart', labelsPorMes,
-                [
-                    {
+                [{
                         label: 'Casillas Mantenimiento',
                         data: dataMantenimientoPorMes,
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -309,8 +361,7 @@
                 type: 'bar',
                 data: {
                     labels: labelsPorMes,
-                    datasets: [
-                        {
+                    datasets: [{
                             label: 'Casillas Libres',
                             data: dataLibresPorMes,
                             backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -396,7 +447,8 @@
             });
 
             // Gráfico de pastel por tamaño (ocupadas)
-            const ctxOcupadasPorTamano = document.getElementById('estadisticasOcupadasPorTamanoChart').getContext('2d');
+            const ctxOcupadasPorTamano = document.getElementById('estadisticasOcupadasPorTamanoChart').getContext(
+                '2d');
             const estadisticasOcupadasPorTamanoChart = new Chart(ctxOcupadasPorTamano, {
                 type: 'pie',
                 data: {
