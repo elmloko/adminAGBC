@@ -187,7 +187,7 @@
             const correspondencia = @json($correspondencia);
             const vencidas = @json($vencidas);
             const mantenimiento = @json($mantenimiento);
-            const ingresosMensualesData = @json($ingresosMensuales);
+            const ingresosMensuales = @json($ingresosMensuales);
 
             const labelsPorMes = Object.keys(estadisticasPorMes);
             const dataLibresPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['libres']);
@@ -206,23 +206,47 @@
             const dataVencidasPorTamano = Object.values(vencidas);
             const dataMantenimientoPorTamano = Object.values(mantenimiento);
 
-            var ctx = document.getElementById('graficoIngresosMensuales').getContext('2d');
-            var ingresosMensuales = @json($ingresosMensuales);
+            const ctx = document.getElementById('graficoIngresosMensuales').getContext('2d');
+            const labels = Object.keys(ingresosMensuales);
+            const dataMulta = labels.map(mes => ingresosMensuales[mes]['multa']);
+            const dataCasilla = labels.map(mes => ingresosMensuales[mes]['casilla']);
+            const dataLlave = labels.map(mes => ingresosMensuales[mes]['llave']);
+            const dataHabilitacion = labels.map(mes => ingresosMensuales[mes]['habilitacion']);
 
-            var labels = Object.keys(ingresosMensuales);
-            var data = Object.values(ingresosMensuales);
-
-            var chart = new Chart(ctx, {
-                type: 'line',
+            const chart = new Chart(ctx, {
+                type: 'line', // Cambiar a 'bar' o 'line' dependiendo de tus preferencias
                 data: {
                     labels: labels,
-                    datasets: [{
-                        label: 'Ingresos Mensuales',
-                        data: data,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
+                    datasets: [
+                        {
+                            label: 'Precio Multa',
+                            data: dataMulta,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Precio Casilla',
+                            data: dataCasilla,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Precio Llave',
+                            data: dataLlave,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Precio Habilitacion',
+                            data: dataHabilitacion,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }
+                    ]
                 },
                 options: {
                     scales: {
@@ -280,8 +304,7 @@
             configPieChart('estadisticasPorTamanoChart', labelsPorTamano, dataPorTamano);
             configPieChart('estadisticasOcupadasPorTamanoChart', labelsOcupadasPorTamano, dataOcupadasPorTamano);
             configPieChart('estadisticasReservadasPorTamanoChart', labelsPorTamano, dataReservadasPorTamano);
-            configPieChart('estadisticasCorrespondenciaPorTamanoChart', labelsPorTamano,
-                dataCorrespondenciaPorTamano);
+            configPieChart('estadisticasCorrespondenciaPorTamanoChart', labelsPorTamano, dataCorrespondenciaPorTamano);
             configPieChart('estadisticasVencidasPorTamanoChart', labelsPorTamano, dataVencidasPorTamano);
             configPieChart('estadisticasMantenimientoPorTamanoChart', labelsPorTamano, dataMantenimientoPorTamano);
 
@@ -447,8 +470,7 @@
             });
 
             // Gráfico de pastel por tamaño (ocupadas)
-            const ctxOcupadasPorTamano = document.getElementById('estadisticasOcupadasPorTamanoChart').getContext(
-                '2d');
+            const ctxOcupadasPorTamano = document.getElementById('estadisticasOcupadasPorTamanoChart').getContext('2d');
             const estadisticasOcupadasPorTamanoChart = new Chart(ctxOcupadasPorTamano, {
                 type: 'pie',
                 data: {

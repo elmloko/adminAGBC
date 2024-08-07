@@ -72,7 +72,7 @@ class Estadisticasc extends Component
     private function procesarDatosPorMes($dataLibres, $dataOcupadas, $dataReservadas, $dataVencidas, $dataCorrespondencia, $dataMantenimiento)
     {
         $estadisticas = [];
-    
+
         foreach ($dataLibres as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
@@ -80,7 +80,7 @@ class Estadisticasc extends Component
             }
             $estadisticas[$mes]['libres']++;
         }
-    
+
         foreach ($dataOcupadas as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
@@ -88,7 +88,7 @@ class Estadisticasc extends Component
             }
             $estadisticas[$mes]['ocupadas']++;
         }
-    
+
         foreach ($dataReservadas as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
@@ -96,7 +96,7 @@ class Estadisticasc extends Component
             }
             $estadisticas[$mes]['reservadas']++;
         }
-    
+
         foreach ($dataVencidas as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
@@ -104,7 +104,7 @@ class Estadisticasc extends Component
             }
             $estadisticas[$mes]['vencidas']++;
         }
-    
+
         foreach ($dataCorrespondencia as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
@@ -112,7 +112,7 @@ class Estadisticasc extends Component
             }
             $estadisticas[$mes]['correspondencia']++;
         }
-    
+
         foreach ($dataMantenimiento as $item) {
             $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
             if (!isset($estadisticas[$mes])) {
@@ -120,7 +120,7 @@ class Estadisticasc extends Component
             }
             $estadisticas[$mes]['mantenimiento']++;
         }
-    
+
         return $estadisticas;
     }
 
@@ -154,27 +154,34 @@ class Estadisticasc extends Component
     private function procesarIngresosMensuales($data)
     {
         $ingresos = [];
-        
+
         foreach ($data as $item) {
             $mes = Carbon::parse($item['created_at'])->format('Y-m');
-            
+
             // Asegúrate de que los campos contienen valores numéricos y no texto
             $nombre = $this->convertirAFloat($item['nombre']);
             $estadoPago = $this->convertirAFloat($item['estado_pago']);
             $habilitacion = $this->convertirAFloat($item['habilitacion']);
-            $precio = $this->convertirAFloat($item['precio']);
-            
-            $ingreso = $estadoPago + $habilitacion + $precio + $nombre;
-            
+            $precio = $this->convertirAFloat($item['precio']['precio']);
+
             if (!isset($ingresos[$mes])) {
-                $ingresos[$mes] = 0;
+                $ingresos[$mes] = [
+                    'multa' => 0,
+                    'casilla' => 0,
+                    'llave' => 0,
+                    'habilitacion' => 0
+                ];
             }
-            $ingresos[$mes] += $ingreso;
+
+            $ingresos[$mes]['multa'] += $nombre;
+            $ingresos[$mes]['casilla'] += $precio;
+            $ingresos[$mes]['llave'] += $estadoPago;
+            $ingresos[$mes]['habilitacion'] += $habilitacion;
         }
-        
+
         return $ingresos;
     }
-    
+
     private function convertirAFloat($valor)
     {
         // Quitar el texto y convertir a número flotante
