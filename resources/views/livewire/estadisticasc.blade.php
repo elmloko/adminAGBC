@@ -213,7 +213,7 @@
             var data = Object.values(ingresosMensuales);
 
             var chart = new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
