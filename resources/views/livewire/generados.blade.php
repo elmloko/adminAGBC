@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('CORRESPONDENCIA CREADA') }}
+                            {{ __('CORRESPONDENCIA AREA DE CLASIFICACION') }}
                         </span>
                     </div>
                     <div style="display: flex; align-items: center;">

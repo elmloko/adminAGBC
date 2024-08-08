@@ -410,7 +410,7 @@ return [
                             'icon' => 'fas fa-user',
                         ],
                         [
-                            'text' => 'Casillas Correspondencia',
+                            'text' => 'Casillas con Correspondencia',
                             'url' => 'correspondencia',
                             'icon' => 'fas fa-user',
                         ],

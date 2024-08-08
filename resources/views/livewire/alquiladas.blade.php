@@ -47,7 +47,7 @@
                                 <th>Cliente</th>
                                 <th>Tamaño</th>
                                 <th>Nro. Sección</th>
-                                <th>Nro. Llaves</th>
+                                <th>Nro. Llave</th>
                                 <th>Estado</th>
                                 <th>Fecha de Fin de Alquiler</th>
                             </tr>

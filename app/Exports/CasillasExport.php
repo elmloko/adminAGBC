@@ -35,7 +35,7 @@ class CasillasExport implements FromCollection, WithHeadings, WithStyles
             'Cliente',
             'Tamaño',
             'Nro. Sección',
-            'Nro. Llaves',
+            'Nro. Llave',
             'Estado',
             'Fecha de Actualización',
         ];

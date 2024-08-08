@@ -46,7 +46,7 @@
                                 <th>Nro. Casilla</th>
                                 <th>Tamaño</th>
                                 <th>Nro. Sección</th>
-                                <th>Nro. Llaves</th>
+                                <th>Nro. Llave</th>
                                 <th>Fecha de Actualización</th>
                             </tr>
                         </thead>

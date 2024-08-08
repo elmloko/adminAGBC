@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('CORRESPONDENCIA EN VENTANILLA') }}
+                            {{ __('CORRESPONDENCIA AREA DE VENTANILLA') }}
                         </span>
                     </div>
                     <div style="display: flex; align-items: center;">
