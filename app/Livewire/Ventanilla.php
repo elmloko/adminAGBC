@@ -119,7 +119,7 @@ class Ventanilla extends Component
         }
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 100;
+        $perPage = 10;
         $currentItems = array_slice($packages, ($currentPage - 1) * $perPage, $perPage);
         $paginatedItems = new LengthAwarePaginator($currentItems, count($packages), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
