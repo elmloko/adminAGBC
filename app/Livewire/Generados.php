@@ -42,7 +42,7 @@ class Generados extends Component
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer cl7kXbLo9resWfbE4PpmJmWrlpcHXauYCisKc7c5PmYQlx90VEnUP8oGv78bauuY'
-        ])->get('http://172.65.10.52/api/packages');
+        ])->get('http://172.65.10.52/api/callclasi');
 
         $packages = [];
         if ($response->successful()) {
