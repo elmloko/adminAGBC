@@ -40,7 +40,12 @@ class Ventanilla extends Component
 
     public function getFilteredPackages()
     {
-        $response = Http::withHeaders([
+        $response = Http::withOptions([
+            'verify' => false, // Deshabilitar la verificación del certificado SSL
+            'curl' => [
+                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2, // Especificar la versión TLS
+            ],
+        ])->withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->get('https://correos.gob.bo:8000/api/packages');
 
