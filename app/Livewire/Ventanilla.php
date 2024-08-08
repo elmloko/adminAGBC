@@ -41,9 +41,9 @@ class Ventanilla extends Component
     public function getFilteredPackages()
     {
         $response = Http::withOptions([
-            'verify' => false, // Deshabilitar la verificación del certificado SSL
+            'verify' => false,
             'curl' => [
-                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2, // Especificar la versión TLS
+                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_3, // Probar con TLS 1.3
             ],
         ])->withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'

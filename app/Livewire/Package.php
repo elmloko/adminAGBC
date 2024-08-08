@@ -43,7 +43,7 @@ class Package extends Component
         $response = Http::withOptions([
             'verify' => false, // Deshabilitar la verificación del certificado SSL
             'curl' => [
-                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2, // Especificar la versión TLS
+                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_3, // Especificar la versión TLS
             ],
         ])->withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
