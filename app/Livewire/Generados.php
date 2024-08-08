@@ -7,6 +7,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Exports\PackagesExport;
+use GuzzleHttp\Client;
 use Carbon\Carbon;
 use PDF;
 use Excel;
@@ -40,65 +41,75 @@ class Generados extends Component
 
     public function getFilteredPackages()
     {
-        $response = Http::withOptions([
-            'verify' => false, // Deshabilitar la verificación del certificado SSL
+        $client = new Client([
+            'verify' => false, // Deshabilitar verificación SSL
             'curl' => [
-                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_3, // Especificar la versión TLS
+                CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2, // Usar TLSv1.2
             ],
-        ])->withHeaders([
-            'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
-        ])->get('https://correos.gob.bo:8000/api/packages');
+        ]);
 
-        $packages = [];
-        if ($response->successful()) {
-            $packages = $response->json();
+        try {
+            $response = $client->request('GET', 'https://correos.gob.bo:8000/api/packages', [
+                'headers' => [
+                    'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK',
+                ]
+            ]);
 
-            foreach ($packages as &$package) {
-                if (isset($package['created_at'])) {
-                    $package['created_at'] = Carbon::parse($package['created_at'])->format('d-m-Y H:i:s');
+            $packages = [];
+            if ($response->getStatusCode() == 200) {
+                $packages = json_decode($response->getBody(), true);
+
+                foreach ($packages as &$package) {
+                    if (isset($package['updated_at'])) {
+                        $package['updated_at'] = Carbon::parse($package['updated_at'])->format('d-m-Y H:i:s');
+                    }
                 }
             }
-        }
 
-        // Filtrar los paquetes según la búsqueda
-        if (!empty($this->search)) {
+            // Filtrar los paquetes según la búsqueda
+            if (!empty($this->search)) {
+                $packages = array_filter($packages, function ($package) {
+                    return stripos($package['CODIGO'], $this->search) !== false ||
+                        stripos($package['DESTINATARIO'], $this->search) !== false;
+                });
+            }
+
+            // Filtrar los paquetes según la fecha
+            if (!empty($this->date)) {
+                $packages = array_filter($packages, function ($package) {
+                    return Carbon::parse($package['created_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
+                });
+            }
+
+            // Filtrar los paquetes según la ventanilla
+            if (!empty($this->ventanilla)) {
+                $packages = array_filter($packages, function ($package) {
+                    return $package['VENTANILLA'] === $this->ventanilla;
+                });
+            }
+
+            // Filtrar los paquetes según la ciudad
+            if (!empty($this->ciudad)) {
+                $packages = array_filter($packages, function ($package) {
+                    return stripos($package['CUIDAD'], $this->ciudad) !== false;
+                });
+            }
+
+            // Filtrar los paquetes cuyo estado sea "DESPACHO" o "CLASIFICACION"
             $packages = array_filter($packages, function ($package) {
-                return stripos($package['CODIGO'], $this->search) !== false ||
-                    stripos($package['DESTINATARIO'], $this->search) !== false;
+                return $package['ESTADO'] === 'VENTANILLA';
             });
-        }
 
-        // Filtrar los paquetes según la fecha
-        if (!empty($this->date)) {
-            $packages = array_filter($packages, function ($package) {
-                return Carbon::parse($package['created_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
+            usort($packages, function ($a, $b) {
+                return Carbon::parse($b['created_at']) <=> Carbon::parse($a['created_at']);
             });
+
+            return $packages;
+
+        } catch (\Exception $e) {
+            // Manejar el error
+            return [];
         }
-
-        // Filtrar los paquetes según la ventanilla
-        if (!empty($this->ventanilla)) {
-            $packages = array_filter($packages, function ($package) {
-                return $package['VENTANILLA'] === $this->ventanilla;
-            });
-        }
-
-        // Filtrar los paquetes según la ciudad
-        if (!empty($this->ciudad)) {
-            $packages = array_filter($packages, function ($package) {
-                return stripos($package['CUIDAD'], $this->ciudad) !== false;
-            });
-        }
-
-        // Filtrar los paquetes cuyo estado sea "DESPACHO" o "CLASIFICACION"
-        $packages = array_filter($packages, function ($package) {
-            return $package['ESTADO'] === 'DESPACHO' || $package['ESTADO'] === 'CLASIFICACION';
-        });
-
-        usort($packages, function ($a, $b) {
-            return Carbon::parse($b['created_at']) <=> Carbon::parse($a['created_at']);
-        });
-
-        return $packages;
     }
 
     public function generatePDF()
