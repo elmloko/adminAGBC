@@ -41,8 +41,10 @@ class Ventanilla extends Component
     public function getFilteredPackages()
     {
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer cl7kXbLo9resWfbE4PpmJmWrlpcHXauYCisKc7c5PmYQlx90VEnUP8oGv78bauuY'
-        ])->get('http://172.65.10.52/api/callventanilla');
+            'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
+        ])->withOptions([
+            'verify' => false,
+        ])->get('https://correos.gob.bo:8000/api/callventanilla');            
 
         $packages = [];
         if ($response->successful()) {
