@@ -318,6 +318,12 @@ return [
         ],
         [
             'text' => 'Rendimiento',
+            'url' => '/log-viewer',
+            'icon' => 'fas fa-user',
+            'can'  => 'packages',
+        ],
+        [
+            'text' => 'Logs',
             'url' => '/pulse',
             'icon' => 'fas fa-user',
             'can'  => 'packages',
