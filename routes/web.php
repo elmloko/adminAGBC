@@ -71,9 +71,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/role-has-permission/{roleHasPermission}', [RoleHasPermissionController::class, 'destroy'])->name('role-has-permissions.destroy');
 
     Route::get('/packages', [PackageController::class, 'getPackages']);
-    Route::get('/generados', [PackageController::class, 'getGenerados']);
     Route::get('/ventanilla', [PackageController::class, 'getVentanilla']);
+    Route::get('/generados', [PackageController::class, 'getGenerados']);
     Route::get('/estadisticaso', [PackageController::class, 'getEstadisticaso']);
+    Route::get('/packagesdd', [PackageController::class, 'getPackagesDD']);
+    Route::get('/ventanilladd', [PackageController::class, 'getVentanillaDD']);
+    Route::get('/generadosdd', [PackageController::class, 'getGeneradosDD']);
+    Route::get('/estadisticasodd', [PackageController::class, 'getEstadisticasoDD']);
+    Route::get('/packagesdnd', [PackageController::class, 'getPackagesDND']);
+    Route::get('/ventanilladnd', [PackageController::class, 'getVentanillaDND']);
+    Route::get('/generadosdnd', [PackageController::class, 'getGeneradosDND']);
+    Route::get('/estadisticasodnd', [PackageController::class, 'getEstadisticasoDND']);
+    Route::get('/packageseca', [PackageController::class, 'getPackagesECA']);
+    Route::get('/ventanillaeca', [PackageController::class, 'getVentanillaECA']);
+    Route::get('/generadoseca', [PackageController::class, 'getGeneradosECA']);
+    Route::get('/estadisticasoeca', [PackageController::class, 'getEstadisticasoECA']);
+    Route::get('/packagescasillas', [PackageController::class, 'getPackagesCASILLAS']);
+    Route::get('/ventanillacasillas', [PackageController::class, 'getVentanillaCASILLAS']);
+    Route::get('/generadoscasillas', [PackageController::class, 'getGeneradosCASILLAS']);
+    Route::get('/estadisticasocasillas', [PackageController::class, 'getEstadisticasoCASILLAS']);
+    Route::get('/packagesencomiendas', [PackageController::class, 'getPackagesENCOMIENDAS']);
+    Route::get('/ventanillaencomiendas', [PackageController::class, 'getVentanillaENCOMIENDAS']);
+    Route::get('/generadosencomiendas', [PackageController::class, 'getGeneradosENCOMIENDAS']);
+    Route::get('/estadisticasoencomiendas', [PackageController::class, 'getEstadisticasoENCOMIENDAS']);
+
     Route::get('/alquiladas', [CasillasController::class, 'getAlquiladas']);
     Route::get('/libres', [CasillasController::class, 'getLibres']);
     Route::get('/mantenimiento', [CasillasController::class, 'getMantenimiento']);
