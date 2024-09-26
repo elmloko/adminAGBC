@@ -3,8 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Http;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class Estadisticaso extends Component
 {
@@ -18,106 +17,91 @@ class Estadisticaso extends Component
     public $entregadoPricesByMonth;
     public $entregadoByCity;
     public $entregadoByService;
-    
     public function mount()
     {
-        // Configuración del encabezado y verificación de SSL
-        $headers = [
-            'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
-        ];
+        // Consulta para obtener el total de paquetes registrados por mes
+        $this->totalPackagesByMonth = DB::table('packages')
+            ->select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total'))
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
 
-        // Llamada a la API para los estados CLASIFICACION y DESPACHO
-        $responseClasi = Http::withHeaders($headers)->withOptions(['verify' => false])->get('https://correos.gob.bo:8000/api/callclasi');
-        if ($responseClasi->successful()) {
-            $dataClasi = $responseClasi->json();
+        // Consulta para obtener el total de paquetes en estado DESPACHO por mes
+        $this->despachoPackagesByMonth = DB::table('packages')
+            ->select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total'))
+            ->where('ESTADO', 'DESPACHO')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
 
-            $this->totalPackagesByMonth = collect($dataClasi)->filter(function($item) {
-                return isset($item['created_at']); // Asegurarse de que existe 'created_at'
-            })->groupBy(function($item) {
-                // Convertir created_at en objeto de Carbon para extraer el año y mes
-                $createdAt = Carbon::parse($item['created_at']);
-                return $createdAt->format('Y-m'); // Formato año-mes
-            })->map(function ($group) {
-                return [
-                    'year' => Carbon::parse($group[0]['created_at'])->year, // Extraer el año
-                    'month' => Carbon::parse($group[0]['created_at'])->month, // Extraer el mes
-                    'total' => count($group), // Contar los paquetes
-                ];
-            })->values();
+        // Consulta para obtener el total de paquetes registrados por ciudad
+        $this->packagesByCity = DB::table('packages')
+            ->select(DB::raw('CUIDAD as city, COUNT(*) as total'))
+            ->groupBy('city')
+            ->orderBy('total', 'desc')
+            ->get();
 
-            $this->packagesByCity = collect($dataClasi)->groupBy('city')->map(function ($group, $city) {
-                return [
-                    'city' => $city,
-                    'total' => count($group),
-                ];
-            })->values();
-        }
+        // Consulta para obtener el total de paquetes en estado DESPACHO por ciudad
+        $this->despachoPackagesByCity = DB::table('packages')
+            ->select(DB::raw('CUIDAD as city, COUNT(*) as total'))
+            ->where('ESTADO', 'DESPACHO')
+            ->groupBy('city')
+            ->orderBy('total', 'desc')
+            ->get();
 
-        // Llamada a la API para el estado VENTANILLA
-        $responseVentanilla = Http::withHeaders($headers)->withOptions(['verify' => false])->get('https://correos.gob.bo:8000/api/callclasi');
-        if ($responseVentanilla->successful()) {
-            $dataVentanilla = $responseVentanilla->json();
+        // Consulta para obtener el total de paquetes en estado VENTANILLA por mes
+        $this->ventanillaPackagesByMonth = DB::table('packages')
+            ->select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as total'))
+            ->where('ESTADO', 'VENTANILLA')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
 
-            $this->ventanillaPackagesByMonth = collect($dataVentanilla)->filter(function($item) {
-                return isset($item['created_at']); // Asegurarse de que existe 'created_at'
-            })->groupBy(function($item) {
-                $createdAt = Carbon::parse($item['created_at']);
-                return $createdAt->format('Y-m'); // Formato año-mes
-            })->map(function ($group) {
-                return [
-                    'year' => Carbon::parse($group[0]['created_at'])->year,
-                    'month' => Carbon::parse($group[0]['created_at'])->month,
-                    'total' => count($group),
-                ];
-            })->values();
+        // Consulta para obtener el total de paquetes en estado VENTANILLA por servicio
+        $this->ventanillaByService = DB::table('packages')
+            ->select('VENTANILLA as service', DB::raw('COUNT(*) as total'))
+            ->where('ESTADO', 'VENTANILLA')
+            ->whereIn('VENTANILLA', ['DD', 'DND', 'ECA', 'ENCOMIENDAS', 'CASILLAS'])
+            ->groupBy('VENTANILLA')
+            ->orderBy('total', 'desc')
+            ->get();
 
-            $this->ventanillaByService = collect($dataVentanilla)->groupBy('service')->map(function ($group, $service) {
-                return [
-                    'service' => $service,
-                    'total' => count($group),
-                ];
-            })->values();
+        // Datos para el gráfico de "Ventanilla por Ciudad"
+        $this->ventanillaByCity = DB::table('packages')
+            ->select('CUIDAD as city', DB::raw('COUNT(*) as total'))
+            ->where('ESTADO', 'VENTANILLA')
+            ->groupBy('CUIDAD')
+            ->orderBy('total', 'desc')
+            ->get();
 
-            $this->ventanillaByCity = collect($dataVentanilla)->groupBy('city')->map(function ($group, $city) {
-                return [
-                    'city' => $city,
-                    'total' => count($group),
-                ];
-            })->values();
-        }
+        // Consulta para obtener el total del precio de paquetes en estado ENTREGADO por mes
+        $this->entregadoPricesByMonth = DB::table('packages')
+            ->select(DB::raw('YEAR(created_at) as year, MONTH(created_at) as month, SUM(PRECIO) as total'))
+            ->where('ESTADO', 'ENTREGADO')
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
 
-        // Llamada a la API para el estado ENTREGADO
-        $responseEntregado = Http::withHeaders($headers)->withOptions(['verify' => false])->get('https://correos.gob.bo:8000/api/softdeletes');
-        if ($responseEntregado->successful()) {
-            $dataEntregado = $responseEntregado->json();
+        // Consulta para obtener el total de paquetes entregados por ciudad
+        $this->entregadoByCity = DB::table('packages')
+            ->select('CUIDAD as city', DB::raw('COUNT(*) as total'))
+            ->where('ESTADO', 'ENTREGADO')
+            ->groupBy('city')
+            ->orderBy('total', 'desc')
+            ->get();
 
-            $this->entregadoPricesByMonth = collect($dataEntregado)->filter(function($item) {
-                return isset($item['created_at']); // Asegurarse de que existe 'created_at'
-            })->groupBy(function($item) {
-                $createdAt = Carbon::parse($item['created_at']);
-                return $createdAt->format('Y-m'); // Formato año-mes
-            })->map(function ($group) {
-                return [
-                    'year' => Carbon::parse($group[0]['created_at'])->year,
-                    'month' => Carbon::parse($group[0]['created_at'])->month,
-                    'total' => array_sum(array_column($group->toArray(), 'price')),
-                ];
-            })->values();
-
-            $this->entregadoByCity = collect($dataEntregado)->groupBy('city')->map(function ($group, $city) {
-                return [
-                    'city' => $city,
-                    'total' => count($group),
-                ];
-            })->values();
-
-            $this->entregadoByService = collect($dataEntregado)->groupBy('service')->map(function ($group, $service) {
-                return [
-                    'service' => $service,
-                    'total' => count($group),
-                ];
-            })->values();
-        }
+        // Consulta para obtener el total de paquetes en estado VENTANILLA por servicio y entregados
+        $this->entregadoByService = DB::table('packages')
+            ->select('VENTANILLA as service', DB::raw('COUNT(*) as total'))
+            ->where('ESTADO', 'ENTREGADO')
+            ->whereIn('VENTANILLA', ['DD', 'DND', 'ECA', 'ENCOMIENDAS', 'CASILLAS'])
+            ->groupBy('VENTANILLA')
+            ->orderBy('total', 'desc')
+            ->get();
     }
 
     public function render()
