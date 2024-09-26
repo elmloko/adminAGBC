@@ -19,6 +19,7 @@ class Generadosdnd extends Component
     public $date = '';
     public $ventanilla = '';
     public $ciudad = '';
+    public $estado = '';
     public $filteredPackages = [];
 
     public function updatingSearch()
@@ -42,7 +43,8 @@ class Generadosdnd extends Component
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
-        ])->withOptions([ 'verify' => false,
+        ])->withOptions([
+            'verify' => false,
         ])->get('https://correos.gob.bo:8000/api/callclasiUDND');
 
         $packages = [];
@@ -85,10 +87,12 @@ class Generadosdnd extends Component
             });
         }
 
-        // Filtrar los paquetes cuyo estado sea "DESPACHO" o "CLASIFICACION"
-        $packages = array_filter($packages, function ($package) {
-            return $package['ESTADO'] === 'DESPACHO' || $package['ESTADO'] === 'CLASIFICACION';
-        });
+        // Filtrar los paquetes según el estado
+        if (!empty($this->estado)) {
+            $packages = array_filter($packages, function ($package) {
+                return $package['ESTADO'] === $this->estado;
+            });
+        }
 
         usort($packages, function ($a, $b) {
             return Carbon::parse($b['created_at']) <=> Carbon::parse($a['created_at']);

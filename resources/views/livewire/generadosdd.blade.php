@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span id="card_title">
-                            {{ __('CORRESPONDENCIA AREA DE CLASIFICACION') }}
+                            {{ __('CORRESPONDENCIA AREA DE CLASIFICACION DD') }}
                         </span>
                     </div>
                     <div style="display: flex; align-items: center;">
@@ -13,27 +13,7 @@
                             class="form-control mr-2">
                         <button wire:click="searchPackages" class="btn btn-primary mr-2">Buscar</button>
                         <input type="date" wire:model="date" class="form-control mr-2">
-                        <select wire:model="ciudad" class="form-control mr-2">
-                            <option value="">Todas las Ciudades</option>
-                            <option value="LA PAZ">LA PAZ</option>
-                            <option value="COCHABAMBA">COCHABAMBA</option>
-                            <option value="SANTA CRUZ">SANTA CRUZ</option>
-                            <option value="ORURO">ORURO</option>
-                            <option value="POTOSI">POTOSI</option>
-                            <option value="SUCRE">SUCRE</option>
-                            <option value="BENI">BENI</option>
-                            <option value="PANDO">PANDO</option>
-                            <option value="TARIJA">TARIJA</option>
-                        </select>
-                        <select wire:model="ventanilla" class="form-control mr-2">
-                            <option value="">Todas las Ventanillas</option>
-                            <option value="DD">DD</option>
-                            <option value="DND">DND</option>
-                            <option value="ENCOMIENDAS">ENCOMIENDAS</option>
-                            <option value="ECA">ECA</option>
-                            <option value="UNICA">UNICA</option>
-                            <option value="CASILLAS">CASILLAS</option>
-                        </select>
+                        
                         <select wire:model="estado" class="form-control mr-2">
                             <option value="">Todos las estados</option>
                             <option value="CLASIFICACION">CLASIFICACION</option>
