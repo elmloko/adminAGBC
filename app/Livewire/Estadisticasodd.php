@@ -17,6 +17,17 @@ class Estadisticasodd extends Component
     public $packagesByAduana;
     public $packagesByTipo;
     public $countVentanillaDD;
+    public $packagesCarteroVsRetorno;
+    public $packagesCarteroRetornoByDay;
+    public $packagesByUserCartero;
+    public $countCarteroDD;
+    public $countRetornoDD;
+    public $packagesEntregadoRepartidoByDay;
+    public $packagesEntregadoRepartidoTotal;
+    public $packagesEntregadoRepartidoByMonthPrice;
+    public $countEntregado;
+    public $countRepartido;
+
 
     public function mount()
     {
@@ -63,7 +74,7 @@ class Estadisticasodd extends Component
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as total'))
             ->where('VENTANILLA', 'DD')
             ->where('ESTADO', 'VENTANILLA')
-            ->where('created_at', '>=', Carbon::now()->subDays(60))
+            ->where('created_at', '>=', Carbon::now()->subDays(120))
             ->groupBy('date')
             ->orderBy('date', 'asc')
             ->get();
@@ -84,6 +95,69 @@ class Estadisticasodd extends Component
         $this->countVentanillaDD = DB::table('packages')
             ->where('VENTANILLA', 'DD')
             ->where('ESTADO', 'VENTANILLA')
+            ->count();
+        $this->packagesCarteroVsRetorno = DB::table('packages')
+            ->select('ESTADO', DB::raw('COUNT(*) as total'))
+            ->where('VENTANILLA', 'DD')
+            ->whereIn('ESTADO', ['CARTERO', 'RETORNO'])
+            ->groupBy('ESTADO')
+            ->get();
+        $this->packagesCarteroRetornoByDay = DB::table('packages')
+            ->select(DB::raw('DATE(created_at) as date'), 'ESTADO', DB::raw('COUNT(*) as total'))
+            ->where('VENTANILLA', 'DD')
+            ->whereIn('ESTADO', ['CARTERO', 'RETORNO'])
+            ->groupBy('date', 'ESTADO')
+            ->orderBy('date', 'asc')
+            ->get();
+        $this->packagesByUserCartero = DB::table('packages')
+            ->select('usercartero', DB::raw('COUNT(*) as total'))
+            ->where('VENTANILLA', 'DD')
+            ->whereIn('ESTADO', ['CARTERO', 'RETORNO'])
+            ->groupBy('usercartero')
+            ->orderBy('total', 'desc')
+            ->get();
+        $this->countCarteroDD = DB::table('packages')
+            ->where('VENTANILLA', 'DD')
+            ->where('ESTADO', 'CARTERO')
+            ->count();
+
+        // Conteo de paquetes con ESTADO == 'RETORNO' y VENTANILLA == 'DD'
+        $this->countRetornoDD = DB::table('packages')
+            ->where('VENTANILLA', 'DD')
+            ->where('ESTADO', 'RETORNO')
+            ->count();
+        $this->packagesEntregadoRepartidoByDay = DB::table('packages')
+            ->select(DB::raw('DATE(created_at) as date'), 'ESTADO', DB::raw('COUNT(*) as total'))
+            ->where('VENTANILLA', 'DD')
+            ->whereIn('ESTADO', ['ENTREGADO', 'REPARTIDO'])
+            ->where('created_at', '>=', Carbon::now()->subDays(120))
+            ->groupBy('date', 'ESTADO')
+            ->orderBy('date', 'asc')
+            ->get();
+        $this->packagesEntregadoRepartidoTotal = DB::table('packages')
+            ->select('ESTADO', DB::raw('COUNT(*) as total'))
+            ->where('VENTANILLA', 'DD')
+            ->whereIn('ESTADO', ['ENTREGADO', 'REPARTIDO'])
+            ->groupBy('ESTADO')
+            ->get();
+        $this->packagesEntregadoRepartidoByMonthPrice = DB::table('packages')
+            ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), 'PRECIO', DB::raw('COUNT(*) as total'))
+            ->where('VENTANILLA', 'DD')
+            ->whereIn('ESTADO', ['ENTREGADO', 'REPARTIDO'])
+            ->whereNotNull('PRECIO') // Excluir precios nulos
+            ->groupBy('month', 'PRECIO')
+            ->orderBy('month', 'asc')
+            ->get();
+        // Contador para los paquetes con ESTADO = ENTREGADO
+        $this->countEntregado = DB::table('packages')
+            ->where('VENTANILLA', 'DD')
+            ->where('ESTADO', 'ENTREGADO')
+            ->count();
+
+        // Contador para los paquetes con ESTADO = REPARTIDO
+        $this->countRepartido = DB::table('packages')
+            ->where('VENTANILLA', 'DD')
+            ->where('ESTADO', 'REPARTIDO')
             ->count();
     }
 

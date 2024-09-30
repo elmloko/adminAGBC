@@ -1,7 +1,7 @@
 <div>
     <div class="card card-dark">
         <div class="card-header">
-            <h3 class="card-title">Estadísticas de Paquetes Ordinarios para Ventanilla DD</h3>
+            <h3 class="card-title">Estadísticas de Paquetes Ordinarios para Ventanilla DD del Área Clasificacion</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetería Registrada por Día</h3>
+                            <h3 class="box-title">Paquetería Registrada por los 120 días</h3>
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
@@ -28,7 +28,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes por Estado</h3>
+                            <h3 class="box-title">Paquetes por Registrados / Despachados</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesByEstadoChart" width="300" height="200"></canvas>
@@ -40,7 +40,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes por País</h3>
+                            <h3 class="box-title">Paquetes Registrados por País</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesByCountryChart" width="200" height="200"></canvas>
@@ -52,7 +52,7 @@
                     <div class="info-box bg-info">
                         <span class="info-box-icon"><i class="fas fa-boxes"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Paquetes en Clasificación</span>
+                            <span class="info-box-text">Paquetes en Clasificación Registrados</span>
                             <span class="info-box-number">{{ $countClasificacion }}</span>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
     </div>
     <div class="card card-dark">
         <div class="card-header">
-            <h3 class="card-title">Estadísticas de Paquetes Ordinarios para Ventanilla DD</h3>
+            <h3 class="card-title">Estadísticas de Paquetes Ordinarios para Ventanilla DD del Área Ventanilla</h3>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -85,46 +85,174 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                        <h3 class="box-title">Paquetes en Ventanilla DD por Día (Últimos 10 días)</h3>
-                        <h5 class="box-title">Inventario desde 01/2024</h5>
-                    </div>
-                    <div class="box-body">
-                        <canvas id="packagesVentanillaByDayChart" width="300" height="300"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Paquetes por Aduana</h3>
-                    </div>
-                    <div class="box-body">
-                        <canvas id="packagesByAduanaChart" width="300" height="200"></canvas>
+                            <h3 class="box-title">Paquetes en Ventanilla DD por Día (Últimos 10 días)</h3>
+                            <h5 class="box-title">Inventario desde 01/2024</h5>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesVentanillaByDayChart" width="300" height="300"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Paquetes por Tipo</h3>
-                    </div>
-                    <div class="box-body">
-                        <canvas id="packagesByTipoChart" width="300" height="350"></canvas>
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes por Aduana</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesByAduanaChart" width="300" height="200"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="info-box bg-success">
-                    <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Paquetes en Ventanilla</span>
-                        <span class="info-box-number">{{ $countVentanillaDD }}</span>
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes por Tipo</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesByTipoChart" width="300" height="350"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="info-box bg-success">
+                        <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Paquetes en Ventanilla DD</span>
+                            <span class="info-box-number">{{ $countVentanillaDD }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="card card-dark">
+        <div class="card-header">
+            <h3 class="card-title">Estadísticas de Paquetes Ordinarios para Ventanilla DD del Área Carteros</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes CARTERO vs DEVUELTOS por dia</h3>
+                            <h5 class="box-title">Inventario desde 01/2024</h5>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesCarteroRetornoByDayChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes CARTERO / DEVUELTOS</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesCarteroVsRetornoChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes por Cartero</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesByUserCarteroChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box bg-primary">
+                        <span class="info-box-icon"><i class="fas fa-mail-bulk"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Paquetes con CARTERO</span>
+                            <span class="info-box-number">{{ $countCarteroDD }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="info-box bg-danger">
+                        <span class="info-box-icon"><i class="fas fa-undo-alt"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Paquetes en DEVUELTOS</span>
+                            <span class="info-box-number">{{ $countRetornoDD }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-dark">
+        <div class="card-header">
+            <h3 class="card-title">Estadísticas de Paquetes Ordinarios para Ventanilla DD ENTREGADOS</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes Entregados en Ventanilla vs Entregados con Carteros los ultimos 120 días</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesEntregadoRepartidoByDayChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes Entregados en Ventanilla/Entregados con Carteros</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesEntregadoRepartidoTotalChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Paquetes Entregados en Ventanilla y Entregados con Carteros por Precio y Mes</h3>
+                        </div>
+                        <div class="box-body">
+                            <canvas id="packagesEntregadoRepartidoByMonthPriceChart" width="200" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info-box bg-success">
+                        <span class="info-box-icon"><i class="fas fa-check-circle"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Paquetes ENTREGADO EN VENTANILLA</span>
+                            <span class="info-box-number">{{ $countEntregado }}</span>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Contador para paquetes REPARTIDO -->
+                <div class="col-md-6">
+                    <div class="info-box bg-info">
+                        <span class="info-box-icon"><i class="fas fa-truck"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Paquetes ENTREGADO POR CARTEROS</span>
+                            <span class="info-box-number">{{ $countRepartido }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @push('js')
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -136,6 +264,9 @@
                 const packagesVentanillaByDay = @json($packagesVentanillaByDay);
                 const packagesByAduana = @json($packagesByAduana);
                 const packagesByTipo = @json($packagesByTipo);
+                const packagesCarteroVsRetorno = @json($packagesCarteroVsRetorno);
+                const packagesCarteroRetornoByDay = @json($packagesCarteroRetornoByDay);
+                const packagesByUserCartero = @json($packagesByUserCartero);
 
                 // Gráfico de Barras por Día
                 const labelsDay = packagesByDay.map(item => item.date);
@@ -345,6 +476,287 @@
                             title: {
                                 display: true,
                                 text: 'Distribución de Paquetes por Tipo'
+                            }
+                        }
+                    }
+                });
+                const labelsCarteroVsRetorno = packagesCarteroVsRetorno.map(item => item.ESTADO);
+                const dataCarteroVsRetorno = packagesCarteroVsRetorno.map(item => item.total);
+
+                const ctxCarteroVsRetorno = document.getElementById('packagesCarteroVsRetornoChart').getContext('2d');
+                new Chart(ctxCarteroVsRetorno, {
+                    type: 'doughnut', // Changed from 'bar' to 'doughnut'
+                    data: {
+                        labels: labelsCarteroVsRetorno,
+                        datasets: [{
+                            data: dataCarteroVsRetorno,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)', // CARTERO
+                                'rgba(54, 162, 235, 0.7)' // RETORNO
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)', // CARTERO
+                                'rgba(54, 162, 235, 1)' // RETORNO
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Paquetes CARTERO vs DEVUELTO'
+                            }
+                        }
+                    }
+                });
+                // Prepare the data for the CARTERO and RETORNO datasets
+                const dates = [...new Set(packagesCarteroRetornoByDay.map(item => item.date))];
+
+                const carteroData = dates.map(date => {
+                    const item = packagesCarteroRetornoByDay.find(i => i.date === date && i.ESTADO ===
+                        'CARTERO');
+                    return item ? item.total : 0;
+                });
+
+                const retornoData = dates.map(date => {
+                    const item = packagesCarteroRetornoByDay.find(i => i.date === date && i.ESTADO ===
+                        'RETORNO');
+                    return item ? item.total : 0;
+                });
+
+                // Initialize the new chart
+                const ctxCarteroRetornoByDay = document.getElementById('packagesCarteroRetornoByDayChart').getContext(
+                    '2d');
+                new Chart(ctxCarteroRetornoByDay, {
+                    type: 'bar',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                                label: 'CARTERO',
+                                data: carteroData,
+                                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'RETORNO',
+                                data: retornoData,
+                                backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                stacked: true
+                            },
+                            y: {
+                                beginAtZero: true,
+                                stacked: true,
+                                precision: 0
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Paquetes CARTERO y DEVUELTO por Día'
+                            }
+                        }
+                    }
+                });
+                const labelsUserCartero = packagesByUserCartero.map(item => item.usercartero);
+                const dataUserCartero = packagesByUserCartero.map(item => item.total);
+
+                const ctxUserCartero = document.getElementById('packagesByUserCarteroChart').getContext('2d');
+                new Chart(ctxUserCartero, {
+                    type: 'bar',
+                    data: {
+                        labels: labelsUserCartero,
+                        datasets: [{
+                            label: 'Cantidad de Paquetes',
+                            data: dataUserCartero,
+                            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y', // Orient the chart horizontally
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                precision: 0
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Paquetes por Cartero'
+                            }
+                        }
+                    }
+                });
+                const packagesEntregadoRepartidoByDay = @json($packagesEntregadoRepartidoByDay);
+
+                // Preparar los datos para los conjuntos ENTREGADO y REPARTIDO
+                const datesEntregadoRepartido = [...new Set(packagesEntregadoRepartidoByDay.map(item => item.date))];
+
+                const entregadoData = datesEntregadoRepartido.map(date => {
+                    const item = packagesEntregadoRepartidoByDay.find(i => i.date === date && i.ESTADO ===
+                        'ENTREGADO');
+                    return item ? item.total : 0;
+                });
+
+                const repartidoData = datesEntregadoRepartido.map(date => {
+                    const item = packagesEntregadoRepartidoByDay.find(i => i.date === date && i.ESTADO ===
+                        'REPARTIDO');
+                    return item ? item.total : 0;
+                });
+
+                // Inicializar el nuevo gráfico
+                const ctxEntregadoRepartidoByDay = document.getElementById('packagesEntregadoRepartidoByDayChart')
+                    .getContext('2d');
+                new Chart(ctxEntregadoRepartidoByDay, {
+                    type: 'bar',
+                    data: {
+                        labels: datesEntregadoRepartido,
+                        datasets: [{
+                                label: 'ENTREGADO',
+                                data: entregadoData,
+                                backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'REPARTIDO',
+                                data: repartidoData,
+                                backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                stacked: true
+                            },
+                            y: {
+                                beginAtZero: true,
+                                stacked: true,
+                                precision: 0
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Paquetes ENTREGADO y REPARTIDO por Día'
+                            }
+                        }
+                    }
+                });
+                // Donut Chart para Paquetes ENTREGADO y REPARTIDO
+                const packagesEntregadoRepartidoTotal = @json($packagesEntregadoRepartidoTotal);
+
+                const labelsEntregadoRepartido = packagesEntregadoRepartidoTotal.map(item => item.ESTADO);
+                const dataEntregadoRepartido = packagesEntregadoRepartidoTotal.map(item => item.total);
+
+                const ctxEntregadoRepartidoTotal = document.getElementById('packagesEntregadoRepartidoTotalChart')
+                    .getContext('2d');
+                new Chart(ctxEntregadoRepartidoTotal, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labelsEntregadoRepartido,
+                        datasets: [{
+                            data: dataEntregadoRepartido,
+                            backgroundColor: [
+                                'rgba(54, 162, 235, 0.7)', // ENTREGADO
+                                'rgba(255, 99, 132, 0.7)' // REPARTIDO
+                            ],
+                            borderColor: [
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Distribución de Paquetes ENTREGADO vs REPARTIDO'
+                            }
+                        }
+                    }
+                });
+                // Datos para el gráfico de paquetes por mes y precio
+                const packagesEntregadoRepartidoByMonthPrice = @json($packagesEntregadoRepartidoByMonthPrice);
+
+                const months = [...new Set(packagesEntregadoRepartidoByMonthPrice.map(item => item.month))];
+                const prices = [...new Set(packagesEntregadoRepartidoByMonthPrice.map(item => item.PRECIO))];
+
+                // Preparar los datos para cada precio
+                const datasets = prices.map(price => {
+                    return {
+                        label: `Precio ${price}`,
+                        data: months.map(month => {
+                            const item = packagesEntregadoRepartidoByMonthPrice.find(i => i.month ===
+                                month && i.PRECIO === price);
+                            return item ? item.total : 0;
+                        }),
+                        backgroundColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.7)`,
+                        borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`,
+                        borderWidth: 1
+                    };
+                });
+
+                // Crear el gráfico de barras apiladas
+                const ctxMonthPrice = document.getElementById('packagesEntregadoRepartidoByMonthPriceChart').getContext(
+                    '2d');
+                new Chart(ctxMonthPrice, {
+                    type: 'bar',
+                    data: {
+                        labels: months,
+                        datasets: datasets
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                stacked: true
+                            },
+                            y: {
+                                beginAtZero: true,
+                                stacked: true,
+                                precision: 0
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Paquetes ENTREGADO y REPARTIDO por Precio y Mes'
                             }
                         }
                     }
