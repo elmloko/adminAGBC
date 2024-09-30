@@ -30,30 +30,51 @@ class Estadisticasc extends Component
         // Obtener datos de casillas libres
         $responseLibres = $client->get('http://172.65.10.33:8000/cajero/libres/');
         $dataLibres = json_decode($responseLibres->getBody(), true);
+        if (is_null($dataLibres)) {
+            dd('Error en la respuesta de casillas libres', $responseLibres->getBody()->getContents());
+        }
 
         // Obtener datos de casillas ocupadas
         $responseOcupadas = $client->get('http://172.65.10.33:8000/cajero/ocupadas/');
         $dataOcupadas = json_decode($responseOcupadas->getBody(), true);
+        if (is_null($dataOcupadas)) {
+            dd('Error en la respuesta de casillas ocupadas', $responseOcupadas->getBody()->getContents());
+        }
 
         // Obtener datos de casillas reservadas
         $responseReservadas = $client->get('http://172.65.10.33:8000/cajero/reservadas/');
         $this->reservadas = json_decode($responseReservadas->getBody(), true);
+        if (is_null($this->reservadas)) {
+            dd('Error en la respuesta de casillas reservadas', $responseReservadas->getBody()->getContents());
+        }
 
         // Obtener datos de correspondencia
         $responseCorrespondencia = $client->get('http://172.65.10.33:8000/cajero/correspondencia/');
         $this->correspondencia = json_decode($responseCorrespondencia->getBody(), true);
+        if (is_null($this->correspondencia)) {
+            dd('Error en la respuesta de correspondencia', $responseCorrespondencia->getBody()->getContents());
+        }
 
         // Obtener datos de casillas vencidas
         $responseVencidas = $client->get('http://172.65.10.33:8000/cajero/vencidas/');
         $this->vencidas = json_decode($responseVencidas->getBody(), true);
+        if (is_null($this->vencidas)) {
+            dd('Error en la respuesta de casillas vencidas', $responseVencidas->getBody()->getContents());
+        }
 
         // Obtener datos de mantenimiento
         $responseMantenimiento = $client->get('http://172.65.10.33:8000/cajero/mantenimiento/');
         $this->mantenimiento = json_decode($responseMantenimiento->getBody(), true);
+        if (is_null($this->mantenimiento)) {
+            dd('Error en la respuesta de mantenimiento', $responseMantenimiento->getBody()->getContents());
+        }
 
         // Obtener datos de alquileres
         $responseAlquileres = $client->get('http://172.65.10.33:8000/cajero/alquileres/');
         $dataAlquileres = json_decode($responseAlquileres->getBody(), true);
+        if (is_null($dataAlquileres)) {
+            dd('Error en la respuesta de alquileres', $responseAlquileres->getBody()->getContents());
+        }
 
         // Procesar los datos
         $this->estadisticasPorMes = $this->procesarDatosPorMes($dataLibres, $dataOcupadas, $this->reservadas, $this->vencidas, $this->correspondencia, $this->mantenimiento);
@@ -74,51 +95,63 @@ class Estadisticasc extends Component
         $estadisticas = [];
 
         foreach ($dataLibres as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+            if (isset($item['casilla']['updated_at'])) {
+                $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+                if (!isset($estadisticas[$mes])) {
+                    $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+                }
+                $estadisticas[$mes]['libres']++;
             }
-            $estadisticas[$mes]['libres']++;
         }
 
         foreach ($dataOcupadas as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+            if (isset($item['casilla']['updated_at'])) {
+                $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+                if (!isset($estadisticas[$mes])) {
+                    $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+                }
+                $estadisticas[$mes]['ocupadas']++;
             }
-            $estadisticas[$mes]['ocupadas']++;
         }
 
         foreach ($dataReservadas as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+            if (isset($item['casilla']['updated_at'])) {
+                $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+                if (!isset($estadisticas[$mes])) {
+                    $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+                }
+                $estadisticas[$mes]['reservadas']++;
             }
-            $estadisticas[$mes]['reservadas']++;
         }
 
         foreach ($dataVencidas as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+            if (isset($item['casilla']['updated_at'])) {
+                $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+                if (!isset($estadisticas[$mes])) {
+                    $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+                }
+                $estadisticas[$mes]['vencidas']++;
             }
-            $estadisticas[$mes]['vencidas']++;
         }
 
         foreach ($dataCorrespondencia as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+            if (isset($item['casilla']['updated_at'])) {
+                $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+                if (!isset($estadisticas[$mes])) {
+                    $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+                }
+                $estadisticas[$mes]['correspondencia']++;
             }
-            $estadisticas[$mes]['correspondencia']++;
         }
 
         foreach ($dataMantenimiento as $item) {
-            $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
-            if (!isset($estadisticas[$mes])) {
-                $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+            if (isset($item['casilla']['updated_at'])) {
+                $mes = Carbon::parse($item['casilla']['updated_at'])->format('Y-m');
+                if (!isset($estadisticas[$mes])) {
+                    $estadisticas[$mes] = ['libres' => 0, 'ocupadas' => 0, 'reservadas' => 0, 'vencidas' => 0, 'correspondencia' => 0, 'mantenimiento' => 0];
+                }
+                $estadisticas[$mes]['mantenimiento']++;
             }
-            $estadisticas[$mes]['mantenimiento']++;
         }
 
         return $estadisticas;
@@ -130,7 +163,7 @@ class Estadisticasc extends Component
             1 => 'PEQUEÑA',
             2 => 'MEDIANA',
             3 => 'GABETA',
-            4 => 'CAJON'
+             4 => 'CAJON'
         ];
 
         $estadisticas = [
@@ -141,8 +174,8 @@ class Estadisticasc extends Component
         ];
 
         foreach ($data as $item) {
-            $tamanoId = $item['casilla']['categoria_id'];
-            if (isset($tamanoLabels[$tamanoId])) {
+            $tamanoId = $item['casilla']['categoria_id'] ?? null;
+            if ($tamanoId && isset($tamanoLabels[$tamanoId])) {
                 $tamano = $tamanoLabels[$tamanoId];
                 $estadisticas[$tamano]++;
             }
@@ -159,10 +192,10 @@ class Estadisticasc extends Component
             $mes = Carbon::parse($item['created_at'])->format('Y-m');
 
             // Asegúrate de que los campos contienen valores numéricos y no texto
-            $nombre = $this->convertirAFloat($item['nombre']);
-            $estadoPago = $this->convertirAFloat($item['estado_pago']);
-            $habilitacion = $this->convertirAFloat($item['habilitacion']);
-            $precio = $this->convertirAFloat($item['precio']['precio']);
+            $nombre = $this->convertirAFloat($item['nombre'] ?? 0);
+            $estadoPago = $this->convertirAFloat($item['estado_pago'] ?? 0);
+            $habilitacion = $this->convertirAFloat($item['habilitacion'] ?? 0);
+            $precio = $this->convertirAFloat($item['precio']['precio'] ?? 0);
 
             if (!isset($ingresos[$mes])) {
                 $ingresos[$mes] = [

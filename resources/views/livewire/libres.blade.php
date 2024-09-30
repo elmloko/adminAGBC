@@ -53,10 +53,10 @@
                         <tbody>
                             @foreach ($packages as $package)
                                 <tr>
-                                    <td>{{ $package['casilla']['nombre'] }}</td>
-                                    <td>{{ $package['casilla']['categoria_id'] }}</td>
-                                    <td>{{ $package['casilla']['seccione_id'] }}</td>
-                                    <td>{{ $package['casilla']['llaves_id'] }}</td>
+                                    <td>{{ $package['casilla']['nombre'] ?? 'N/A' }}</td>
+                                    <td>{{ $package['casilla']['categoria_id'] ?? 'N/A' }}</td>
+                                    <td>{{ $package['casilla']['seccione_id'] ?? 'N/A' }}</td>
+                                    <td>{{ $package['casilla']['llaves_id'] ?? 'N/A' }}</td>
                                     <td>{{ $package['casilla']['fin_fecha'] ?? 'SIN ALQUILAR' }}</td>
                                 </tr>
                             @endforeach
