@@ -17,6 +17,7 @@ class Estadisticaso extends Component
     public $entregadoPricesByMonth;
     public $entregadoByCity;
     public $entregadoByService;
+    
     public function mount()
     {
         // Consulta para obtener el total de paquetes registrados por mes
