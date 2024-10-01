@@ -15,7 +15,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetería Registrada por los 120 días</h3>
+                            <h3 class="box-title">Paquetería Registrada</h3>
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
@@ -63,7 +63,7 @@
                     <div class="info-box bg-warning">
                         <span class="info-box-icon"><i class="fas fa-truck-loading"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Paquetes en Despacho</span>
+                            <span class="info-box-text">Paquetes Registrados y Despachados</span>
                             <span class="info-box-number">{{ $countDespacho }}</span>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes en Ventanilla CASILLAS por Día (Últimos 10 días)</h3>
+                            <h3 class="box-title">Paquetes en Ventanilla CASILLAS por Día</h3>
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
@@ -96,7 +96,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes por Aduana</h3>
+                            <h3 class="box-title">Paquetes por Clasificacion de Aduana</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesByAduanaChart" width="300" height="200"></canvas>
@@ -106,7 +106,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes por Tipo</h3>
+                            <h3 class="box-title">Paquetes por Clasificacion de Tipo</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesByTipoChart" width="300" height="350"></canvas>
@@ -139,7 +139,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes CARTERO vs DEVUELTOS por dia</h3>
+                            <h3 class="box-title">Paquetes con CARTERO vs RETORNADOS por dia</h3>
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
@@ -150,7 +150,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes CARTERO / DEVUELTOS</h3>
+                            <h3 class="box-title">Paquetes CARTERO / RETORNADOS</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesCarteroVsRetornoChart" width="200" height="200"></canvas>
@@ -160,7 +160,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes por Cartero</h3>
+                            <h3 class="box-title">Ranking de Paqueteria llevada por Carteros</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesByUserCarteroChart" width="200" height="200"></canvas>
@@ -171,7 +171,7 @@
                     <div class="info-box bg-primary">
                         <span class="info-box-icon"><i class="fas fa-mail-bulk"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Paquetes con CARTERO</span>
+                            <span class="info-box-text">Paquetes llevados por CARTEROS</span>
                             <span class="info-box-number">{{ $countCarteroDD }}</span>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                     <div class="info-box bg-danger">
                         <span class="info-box-icon"><i class="fas fa-undo-alt"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Paquetes en DEVUELTOS</span>
+                            <span class="info-box-text">Paquetes RETORNADOS a ventanilla por Carteros</span>
                             <span class="info-box-number">{{ $countRetornoDD }}</span>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes Entregados en Ventanilla vs Entregados con Carteros los ultimos 120 días</h3>
+                            <h3 class="box-title">Paquetes Entregados en Ventanilla vs Entregados por Carteros los ultimos 120 días</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesEntregadoRepartidoByDayChart" width="200" height="200"></canvas>
@@ -213,7 +213,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes Entregados en Ventanilla/Entregados con Carteros</h3>
+                            <h3 class="box-title">Paquetes Entregados en Ventanilla/Entregados por Carteros</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesEntregadoRepartidoTotalChart" width="200" height="200"></canvas>
@@ -223,7 +223,7 @@
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Paquetes Entregados en Ventanilla y Entregados con Carteros por Precio y Mes</h3>
+                            <h3 class="box-title">Paquetes Entregados en Ventanilla y Entregados por Carteros por Precio y Mes</h3>
                         </div>
                         <div class="box-body">
                             <canvas id="packagesEntregadoRepartidoByMonthPriceChart" width="200" height="200"></canvas>
@@ -245,7 +245,7 @@
                     <div class="info-box bg-info">
                         <span class="info-box-icon"><i class="fas fa-truck"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Paquetes ENTREGADO POR CARTEROS</span>
+                            <span class="info-box-text">Paquetes ENTREGADOS POR CARTEROS</span>
                             <span class="info-box-number">{{ $countRepartido }}</span>
                         </div>
                     </div>
@@ -509,7 +509,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Paquetes CARTERO vs DEVUELTO'
+                                text: 'Paquetes CARTERO vs RETORNADOS'
                             }
                         }
                     }
@@ -569,7 +569,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Paquetes CARTERO y DEVUELTO por Día'
+                                text: 'Paquetes CARTERO y RETORNADOS por Día'
                             }
                         }
                     }
