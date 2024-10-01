@@ -141,10 +141,10 @@ class Estadisticasodnd extends Component
             ->groupBy('ESTADO')
             ->get();
         $this->packagesEntregadoRepartidoByMonthPrice = DB::table('packages')
-            ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), 'PRECIO', DB::raw('COUNT(*) as total'))
+            ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), 'PRECIO', DB::raw('COUNT(*) as total'), DB::raw('SUM(CASE WHEN PRECIO = 5 THEN 5 ELSE 10 END) * COUNT(*) as total_value'))
             ->where('VENTANILLA', 'DND')
             ->whereIn('ESTADO', ['ENTREGADO', 'REPARTIDO'])
-            ->whereNotNull('PRECIO') // Excluir precios nulos
+            ->whereNotNull('PRECIO')
             ->groupBy('month', 'PRECIO')
             ->orderBy('month', 'asc')
             ->get();

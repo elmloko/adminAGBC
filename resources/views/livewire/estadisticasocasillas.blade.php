@@ -709,20 +709,19 @@
                         }
                     }
                 });
-                // Datos para el gráfico de paquetes por mes y precio
                 const packagesEntregadoRepartidoByMonthPrice = @json($packagesEntregadoRepartidoByMonthPrice);
 
                 const months = [...new Set(packagesEntregadoRepartidoByMonthPrice.map(item => item.month))];
-                const prices = [...new Set(packagesEntregadoRepartidoByMonthPrice.map(item => item.PRECIO))];
+                const priceLabels = [...new Set(packagesEntregadoRepartidoByMonthPrice.map(item => item.PRECIO))];
 
                 // Preparar los datos para cada precio
-                const datasets = prices.map(price => {
+                const datasets = priceLabels.map(price => {
                     return {
-                        label: `Precio ${price}`,
+                        label: `Precio ${price} Bs`,
                         data: months.map(month => {
                             const item = packagesEntregadoRepartidoByMonthPrice.find(i => i.month ===
                                 month && i.PRECIO === price);
-                            return item ? item.total : 0;
+                            return item ? item.total_value : 0; // Usar total_value
                         }),
                         backgroundColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.7)`,
                         borderColor: `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`,
@@ -730,11 +729,11 @@
                     };
                 });
 
-                // Crear el gráfico de barras apiladas
+                // Crear el gráfico de barras
                 const ctxMonthPrice = document.getElementById('packagesEntregadoRepartidoByMonthPriceChart').getContext(
                     '2d');
                 new Chart(ctxMonthPrice, {
-                    type: 'bar',
+                    type: 'line',
                     data: {
                         labels: months,
                         datasets: datasets
@@ -742,11 +741,10 @@
                     options: {
                         scales: {
                             x: {
-                                stacked: true
+                                beginAtZero: true,
                             },
                             y: {
                                 beginAtZero: true,
-                                stacked: true,
                                 precision: 0
                             }
                         },
@@ -756,7 +754,7 @@
                             },
                             title: {
                                 display: true,
-                                text: 'Paquetes ENTREGADO y REPARTIDO por Precio y Mes'
+                                text: 'Paquetes Entregados y Repartidos por Precio y Mes'
                             }
                         }
                     }
