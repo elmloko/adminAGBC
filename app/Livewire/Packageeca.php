@@ -45,7 +45,7 @@ class Packageeca extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://correos.gob.bo:8000/api/softdeletesUECA');
+        ])->get('https://127.0.0.1:8000/api/softdeletesUECA');
 
         $packages = [];
         if ($response->successful()) {

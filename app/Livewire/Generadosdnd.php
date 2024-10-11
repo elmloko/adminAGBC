@@ -45,7 +45,7 @@ class Generadosdnd extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://correos.gob.bo:8000/api/callclasiUDND');
+        ])->get('https://127.0.0.1:8000/api/callclasiUDND');
 
         $packages = [];
         if ($response->successful()) {
