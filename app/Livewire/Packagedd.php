@@ -45,7 +45,7 @@ class Packagedd extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://127.0.0.1:8000/api/softdeletesUDD');
+        ])->get('http://127.0.0.1:8000/api/softdeletesUDD');
 
         $packages = [];
         if ($response->successful()) {

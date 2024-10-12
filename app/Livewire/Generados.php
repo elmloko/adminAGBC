@@ -43,7 +43,7 @@ class Generados extends Component
         $response = Http::withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([ 'verify' => false,
-        ])->get('https://127.0.0.1:8000/api/callclasi');
+        ])->get('http://127.0.0.1:8000/api/callclasi');
 
         $packages = [];
         if ($response->successful()) {

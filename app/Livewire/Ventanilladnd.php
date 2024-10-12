@@ -44,7 +44,7 @@ class Ventanilladnd extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://127.0.0.1:8000/api/packagesUDND');
+        ])->get('http://127.0.0.1:8000/api/packagesUDND');
     
         $packages = [];
         if ($response->successful()) {

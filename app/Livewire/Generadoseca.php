@@ -45,7 +45,7 @@ class Generadoseca extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://127.0.0.1:8000/api/callclasiUECA');
+        ])->get('http://127.0.0.1:8000/api/callclasiUECA');
 
         $packages = [];
         if ($response->successful()) {

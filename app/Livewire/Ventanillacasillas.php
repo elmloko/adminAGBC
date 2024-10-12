@@ -44,7 +44,7 @@ class Ventanillacasillas extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://127.0.0.1:8000/api/packagesUCASILLAS');
+        ])->get('http://127.0.0.1:8000/api/packagesUCASILLAS');
     
         $packages = [];
         if ($response->successful()) {

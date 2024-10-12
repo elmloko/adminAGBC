@@ -45,7 +45,7 @@ class Generadoscasillas extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://127.0.0.1:8000/api/callclasiUCASILLAS');
+        ])->get('http://127.0.0.1:8000/api/callclasiUCASILLAS');
 
         $packages = [];
         if ($response->successful()) {

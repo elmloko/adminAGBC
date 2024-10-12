@@ -44,7 +44,7 @@ class Generadosdd extends Component
         $response = Http::withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions(['verify' => false])
-          ->get('https://127.0.0.1:8000/api/callclasiUDD');
+          ->get('http://127.0.0.1:8000/api/callclasiUDD');
 
         $packages = [];
         if ($response->successful()) {
