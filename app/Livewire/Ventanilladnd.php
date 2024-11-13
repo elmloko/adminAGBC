@@ -71,7 +71,7 @@ class Ventanilladnd extends Component
                     $package['status_color'] = 'green';
                 } elseif ($package['date_difference'] > 7 && $package['date_difference'] <= 30) {
                     $package['next_status'] = 'CARTERO';
-                    $package['status_color'] = 'yellow';
+                    $package['status_color'] = 'orange';
                 } else {
                     $package['next_status'] = 'REZAGO';
                     $package['status_color'] = 'red';
