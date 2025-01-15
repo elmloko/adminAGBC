@@ -19,6 +19,7 @@ class Package extends Component
     public $date = '';
     public $ventanilla = '';
     public $ciudad = '';
+    public $diasEntrega = ''; // Nueva propiedad para los días
     public $filteredPackages = [];
 
     public function updatingSearch()
@@ -49,36 +50,59 @@ class Package extends Component
         $packages = [];
         if ($response->successful()) {
             $packages = $response->json();
-            
+
             foreach ($packages as &$package) {
                 if (isset($package['deleted_at'])) {
                     $package['deleted_at'] = Carbon::parse($package['deleted_at'])->format('d-m-Y H:i:s');
+                }
+                if (isset($package['created_at']) && isset($package['deleted_at'])) {
+                    $createdAt = Carbon::parse($package['created_at']);
+                    $deletedAt = Carbon::parse($package['deleted_at']);
+                    $package['tiempo_entrega'] = $createdAt->diffInDays($deletedAt); // Diferencia en días
+                } else {
+                    $package['tiempo_entrega'] = 'N/A';
                 }
             }
         }
 
         if (!empty($this->search)) {
-            $packages = array_filter($packages, function($package) {
-                return stripos($package['CODIGO'], $this->search) !== false || 
-                       stripos($package['DESTINATARIO'], $this->search) !== false;
+            $packages = array_filter($packages, function ($package) {
+                return stripos($package['CODIGO'], $this->search) !== false ||
+                    stripos($package['DESTINATARIO'], $this->search) !== false;
             });
         }
 
         if (!empty($this->date)) {
-            $packages = array_filter($packages, function($package) {
+            $packages = array_filter($packages, function ($package) {
                 return Carbon::parse($package['deleted_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
             });
         }
 
         if (!empty($this->ventanilla)) {
-            $packages = array_filter($packages, function($package) {
+            $packages = array_filter($packages, function ($package) {
                 return $package['VENTANILLA'] === $this->ventanilla;
             });
         }
 
         if (!empty($this->ciudad)) {
-            $packages = array_filter($packages, function($package) {
+            $packages = array_filter($packages, function ($package) {
                 return stripos($package['CUIDAD'], $this->ciudad) !== false;
+            });
+        }
+
+        // Filtrar por rango de días
+        if (!empty($this->diasEntrega)) {
+            $packages = array_filter($packages, function ($package) {
+                $tiempoEntrega = $package['tiempo_entrega'];
+
+                if ($this->diasEntrega === '0-7') {
+                    return $tiempoEntrega >= 0 && $tiempoEntrega <= 7;
+                } elseif ($this->diasEntrega === '8-15') {
+                    return $tiempoEntrega >= 8 && $tiempoEntrega <= 15;
+                } elseif ($this->diasEntrega === '16+') {
+                    return $tiempoEntrega >= 16;
+                }
+                return true; // Si no hay filtro, devolver todos
             });
         }
 
@@ -93,7 +117,7 @@ class Package extends Component
     {
         $packages = $this->getFilteredPackages();
         $pdf = PDF::loadView('livewire.package-pdf', compact('packages'));
-        return response()->streamDownload(function() use ($pdf) {
+        return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
         }, 'correspondencia_entregada.pdf');
     }

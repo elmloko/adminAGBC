@@ -13,26 +13,11 @@
                             class="form-control mr-2">
                         <button wire:click="searchPackages" class="btn btn-primary mr-2">Buscar</button>
                         <input type="date" wire:model="date" class="form-control mr-2">
-                        <select wire:model="ciudad" class="form-control mr-2">
-                            <option value="">Todas las Ciudades</option>
-                            <option value="LA PAZ">LA PAZ</option>
-                            <option value="COCHABAMBA">COCHABAMBA</option>
-                            <option value="SANTA CRUZ">SANTA CRUZ</option>
-                            <option value="ORURO">ORURO</option>
-                            <option value="POTOSI">POTOSI</option>
-                            <option value="SUCRE">SUCRE</option>
-                            <option value="BENI">BENI</option>
-                            <option value="PANDO">PANDO</option>
-                            <option value="TARIJA">TARIJA</option>
-                        </select>
-                        <select wire:model="ventanilla" class="form-control mr-2">
-                            <option value="">Todas las Ventanillas</option>
-                            <option value="DD">DD</option>
-                            <option value="DND">DND</option>
-                            <option value="ENCOMIENDAS">ENCOMIENDAS</option>
-                            <option value="ECA">ECA</option>
-                            <option value="UNICA">UNICA</option>
-                            <option value="CASILLAS">CASILLAS</option>
+                        <select wire:model="diasEntrega" class="form-control mr-2">
+                            <option value="">Todos los Rangos</option>
+                            <option value="0-7">0 a 7 días</option>
+                            <option value="8-15">8 a 15 días</option>
+                            <option value="16+">16 días o más</option>
                         </select>
                         <button wire:click="applyFilters" class="btn btn-secondary">Aplicar Filtros</button>
                         <button wire:click="generatePDF" class="btn btn-danger">Generar PDF</button>
@@ -58,29 +43,35 @@
                     <table class="table table-striped table-hover">
                         <thead class="thead">
                             <tr>
-                                <th>ID</th>
                                 <th>CODIGO</th>
                                 <th>DESTINATARIO</th>
-                                <th>TELEFONO</th>
                                 <th>CIUDAD</th>
-                                <th>VENTANILLA</th>
+                                <th>TELEFONO</th>
                                 <th>PESO</th>
                                 <th>ESTADO</th>
                                 <th>ENTREGADO</th>
+                                <th>TIEMPO DE ENTREGA</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($packages as $package)
                                 <tr>
-                                    <td>{{ $package['id'] }}</td>
                                     <td>{{ $package['CODIGO'] }}</td>
                                     <td>{{ $package['DESTINATARIO'] }}</td>
-                                    <td>{{ $package['TELEFONO'] }}</td>
                                     <td>{{ $package['CUIDAD'] }}</td>
-                                    <td>{{ $package['VENTANILLA'] }}</td>
+                                    <td>{{ $package['TELEFONO'] }}</td>
                                     <td>{{ $package['PESO'] }}</td>
                                     <td>{{ $package['ESTADO'] }}</td>
                                     <td>{{ $package['deleted_at'] }}</td>
+                                    <td>
+                                        @if ($package['tiempo_entrega'] <= 7)
+                                            <span style="color: green;">{{ $package['tiempo_entrega'] }} días</span>
+                                        @elseif ($package['tiempo_entrega'] > 7 && $package['tiempo_entrega'] <= 15)
+                                            <span style="color: yellow;">{{ $package['tiempo_entrega'] }} días</span>
+                                        @else
+                                            <span style="color: red;">{{ $package['tiempo_entrega'] }} días</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
