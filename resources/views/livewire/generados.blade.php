@@ -25,7 +25,7 @@
                             <option value="PANDO">PANDO</option>
                             <option value="TARIJA">TARIJA</option>
                         </select>
-                        <select wire:model="ventanilla" class="form-control mr-2">
+                        {{-- <select wire:model="ventanilla" class="form-control mr-2">
                             <option value="">Todas las Ventanillas</option>
                             <option value="DD">DD</option>
                             <option value="DND">DND</option>
@@ -33,7 +33,7 @@
                             <option value="ECA">ECA</option>
                             <option value="UNICA">UNICA</option>
                             <option value="CASILLAS">CASILLAS</option>
-                        </select>
+                        </select> --}}
                         <select wire:model="estado" class="form-control mr-2">
                             <option value="">Todos las estados</option>
                             <option value="CLASIFICACION">CLASIFICACION</option>
