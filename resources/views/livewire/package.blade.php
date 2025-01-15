@@ -19,6 +19,18 @@
                             <option value="8-15">8 a 15 días</option>
                             <option value="16+">16 días o más</option>
                         </select>
+                        <select wire:model="ciudad" class="form-control mr-2">
+                            <option value="">Todas las Ciudades</option>
+                            <option value="LA PAZ">LA PAZ</option>
+                            <option value="COCHABAMBA">COCHABAMBA</option>
+                            <option value="SANTA CRUZ">SANTA CRUZ</option>
+                            <option value="ORURO">ORURO</option>
+                            <option value="POTOSI">POTOSI</option>
+                            <option value="SUCRE">SUCRE</option>
+                            <option value="BENI">BENI</option>
+                            <option value="PANDO">PANDO</option>
+                            <option value="TARIJA">TARIJA</option>
+                        </select>
                         <button wire:click="applyFilters" class="btn btn-secondary">Aplicar Filtros</button>
                         <button wire:click="generatePDF" class="btn btn-danger">Generar PDF</button>
                         <button wire:click="generateExcel" class="btn btn-success">Generar Excel</button>
