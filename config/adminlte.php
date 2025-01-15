@@ -353,31 +353,72 @@ return [
                     'icon' => 'fas fa-envelope',
                     'submenu' => [
                         [
-                            'text' => 'Reportes General',
-                            'icon' => 'fas fa-folder',
-                            'submenu' => [
-                                [
-                                    'text' => 'Estadisticas Ordinaria',
-                                    'url' => 'estadisticaso',
-                                    'icon' => 'fas fa-user',
-                                ],
-                                [
-                                    'text' => 'Correspondencia Registrada',
-                                    'url' => 'generados',
-                                    'icon' => 'fas fa-user',
-                                ],
-                                [
-                                    'text' => 'Correspondencia Ventanilla',
-                                    'url' => 'ventanilla',
-                                    'icon' => 'fas fa-user',
-                                ],
-                                [
-                                    'text' => 'Correspondencia Entregada',
-                                    'url' => 'packages',
-                                    'icon' => 'fas fa-user',
-                                ],
-                            ],
+                            'text' => 'Estadisticas Ordinaria',
+                            'url' => 'estadisticaso',
+                            'icon' => 'fas fa-user',
                         ],
+                        [
+                            'text' => 'Correspondencia Registrada',
+                            'url' => 'generados',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Correspondencia Ventanilla',
+                            'url' => 'ventanilla',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Correspondencia Entregada',
+                            'url' => 'packages',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Casillas',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Estadisticas Casillas',
+                            'url' => 'estadisticasc',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Alquiladas',
+                            'url' => 'alquiladas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Libres',
+                            'url' => 'libres',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Vencidas',
+                            'url' => 'vencidas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Mantenimiento',
+                            'url' => 'mantenimiento',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas con Correspondencia',
+                            'url' => 'correspondencia',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Reservadas',
+                            'url' => 'reservadas',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
+                ],
+                                [
+                    'text' => 'Paqueteria XX',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
                         [
                             'text' => 'Reportes Ventanilla DD',
                             'icon' => 'fas fa-folder',
@@ -510,47 +551,6 @@ return [
                         ],
                     ],
                 ],
-                [
-                    'text' => 'Casillas',
-                    'icon' => 'fas fa-envelope',
-                    'submenu' => [
-                        [
-                            'text' => 'Estadisticas Casillas',
-                            'url' => 'estadisticasc',
-                            'icon' => 'fas fa-user',
-                        ],
-                        [
-                            'text' => 'Casillas Alquiladas',
-                            'url' => 'alquiladas',
-                            'icon' => 'fas fa-user',
-                        ],
-                        [
-                            'text' => 'Casillas Libres',
-                            'url' => 'libres',
-                            'icon' => 'fas fa-user',
-                        ],
-                        [
-                            'text' => 'Casillas Vencidas',
-                            'url' => 'vencidas',
-                            'icon' => 'fas fa-user',
-                        ],
-                        [
-                            'text' => 'Casillas Mantenimiento',
-                            'url' => 'mantenimiento',
-                            'icon' => 'fas fa-user',
-                        ],
-                        [
-                            'text' => 'Casillas con Correspondencia',
-                            'url' => 'correspondencia',
-                            'icon' => 'fas fa-user',
-                        ],
-                        [
-                            'text' => 'Casillas Reservadas',
-                            'url' => 'reservadas',
-                            'icon' => 'fas fa-user',
-                        ],
-                    ],
-                ],
             ],
         ],
         [
@@ -564,7 +564,7 @@ return [
             'url' => '/pulse',
             'icon' => 'fas fa-user',
             'can'  => 'packages',
-        ],        
+        ],
     ],
 
     /*

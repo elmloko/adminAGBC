@@ -63,28 +63,24 @@
                     <table class="table table-striped table-hover">
                         <thead class="thead">
                             <tr>
-                                <th>ID</th>
                                 <th>CODIGO</th>
                                 <th>DESTINATARIO</th>
-                                <th>TELEFONO</th>
                                 <th>CIUDAD</th>
                                 <th>VENTANILLA</th>
-                                <th>PESO</th>
                                 <th>ESTADO</th>
+                                <th>PROXIMO ESTADO</th>
                                 <th>CREADO EN</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($packages as $package)
                                 <tr>
-                                    <td>{{ $package['id'] }}</td>
                                     <td>{{ $package['CODIGO'] }}</td>
                                     <td>{{ $package['DESTINATARIO'] }}</td>
-                                    <td>{{ $package['TELEFONO'] }}</td>
                                     <td>{{ $package['CUIDAD'] }}</td>
                                     <td>{{ $package['VENTANILLA'] }}</td>
-                                    <td>{{ $package['PESO'] }}</td>
                                     <td>{{ $package['ESTADO'] }}</td>
+                                    <td>VENTANILLA / CARTEROS</td>
                                     <td>{{ $package['created_at'] }}</td>
                                 </tr>
                             @endforeach
