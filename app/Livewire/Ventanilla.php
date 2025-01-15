@@ -44,17 +44,46 @@ class Ventanilla extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://correos.gob.bo:8000/api/callventanilla');            
+        ])->get('https://correos.gob.bo:8000/api/callventanilla');
 
         $packages = [];
         if ($response->successful()) {
             $packages = $response->json();
 
             foreach ($packages as &$package) {
+                // Formatear la fecha de actualización
                 if (isset($package['updated_at'])) {
                     $package['updated_at'] = Carbon::parse($package['updated_at'])->format('d-m-Y H:i:s');
                 }
+
+                // Calcular la diferencia de días entre created_at y updated_at
+                if (isset($package['created_at'], $package['updated_at'])) {
+                    $createdAt = Carbon::parse($package['created_at']);
+                    $updatedAt = Carbon::parse($package['updated_at']);
+                    $package['date_difference'] = $updatedAt->diffInDays($createdAt);
+                } else {
+                    $package['date_difference'] = 'No actualizado'; // O cualquier mensaje que desees mostrar
+                }
+
+                // Determinar el estado basado en date_difference
+                if ($package['date_difference'] <= 7) {
+                    $package['next_status'] = 'VENTANILLA';
+                    $package['status_color'] = 'green';
+                } elseif ($package['date_difference'] > 7 && $package['date_difference'] <= 30) {
+                    $package['next_status'] = 'CARTERO';
+                    $package['status_color'] = 'orange';
+                } else {
+                    $package['next_status'] = 'REZAGO';
+                    $package['status_color'] = 'red';
+                }
             }
+        }
+
+        // Filtrar por estado
+        if (!empty($this->ventanilla)) {
+            $packages = array_filter($packages, function ($package) {
+                return $package['next_status'] === $this->ventanilla; // Filtrado por next_status
+            });
         }
 
         // Filtrar los paquetes según la búsqueda
@@ -62,6 +91,12 @@ class Ventanilla extends Component
             $packages = array_filter($packages, function ($package) {
                 return stripos($package['CODIGO'], $this->search) !== false ||
                     stripos($package['DESTINATARIO'], $this->search) !== false;
+            });
+        }
+        // Filtrar los paquetes según la ciudad
+        if (!empty($this->ciudad)) {
+            $packages = array_filter($packages, function ($package) {
+                return stripos($package['CUIDAD'], $this->ciudad) !== false;
             });
         }
 
@@ -72,13 +107,6 @@ class Ventanilla extends Component
             });
         }
 
-        // Filtrar los paquetes según la ventanilla
-        if (!empty($this->ventanilla)) {
-            $packages = array_filter($packages, function ($package) {
-                return $package['VENTANILLA'] === $this->ventanilla;
-            });
-        }
-
         // Filtrar los paquetes según la ciudad
         if (!empty($this->ciudad)) {
             $packages = array_filter($packages, function ($package) {
@@ -86,13 +114,16 @@ class Ventanilla extends Component
             });
         }
 
-        // Filtrar los paquetes cuyo estado sea "DESPACHO" o "CLASIFICACION"
-        $packages = array_filter($packages, function ($package) {
-            return $package['ESTADO'] === 'VENTANILLA';
-        });
-
+        // Ordenar los paquetes
         usort($packages, function ($a, $b) {
-            return Carbon::parse($b['created_at']) <=> Carbon::parse($a['created_at']);
+            if (is_null($a['updated_at']) && is_null($b['updated_at'])) {
+                return 0;
+            } elseif (is_null($a['updated_at'])) {
+                return 1;
+            } elseif (is_null($b['updated_at'])) {
+                return -1;
+            }
+            return Carbon::parse($b['updated_at']) <=> Carbon::parse($a['updated_at']);
         });
 
         return $packages;
