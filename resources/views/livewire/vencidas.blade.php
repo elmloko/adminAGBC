@@ -44,6 +44,7 @@
                         <thead class="thead">
                             <tr>
                                 <th>Nro. Casilla</th>
+                                <th>Cliente</th>
                                 <th>Tamaño</th>
                                 <th>Nro. Sección</th>
                                 <th>Nro. Llave</th>
@@ -54,6 +55,7 @@
                             @foreach ($packages as $package)
                                 <tr>
                                     <td>{{ $package['casilla']['nombre'] ?? 'N/A' }}</td>
+                                    <td>{{ $package['alquiler']['cliente']['nombre'] ?? 'N/A' }}</td>
                                     <td>{{ $package['casilla']['categoria_id'] ?? 'N/A' }}</td>
                                     <td>{{ $package['casilla']['seccione_id'] ?? 'N/A' }}</td>
                                     <td>{{ $package['casilla']['llaves_id'] ?? 'N/A' }}</td>
