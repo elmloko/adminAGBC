@@ -49,6 +49,7 @@
                                 <th>Nro. Sección</th>
                                 <th>Nro. Llave</th>
                                 <th>Estado</th>
+                                <th>Fecha de Apertura del Alquiler</th>
                                 <th>Fecha de Fin de Alquiler</th>
                             </tr>
                         </thead>
@@ -61,6 +62,7 @@
                                     <td>{{ $package['casilla']['seccione_id'] ?? 'N/A' }}</td>
                                     <td>{{ $package['casilla']['llaves_id'] ?? 'N/A' }}</td>
                                     <td>{{ $package['casilla']['estado'] ?? 'N/A' }}</td>
+                                    <td>{{ $package['alquiler']['apertura'] ?? 'N/A' }}</td>
                                     <td>{{ $package['alquiler']['fin_fecha'] ?? 'N/A' }}</td>
                                 </tr>
                             @endforeach
