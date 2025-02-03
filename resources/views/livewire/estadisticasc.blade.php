@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+    <!-- Card: Casillas Alquiladas / Libre -->
     <div class="card card-dark">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Alquiladas / Libre</h3>
@@ -18,7 +19,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <!-- Gráfico de Estado de Paquetes por Mes -->
+                <!-- Gráfico: Casillas Alquiladas / Libre por mes (Stacked Column) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -26,35 +27,37 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasPorMesChart" width="400" height="200"></canvas>
+                            <div id="estadisticasPorMesChart" style="width: 100%; height: 200px;"></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Gráfico de Paquetes por Ciudad -->
+                <!-- Gráfico: Casillas libres por tamaño (Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas libres por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasPorTamanoChart" width="400" height="300"></canvas>
+                            <div id="estadisticasPorTamanoChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Gráfico: Casillas alquiladas por tamaño (Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas alquiladas por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasOcupadasPorTamanoChart" width="400" height="300"></canvas>
+                            <div id="estadisticasOcupadasPorTamanoChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Card: Casillas Correspondencia / Mantenimiento -->
     <div class="card card-blue">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Correspondencia / Mantenimiento</h3>
@@ -66,42 +69,44 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <!-- Gráfico de Vencidas y Correspondencia -->
+                <!-- Gráfico: Casillas Correspondencia / Mantenimiento (Column agrupado) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Correspondencia / Mantenimiento</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="vencidasCorrespondenciaChart" width="400" height="300"></canvas>
+                            <div id="vencidasCorrespondenciaChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Gráfico de Casillas Correspondencia por tamaño -->
+                <!-- Gráfico: Casillas Correspondencia por tamaño (Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Correspondencia por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasCorrespondenciaPorTamanoChart" width="400" height="300"></canvas>
+                            <div id="estadisticasCorrespondenciaPorTamanoChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Gráfico de Casillas Mantenimiento por tamaño -->
+                <!-- Gráfico: Casillas Mantenimiento por tamaño (Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Mantenimiento por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasMantenimientoPorTamanoChart" width="400" height="300"></canvas>
+                            <div id="estadisticasMantenimientoPorTamanoChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Card: Casillas Reservadas / Vencidas -->
     <div class="card card-green">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Reservadas / Vencidas</h3>
@@ -113,42 +118,44 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <!-- Gráfico de Estado de Paquetes por Mes -->
+                <!-- Gráfico: Casillas Reservadas y Vencidas (Column agrupado) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="reservadasVencidasChart" width="400" height="300"></canvas>
+                            <div id="reservadasVencidasChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Gráfico de Casillas Reservadas por tamaño -->
+                <!-- Gráfico: Casillas Reservadas por tamaño (Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Reservadas por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasReservadasPorTamanoChart" width="400" height="300"></canvas>
+                            <div id="estadisticasReservadasPorTamanoChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Gráfico de Casillas Vencidas por tamaño -->
+                <!-- Gráfico: Casillas Vencidas por tamaño (Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Casillas Vencidas por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="estadisticasVencidasPorTamanoChart" width="400" height="300"></canvas>
+                            <div id="estadisticasVencidasPorTamanoChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Card: Ingresos -->
     <div class="card card-yellow">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Casillas Ingresos</h3>
@@ -160,14 +167,14 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <!-- Gráfico de Estado de Paquetes por Mes -->
+                <!-- Gráfico: Total Ingresos mensuales (Line) -->
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Total Ingresos mensuales Sistema Casillas</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="graficoIngresosMensuales" width="400" height="100"></canvas>
+                            <div id="graficoIngresosMensuales" style="width: 100%; height: 100px;"></div>
                         </div>
                     </div>
                 </div>
@@ -177,9 +184,13 @@
 @stop
 
 @section('js')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Incluir Highcharts y módulos de exportación -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Se reciben los datos desde el servidor (por ejemplo, en Laravel)
             const estadisticasPorMes = @json($estadisticasPorMes);
             const estadisticasPorTamano = @json($estadisticasPorTamano);
             const estadisticasOcupadasPorTamano = @json($estadisticasOcupadasPorTamano);
@@ -189,326 +200,322 @@
             const mantenimiento = @json($mantenimiento);
             const ingresosMensuales = @json($ingresosMensuales);
 
+            // Configuración común para el botón de exportación
+            const exportingOptions = {
+                enabled: true,
+                buttons: {
+                    contextButton: {
+                        menuItems: [
+                            'printChart', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG'
+                        ]
+                    }
+                }
+            };
+
+            /* ----------------------------------------------------------------
+               Gráfico 1: Casillas Alquiladas / Libre por mes (Stacked Column)
+            ------------------------------------------------------------------*/
             const labelsPorMes = Object.keys(estadisticasPorMes);
             const dataLibresPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['libres']);
             const dataOcupadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['ocupadas']);
-            const dataReservadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['reservadas']);
-            const dataVencidasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['vencidas']);
-            const dataCorrespondenciaPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['correspondencia']);
-            const dataMantenimientoPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['mantenimiento']);
 
+            Highcharts.chart('estadisticasPorMesChart', {
+                chart: { type: 'column' },
+                title: { text: 'Casillas Alquiladas / Libre por mes' },
+                subtitle: { text: 'Inventario desde 01/2024' },
+                xAxis: { categories: labelsPorMes, crosshair: true },
+                yAxis: {
+                    min: 0,
+                    title: { text: 'Cantidad de Casillas' },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.defaultOptions.title.style && Highcharts.defaultOptions.title.style.color) || 'gray'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: { enabled: true }
+                    }
+                },
+                series: [{
+                    name: 'Casillas Libres',
+                    data: dataLibresPorMes,
+                    color: 'rgba(54, 162, 235, 1)'
+                }, {
+                    name: 'Casillas Alquiladas',
+                    data: dataOcupadasPorMes,
+                    color: 'rgba(255, 99, 132, 1)'
+                }],
+                exporting: exportingOptions
+            });
+
+            /* ----------------------------------------------------------------
+               Gráfico 2: Casillas libres por tamaño (Pie)
+            ------------------------------------------------------------------*/
             const labelsPorTamano = Object.keys(estadisticasPorTamano);
             const dataPorTamano = Object.values(estadisticasPorTamano);
+            const piePorTamanoData = labelsPorTamano.map((label, index) => ({
+                name: label,
+                y: dataPorTamano[index]
+            }));
+            Highcharts.chart('estadisticasPorTamanoChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Casillas libres por tamaño' },
+                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.2f} %' }
+                    }
+                },
+                series: [{
+                    name: 'Casillas Libres',
+                    colorByPoint: true,
+                    data: piePorTamanoData
+                }],
+                exporting: exportingOptions
+            });
+
+            /* ----------------------------------------------------------------
+               Gráfico 3: Casillas alquiladas por tamaño (Pie)
+            ------------------------------------------------------------------*/
             const labelsOcupadasPorTamano = Object.keys(estadisticasOcupadasPorTamano);
             const dataOcupadasPorTamano = Object.values(estadisticasOcupadasPorTamano);
-            const dataReservadasPorTamano = Object.values(reservadas);
+            const pieOcupadasPorTamanoData = labelsOcupadasPorTamano.map((label, index) => ({
+                name: label,
+                y: dataOcupadasPorTamano[index]
+            }));
+            Highcharts.chart('estadisticasOcupadasPorTamanoChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Casillas alquiladas por tamaño' },
+                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.2f} %' }
+                    }
+                },
+                series: [{
+                    name: 'Casillas Alquiladas',
+                    colorByPoint: true,
+                    data: pieOcupadasPorTamanoData
+                }],
+                exporting: exportingOptions
+            });
+
+            /* ----------------------------------------------------------------
+               Gráfico 4: Casillas Correspondencia / Mantenimiento (Column agrupado)
+            ------------------------------------------------------------------*/
+            // Se obtienen los datos "mantenimiento" y "correspondencia" por mes desde estadisticasPorMes
+            const dataMantenimientoPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['mantenimiento']);
+            const dataCorrespondenciaPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['correspondencia']);
+            Highcharts.chart('vencidasCorrespondenciaChart', {
+                chart: { type: 'column' },
+                title: { text: 'Casillas Correspondencia / Mantenimiento' },
+                xAxis: { categories: labelsPorMes, crosshair: true },
+                yAxis: { min: 0, title: { text: 'Cantidad de Casillas' } },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}'
+                },
+                plotOptions: {
+                    column: { dataLabels: { enabled: true } }
+                },
+                series: [{
+                    name: 'Casillas Mantenimiento',
+                    data: dataMantenimientoPorMes,
+                    color: 'rgba(255, 99, 132, 1)'
+                }, {
+                    name: 'Casillas de Correspondencia',
+                    data: dataCorrespondenciaPorMes,
+                    color: 'rgba(75, 192, 192, 1)'
+                }],
+                exporting: exportingOptions
+            });
+
+            /* ----------------------------------------------------------------
+               Gráfico 5: Casillas Correspondencia por tamaño (Pie)
+            ------------------------------------------------------------------*/
             const dataCorrespondenciaPorTamano = Object.values(correspondencia);
-            const dataVencidasPorTamano = Object.values(vencidas);
+            const pieCorrespondenciaPorTamanoData = labelsPorTamano.map((label, index) => ({
+                name: label,
+                y: dataCorrespondenciaPorTamano[index]
+            }));
+            Highcharts.chart('estadisticasCorrespondenciaPorTamanoChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Casillas Correspondencia por tamaño' },
+                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.2f} %' }
+                    }
+                },
+                series: [{
+                    name: 'Casillas Correspondencia',
+                    colorByPoint: true,
+                    data: pieCorrespondenciaPorTamanoData
+                }],
+                exporting: exportingOptions
+            });
+
+            /* ----------------------------------------------------------------
+               Gráfico 6: Casillas Mantenimiento por tamaño (Pie)
+            ------------------------------------------------------------------*/
             const dataMantenimientoPorTamano = Object.values(mantenimiento);
-
-            const ctx = document.getElementById('graficoIngresosMensuales').getContext('2d');
-            const labels = Object.keys(ingresosMensuales);
-            const dataMulta = labels.map(mes => ingresosMensuales[mes]['multa']);
-            const dataCasilla = labels.map(mes => ingresosMensuales[mes]['casilla']);
-            const dataLlave = labels.map(mes => ingresosMensuales[mes]['llave']);
-            const dataHabilitacion = labels.map(mes => ingresosMensuales[mes]['habilitacion']);
-
-            const chart = new Chart(ctx, {
-                type: 'line', // Cambiar a 'bar' o 'line' dependiendo de tus preferencias
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Precio Multa',
-                            data: dataMulta,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Precio Casilla',
-                            data: dataCasilla,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Precio Llave',
-                            data: dataLlave,
-                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                            borderColor: 'rgba(255, 206, 86, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Precio Habilitacion',
-                            data: dataHabilitacion,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
-                        }
-                    ]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+            const pieMantenimientoPorTamanoData = labelsPorTamano.map((label, index) => ({
+                name: label,
+                y: dataMantenimientoPorTamano[index]
+            }));
+            Highcharts.chart('estadisticasMantenimientoPorTamanoChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Casillas Mantenimiento por tamaño' },
+                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.2f} %' }
                     }
-                }
+                },
+                series: [{
+                    name: 'Casillas Mantenimiento',
+                    colorByPoint: true,
+                    data: pieMantenimientoPorTamanoData
+                }],
+                exporting: exportingOptions
             });
 
-            const configPieChart = (canvasId, labels, data) => {
-                const ctx = document.getElementById(canvasId).getContext('2d');
-                return new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: '# de Casillas',
-                            data: data,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(tooltipItem) {
-                                        return tooltipItem.label + ': ' + tooltipItem.raw;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            };
-
-            // Configuración de gráficos por tamaño
-            configPieChart('estadisticasPorTamanoChart', labelsPorTamano, dataPorTamano);
-            configPieChart('estadisticasOcupadasPorTamanoChart', labelsOcupadasPorTamano, dataOcupadasPorTamano);
-            configPieChart('estadisticasReservadasPorTamanoChart', labelsPorTamano, dataReservadasPorTamano);
-            configPieChart('estadisticasCorrespondenciaPorTamanoChart', labelsPorTamano, dataCorrespondenciaPorTamano);
-            configPieChart('estadisticasVencidasPorTamanoChart', labelsPorTamano, dataVencidasPorTamano);
-            configPieChart('estadisticasMantenimientoPorTamanoChart', labelsPorTamano, dataMantenimientoPorTamano);
-
-            const configBarChart = (canvasId, labels, datasets) => {
-                const ctx = document.getElementById(canvasId).getContext('2d');
-                return new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: datasets
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(tooltipItem) {
-                                        return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            };
-
-            // Configuración del gráfico de Reservadas y Vencidas
-            configBarChart('reservadasVencidasChart', labelsPorMes,
-                [{
-                        label: 'Casillas Reservadas',
-                        data: dataReservadasPorMes,
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Casillas Vencidas',
-                        data: dataVencidasPorMes,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            );
-
-            // Configuración del gráfico de Vencidas y Correspondencia
-            configBarChart('vencidasCorrespondenciaChart', labelsPorMes,
-                [{
-                        label: 'Casillas Mantenimiento',
-                        data: dataMantenimientoPorMes,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Casillas de Correspondencia',
-                        data: dataCorrespondenciaPorMes,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }
-                ]
-            );
-
-            // Gráfico de barras apiladas por mes
-            const ctxPorMes = document.getElementById('estadisticasPorMesChart').getContext('2d');
-            const estadisticasPorMesChart = new Chart(ctxPorMes, {
-                type: 'bar',
-                data: {
-                    labels: labelsPorMes,
-                    datasets: [{
-                            label: 'Casillas Libres',
-                            data: dataLibresPorMes,
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Casillas Alquiladas',
-                            data: dataOcupadasPorMes,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
-                        },
-                    ]
+            /* ----------------------------------------------------------------
+               Gráfico 7: Casillas Reservadas y Vencidas (Column agrupado)
+            ------------------------------------------------------------------*/
+            const dataReservadasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['reservadas']);
+            const dataVencidasPorMes = labelsPorMes.map(mes => estadisticasPorMes[mes]['vencidas']);
+            Highcharts.chart('reservadasVencidasChart', {
+                chart: { type: 'column' },
+                title: { text: 'Casillas Reservadas y Vencidas' },
+                xAxis: { categories: labelsPorMes, crosshair: true },
+                yAxis: {
+                    min: 0,
+                    title: { text: 'Cantidad de Casillas' }
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        },
-                        x: {
-                            stacked: true
-                        },
-                        y: {
-                            stacked: true
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return tooltipItem.dataset.label + ': ' + tooltipItem.raw;
-                                }
-                            }
-                        }
-                    }
-                }
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}'
+                },
+                plotOptions: {
+                    column: { dataLabels: { enabled: true } }
+                },
+                series: [{
+                    name: 'Casillas Reservadas',
+                    data: dataReservadasPorMes,
+                    color: 'rgba(54, 162, 235, 1)'
+                }, {
+                    name: 'Casillas Vencidas',
+                    data: dataVencidasPorMes,
+                    color: 'rgba(255, 99, 132, 1)'
+                }],
+                exporting: exportingOptions
             });
 
-            // Gráfico de pastel por tamaño (libres)
-            const ctxPorTamano = document.getElementById('estadisticasPorTamanoChart').getContext('2d');
-            const estadisticasPorTamanoChart = new Chart(ctxPorTamano, {
-                type: 'pie',
-                data: {
-                    labels: labelsPorTamano,
-                    datasets: [{
-                        label: '# de Casillas',
-                        data: dataPorTamano,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return tooltipItem.label + ': ' + tooltipItem.raw;
-                                }
-                            }
-                        }
+            /* ----------------------------------------------------------------
+               Gráfico 8: Casillas Reservadas por tamaño (Pie)
+            ------------------------------------------------------------------*/
+            const dataReservadasPorTamano = Object.values(reservadas);
+            const pieReservadasPorTamanoData = labelsPorTamano.map((label, index) => ({
+                name: label,
+                y: dataReservadasPorTamano[index]
+            }));
+            Highcharts.chart('estadisticasReservadasPorTamanoChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Casillas Reservadas por tamaño' },
+                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.2f} %' }
                     }
-                }
+                },
+                series: [{
+                    name: 'Casillas Reservadas',
+                    colorByPoint: true,
+                    data: pieReservadasPorTamanoData
+                }],
+                exporting: exportingOptions
             });
 
-            // Gráfico de pastel por tamaño (ocupadas)
-            const ctxOcupadasPorTamano = document.getElementById('estadisticasOcupadasPorTamanoChart').getContext('2d');
-            const estadisticasOcupadasPorTamanoChart = new Chart(ctxOcupadasPorTamano, {
-                type: 'pie',
-                data: {
-                    labels: labelsOcupadasPorTamano,
-                    datasets: [{
-                        label: '# de Casillas',
-                        data: dataOcupadasPorTamano,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(tooltipItem) {
-                                    return tooltipItem.label + ': ' + tooltipItem.raw;
-                                }
-                            }
-                        }
+            /* ----------------------------------------------------------------
+               Gráfico 9: Casillas Vencidas por tamaño (Pie)
+            ------------------------------------------------------------------*/
+            const dataVencidasPorTamano = Object.values(vencidas);
+            const pieVencidasPorTamanoData = labelsPorTamano.map((label, index) => ({
+                name: label,
+                y: dataVencidasPorTamano[index]
+            }));
+            Highcharts.chart('estadisticasVencidasPorTamanoChart', {
+                chart: { type: 'pie' },
+                title: { text: 'Casillas Vencidas por tamaño' },
+                tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: { enabled: true, format: '{point.name}: {point.percentage:.2f} %' }
                     }
-                }
+                },
+                series: [{
+                    name: 'Casillas Vencidas',
+                    colorByPoint: true,
+                    data: pieVencidasPorTamanoData
+                }],
+                exporting: exportingOptions
+            });
+
+            /* ----------------------------------------------------------------
+               Gráfico 10: Total Ingresos mensuales Sistema Casillas (Line)
+            ------------------------------------------------------------------*/
+            const labelsIngresos = Object.keys(ingresosMensuales);
+            const dataMulta = labelsIngresos.map(mes => ingresosMensuales[mes]['multa']);
+            const dataCasilla = labelsIngresos.map(mes => ingresosMensuales[mes]['casilla']);
+            const dataLlave = labelsIngresos.map(mes => ingresosMensuales[mes]['llave']);
+            const dataHabilitacion = labelsIngresos.map(mes => ingresosMensuales[mes]['habilitacion']);
+
+            Highcharts.chart('graficoIngresosMensuales', {
+                chart: { type: 'line' },
+                title: { text: 'Total Ingresos mensuales Sistema Casillas' },
+                xAxis: { categories: labelsIngresos },
+                yAxis: { title: { text: 'Monto en Bs.' } },
+                tooltip: { shared: true },
+                series: [{
+                    name: 'Precio Multa',
+                    data: dataMulta,
+                    color: 'rgba(255, 99, 132, 1)'
+                }, {
+                    name: 'Precio Casilla',
+                    data: dataCasilla,
+                    color: 'rgba(54, 162, 235, 1)'
+                }, {
+                    name: 'Precio Llave',
+                    data: dataLlave,
+                    color: 'rgba(255, 206, 86, 1)'
+                }, {
+                    name: 'Precio Habilitacion',
+                    data: dataHabilitacion,
+                    color: 'rgba(75, 192, 192, 1)'
+                }],
+                exporting: exportingOptions
             });
         });
     </script>
