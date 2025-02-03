@@ -1,4 +1,5 @@
 <div>
+    <!-- Estadísticas del Sistema Area Clasificacion -->
     <div class="card card-dark">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Area Clasificacion</h3>
@@ -10,6 +11,7 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <!-- Paqueteria Registrada / No Recibidos (Gráfico Column) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -17,33 +19,37 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <canvas id="packageChart" width="400" height="200"></canvas>
+                            <div id="packageChart" style="width: 100%; height: 200px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Paquetes Registrada por Ciudad (Gráfico Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Paquetes Registrada por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="cityChart" width="400" height="300"></canvas>
+                            <div id="cityChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Paquetes No Recibidos por Ciudad (Gráfico Doughnut) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Paquetes No Recibidos por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="despachoCityChart" width="400" height="300"></canvas>
+                            <div id="despachoCityChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Estadísticas del Sistema Area Ventanila -->
     <div class="card card-green">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Area Ventanila</h3>
@@ -55,6 +61,7 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <!-- Paquetes en Ventanilla por Mes (Gráfico Line) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -62,33 +69,37 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <canvas id="ventanillaChart" width="400" height="200"></canvas>
+                            <div id="ventanillaChart" style="width: 100%; height: 200px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Ventanilla por Ciudad (Gráfico Doughnut) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Ventanilla por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="ventanillaByCityChart" width="400" height="300"></canvas>
+                            <div id="ventanillaByCityChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Ventanilla por Servicio (Gráfico Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Ventanilla por Servicio</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="ventanillaByServiceChart" width="400" height="300"></canvas>
+                            <div id="ventanillaByServiceChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Estadísticas del Sistema Entregas -->
     <div class="card card-blue">
         <div class="card-header">
             <h3 class="card-title">Estadísticas del Sistema Entregas</h3>
@@ -100,6 +111,7 @@
         </div>
         <div class="card-body">
             <div class="row">
+                <!-- Total paqueteria generado por mes expresado en Bs. (Gráfico Line) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -107,27 +119,29 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <canvas id="entregadoPriceChart" width="400" height="200"></canvas>
+                            <div id="entregadoPriceChart" style="width: 100%; height: 200px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Paquetes Entregado por Ciudad (Gráfico Doughnut) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Paquetes Entregado por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="entregadoByCityChart" width="400" height="300"></canvas>
+                            <div id="entregadoByCityChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
+                <!-- Paquetes Entregados por Servicio (Gráfico Pie) -->
                 <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Paquetes Entregados por Servicio</h3>
                         </div>
                         <div class="box-body">
-                            <canvas id="entregadoByServiceChart" width="400" height="300"></canvas>
+                            <div id="entregadoByServiceChart" style="width: 100%; height: 300px;"></div>
                         </div>
                     </div>
                 </div>
@@ -136,10 +150,14 @@
     </div>
 
     @push('js')
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+        <!-- Incluir Highcharts y el módulo de exportación -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <!-- (Opcional) Para exportación sin conexión -->
+        <script src="https://code.highcharts.com/modules/offline-exporting.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                // Se asumen las variables pasadas desde el servidor (por ejemplo, desde Laravel)
                 const totalPackagesByMonth = @json($totalPackagesByMonth);
                 const despachoPackagesByMonth = @json($despachoPackagesByMonth);
                 const packagesByCity = @json($packagesByCity);
@@ -151,7 +169,7 @@
                 const entregadoByCity = @json($entregadoByCity);
                 const entregadoByService = @json($entregadoByService);
 
-                // Datos y etiquetas únicos por gráfico
+                // Preparar arrays de etiquetas y datos
                 const labelsPackages = totalPackagesByMonth.map(item => `${item.month}/${item.year}`);
                 const dataPackages = totalPackagesByMonth.map(item => item.total);
 
@@ -173,10 +191,12 @@
                 const labelsVentanillaCity = ventanillaByCity.map(item => item.city);
                 const dataVentanillaCity = ventanillaByCity.map(item => item.total);
 
-                const labelsEntregadoPrices = entregadoPricesByMonth.filter(item => item.total > 0).map(item =>
-                    `${item.month}/${item.year}`);
-                const dataEntregadoPrices = entregadoPricesByMonth.filter(item => item.total > 0).map(item => item
-                    .total);
+                const labelsEntregadoPrices = entregadoPricesByMonth
+                    .filter(item => item.total > 0)
+                    .map(item => `${item.month}/${item.year}`);
+                const dataEntregadoPrices = entregadoPricesByMonth
+                    .filter(item => item.total > 0)
+                    .map(item => item.total);
 
                 const labelsEntregadoCity = entregadoByCity.map(item => item.city);
                 const dataEntregadoCity = entregadoByCity.map(item => item.total);
@@ -184,425 +204,228 @@
                 const labelsEntregadoService = entregadoByService.map(item => item.service);
                 const dataEntregadoService = entregadoByService.map(item => item.total);
 
-                const ctx1 = document.getElementById('packageChart').getContext('2d');
-                new Chart(ctx1, {
-                    type: 'bar',
-                    data: {
-                        labels: labelsPackages,
-                        datasets: [{
-                                label: 'Paquetes Registrados',
-                                data: dataPackages,
-                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                                borderColor: 'rgba(54, 162, 235, 1)',
-                                borderWidth: 1
-                            },
-                            {
-                                label: 'Paquetes No Recibidos',
-                                data: dataDespachoPackages,
-                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                borderColor: 'rgba(255, 99, 132, 1)',
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
+                // Para gráficos de pastel/doughnut en Highcharts se requiere un arreglo de objetos { name, y }
+                const pieCityPackagesData = labelsCityPackages.map((label, index) => ({
+                    name: label,
+                    y: dataCityPackages[index]
+                }));
+                const pieDespachoCityData = labelsDespachoCity.map((label, index) => ({
+                    name: label,
+                    y: dataDespachoCity[index]
+                }));
+                const pieVentanillaServiceData = labelsVentanillaService.map((label, index) => ({
+                    name: label,
+                    y: dataVentanillaService[index]
+                }));
+                const pieVentanillaCityData = labelsVentanillaCity.map((label, index) => ({
+                    name: label,
+                    y: dataVentanillaCity[index]
+                }));
+                const pieEntregadoCityData = labelsEntregadoCity.map((label, index) => ({
+                    name: label,
+                    y: dataEntregadoCity[index]
+                }));
+                const pieEntregadoServiceData = labelsEntregadoService.map((label, index) => ({
+                    name: label,
+                    y: dataEntregadoService[index]
+                }));
+
+                // Función de configuración común para la exportación
+                const exportingOptions = {
+                    enabled: true,
+                    buttons: {
+                        contextButton: {
+                            menuItems: [
+                                'printChart', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG'
+                            ]
                         }
                     }
+                };
+
+                // 1. Gráfico Column: Paqueteria Registrada / No Recibidos
+                Highcharts.chart('packageChart', {
+                    chart: { type: 'column' },
+                    title: { text: 'Paqueteria Registrada / No Recibidos' },
+                    subtitle: { text: 'Inventario desde 01/2024' },
+                    xAxis: { categories: labelsPackages, crosshair: true },
+                    yAxis: { min: 0, title: { text: 'Cantidad' } },
+                    tooltip: { shared: true },
+                    plotOptions: { column: { dataLabels: { enabled: true } } },
+                    series: [{
+                        name: 'Paquetes Registrados',
+                        data: dataPackages,
+                        color: 'rgba(54, 162, 235, 1)'
+                    }, {
+                        name: 'Paquetes No Recibidos',
+                        data: dataDespachoPackages,
+                        color: 'rgba(255, 99, 132, 1)'
+                    }],
+                    exporting: exportingOptions
                 });
 
-                const ctx2 = document.getElementById('cityChart').getContext('2d');
-                new Chart(ctx2, {
-                    type: 'pie',
-                    data: {
-                        labels: labelsCityPackages,
-                        datasets: [{
-                            label: 'Paquetes por Ciudad',
-                            data: dataCityPackages,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Paquetes por Ciudad'
-                            },
-                            datalabels: {
-                                color: '#000',
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    return (value * 100 / sum).toFixed(2) + "%";
-                                },
-                                anchor: 'end',
-                                align: 'start',
-                                offset: -1
+                // 2. Gráfico Pie: Paquetes por Ciudad
+                Highcharts.chart('cityChart', {
+                    chart: { type: 'pie' },
+                    title: { text: 'Paquetes por Ciudad' },
+                    tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                    accessibility: { point: { valueSuffix: '%' } },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.2f} %'
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    series: [{
+                        name: 'Paquetes',
+                        colorByPoint: true,
+                        data: pieCityPackagesData
+                    }],
+                    exporting: exportingOptions
                 });
 
-                const ctx3 = document.getElementById('despachoCityChart').getContext('2d');
-                new Chart(ctx3, {
-                    type: 'doughnut',
-                    data: {
-                        labels: labelsDespachoCity,
-                        datasets: [{
-                            label: 'Paquetes en DESPACHO por Ciudad',
-                            data: dataDespachoCity,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Paquetes en DESPACHO por Ciudad'
-                            },
-                            datalabels: {
-                                color: '#000',
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    return (value * 100 / sum).toFixed(2) + "%";
-                                },
-                                anchor: 'end',
-                                align: 'start',
-                                offset: -1
+                // 3. Gráfico Doughnut: Paquetes en DESPACHO por Ciudad
+                Highcharts.chart('despachoCityChart', {
+                    chart: { type: 'pie' },
+                    title: { text: 'Paquetes en DESPACHO por Ciudad' },
+                    plotOptions: {
+                        pie: {
+                            innerSize: '50%',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.2f} %'
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    series: [{
+                        name: 'Paquetes',
+                        data: pieDespachoCityData,
+                        colorByPoint: true
+                    }],
+                    exporting: exportingOptions
                 });
 
-                const ctx4 = document.getElementById('ventanillaChart').getContext('2d');
-                new Chart(ctx4, {
-                    type: 'line',
-                    data: {
-                        labels: labelsVentanillaPackages,
-                        datasets: [{
-                            label: 'Paquetes en Ventanilla',
-                            data: dataVentanillaPackages,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1,
-                            fill: false
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
+                // 4. Gráfico Line: Paquetes en Ventanilla por Mes
+                Highcharts.chart('ventanillaChart', {
+                    chart: { type: 'line' },
+                    title: { text: 'Paquetes en Ventanilla por Mes' },
+                    subtitle: { text: 'Inventario desde 01/2024' },
+                    xAxis: { categories: labelsVentanillaPackages },
+                    yAxis: { title: { text: 'Cantidad' } },
+                    tooltip: { shared: true },
+                    series: [{
+                        name: 'Paquetes en Ventanilla',
+                        data: dataVentanillaPackages,
+                        color: 'rgba(75, 192, 192, 1)'
+                    }],
+                    exporting: exportingOptions
                 });
 
-                const ctx5 = document.getElementById('ventanillaByServiceChart').getContext('2d');
-                new Chart(ctx5, {
-                    type: 'pie',
-                    data: {
-                        labels: labelsVentanillaService,
-                        datasets: [{
-                            label: 'Paquetes en Ventanilla por Servicio',
-                            data: dataVentanillaService,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Paquetes en Ventanilla por Servicio'
-                            },
-                            datalabels: {
-                                color: '#000',
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    return (value * 100 / sum).toFixed(2) + "%";
-                                },
-                                anchor: 'end',
-                                align: 'start',
-                                offset: -1
+                // 5. Gráfico Pie: Ventanilla por Servicio
+                Highcharts.chart('ventanillaByServiceChart', {
+                    chart: { type: 'pie' },
+                    title: { text: 'Paquetes en Ventanilla por Servicio' },
+                    tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.2f} %'
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    series: [{
+                        name: 'Paquetes',
+                        colorByPoint: true,
+                        data: pieVentanillaServiceData
+                    }],
+                    exporting: exportingOptions
                 });
 
-                const ctx6 = document.getElementById('ventanillaByCityChart').getContext('2d');
-                new Chart(ctx6, {
-                    type: 'doughnut',
-                    data: {
-                        labels: labelsVentanillaCity,
-                        datasets: [{
-                            label: 'Paquetes en Ventanilla por Ciudad',
-                            data: dataVentanillaCity,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Paquetes en Ventanilla por Ciudad'
-                            },
-                            datalabels: {
-                                color: '#000',
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    return (value * 100 / sum).toFixed(2) + "%";
-                                },
-                                anchor: 'end',
-                                align: 'start',
-                                offset: -1
+                // 6. Gráfico Doughnut: Ventanilla por Ciudad
+                Highcharts.chart('ventanillaByCityChart', {
+                    chart: { type: 'pie' },
+                    title: { text: 'Paquetes en Ventanilla por Ciudad' },
+                    plotOptions: {
+                        pie: {
+                            innerSize: '50%',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.2f} %'
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    series: [{
+                        name: 'Paquetes',
+                        data: pieVentanillaCityData,
+                        colorByPoint: true
+                    }],
+                    exporting: exportingOptions
                 });
 
-                // Gráfico de precio de paquetes entregados por mes
-                const ctx = document.getElementById('entregadoPriceChart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labelsEntregadoPrices,
-                        datasets: [{
-                            label: 'Precio Total de Paquetes Entregados',
-                            data: dataEntregadoPrices,
-                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
+                // 7. Gráfico Line: Precio Total de Paquetes Entregados por Mes
+                Highcharts.chart('entregadoPriceChart', {
+                    chart: { type: 'line' },
+                    title: { text: 'Precio Total de Paquetes Entregados' },
+                    subtitle: { text: 'Inventario desde 01/2024' },
+                    xAxis: { categories: labelsEntregadoPrices },
+                    yAxis: { title: { text: 'Precio en Bs.' } },
+                    tooltip: { shared: true },
+                    series: [{
+                        name: 'Precio Total',
+                        data: dataEntregadoPrices,
+                        color: 'rgba(75, 192, 192, 1)'
+                    }],
+                    exporting: exportingOptions
                 });
 
-                // Gráfico de paquetes entregados por ciudad
-                const ctxCity = document.getElementById('entregadoByCityChart').getContext('2d');
-                new Chart(ctxCity, {
-                    type: 'doughnut',
-                    data: {
-                        labels: labelsEntregadoCity,
-                        datasets: [{
-                            label: 'Paquetes Entregados por Ciudad',
-                            data: dataEntregadoCity,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Paquetes Entregados por Ciudad'
-                            },
-                            datalabels: {
-                                color: '#000',
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    return (value * 100 / sum).toFixed(2) + "%";
-                                },
-                                anchor: 'end',
-                                align: 'start',
-                                offset: -1
+                // 8. Gráfico Doughnut: Paquetes Entregados por Ciudad
+                Highcharts.chart('entregadoByCityChart', {
+                    chart: { type: 'pie' },
+                    title: { text: 'Paquetes Entregados por Ciudad' },
+                    plotOptions: {
+                        pie: {
+                            innerSize: '50%',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.2f} %'
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    series: [{
+                        name: 'Paquetes',
+                        data: pieEntregadoCityData,
+                        colorByPoint: true
+                    }],
+                    exporting: exportingOptions
                 });
 
-                // Gráfico de paquetes entregados por servicio
-                const ctxService = document.getElementById('entregadoByServiceChart').getContext('2d');
-                new Chart(ctxService, {
-                    type: 'pie',
-                    data: {
-                        labels: labelsEntregadoService,
-                        datasets: [{
-                            label: 'Paquetes Entregados por Servicio',
-                            data: dataEntregadoService,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Paquetes Entregados por Servicio'
-                            },
-                            datalabels: {
-                                color: '#000',
-                                formatter: (value, ctx) => {
-                                    let sum = 0;
-                                    let dataArr = ctx.chart.data.datasets[0].data;
-                                    dataArr.map(data => {
-                                        sum += data;
-                                    });
-                                    return (value * 100 / sum).toFixed(2) + "%";
-                                },
-                                anchor: 'end',
-                                align: 'start',
-                                offset: -1
+                // 9. Gráfico Pie: Paquetes Entregados por Servicio
+                Highcharts.chart('entregadoByServiceChart', {
+                    chart: { type: 'pie' },
+                    title: { text: 'Paquetes Entregados por Servicio' },
+                    tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: {point.percentage:.2f} %'
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    series: [{
+                        name: 'Paquetes',
+                        data: pieEntregadoServiceData,
+                        colorByPoint: true
+                    }],
+                    exporting: exportingOptions
                 });
             });
         </script>
