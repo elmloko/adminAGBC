@@ -19,7 +19,7 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <div id="packageChart" style="width: 100%; height: 200px;"></div>
+                            <div id="packageChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                             <h3 class="box-title">Paquetes Registrada por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <div id="cityChart" style="width: 100%; height: 300px;"></div>
+                            <div id="cityChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                             <h3 class="box-title">Paquetes No Recibidos por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <div id="despachoCityChart" style="width: 100%; height: 300px;"></div>
+                            <div id="despachoCityChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <div id="ventanillaChart" style="width: 100%; height: 200px;"></div>
+                            <div id="ventanillaChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                             <h3 class="box-title">Ventanilla por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <div id="ventanillaByCityChart" style="width: 100%; height: 300px;"></div>
+                            <div id="ventanillaByCityChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                             <h3 class="box-title">Ventanilla por Servicio</h3>
                         </div>
                         <div class="box-body">
-                            <div id="ventanillaByServiceChart" style="width: 100%; height: 300px;"></div>
+                            <div id="ventanillaByServiceChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <div id="entregadoPriceChart" style="width: 100%; height: 200px;"></div>
+                            <div id="entregadoPriceChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                             <h3 class="box-title">Paquetes Entregado por Ciudad</h3>
                         </div>
                         <div class="box-body">
-                            <div id="entregadoByCityChart" style="width: 100%; height: 300px;"></div>
+                            <div id="entregadoByCityChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                             <h3 class="box-title">Paquetes Entregados por Servicio</h3>
                         </div>
                         <div class="box-body">
-                            <div id="entregadoByServiceChart" style="width: 100%; height: 300px;"></div>
+                            <div id="entregadoByServiceChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
