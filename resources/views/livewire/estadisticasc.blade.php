@@ -27,7 +27,7 @@
                             <h5 class="box-title">Inventario desde 01/2024</h5>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasPorMesChart" style="width: 100%; height: 200px;"></div>
+                            <div id="estadisticasPorMesChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                             <h3 class="box-title">Casillas libres por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasPorTamanoChart" style="width: 100%; height: 300px;"></div>
+                            <div id="estadisticasPorTamanoChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                             <h3 class="box-title">Casillas alquiladas por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasOcupadasPorTamanoChart" style="width: 100%; height: 300px;"></div>
+                            <div id="estadisticasOcupadasPorTamanoChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                             <h3 class="box-title">Casillas Correspondencia / Mantenimiento</h3>
                         </div>
                         <div class="box-body">
-                            <div id="vencidasCorrespondenciaChart" style="width: 100%; height: 300px;"></div>
+                            <div id="vencidasCorrespondenciaChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                             <h3 class="box-title">Casillas Correspondencia por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasCorrespondenciaPorTamanoChart" style="width: 100%; height: 300px;"></div>
+                            <div id="estadisticasCorrespondenciaPorTamanoChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                             <h3 class="box-title">Casillas Mantenimiento por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasMantenimientoPorTamanoChart" style="width: 100%; height: 300px;"></div>
+                            <div id="estadisticasMantenimientoPorTamanoChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                             <h3 class="box-title">Casillas Reservadas y Vencidas</h3>
                         </div>
                         <div class="box-body">
-                            <div id="reservadasVencidasChart" style="width: 100%; height: 300px;"></div>
+                            <div id="reservadasVencidasChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                             <h3 class="box-title">Casillas Reservadas por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasReservadasPorTamanoChart" style="width: 100%; height: 300px;"></div>
+                            <div id="estadisticasReservadasPorTamanoChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                             <h3 class="box-title">Casillas Vencidas por tamaño</h3>
                         </div>
                         <div class="box-body">
-                            <div id="estadisticasVencidasPorTamanoChart" style="width: 100%; height: 300px;"></div>
+                            <div id="estadisticasVencidasPorTamanoChart" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                             <h3 class="box-title">Total Ingresos mensuales Sistema Casillas</h3>
                         </div>
                         <div class="box-body">
-                            <div id="graficoIngresosMensuales" style="width: 100%; height: 100px;"></div>
+                            <div id="graficoIngresosMensuales" style="width: 100%; height: 500px;"></div>
                         </div>
                     </div>
                 </div>
