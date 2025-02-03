@@ -136,7 +136,7 @@ class Package extends Component
         }
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10;
+        $perPage = 100;
         $currentItems = array_slice($packages, ($currentPage - 1) * $perPage, $perPage);
         $paginatedItems = new LengthAwarePaginator($currentItems, count($packages), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
