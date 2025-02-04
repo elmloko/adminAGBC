@@ -267,7 +267,7 @@
                 Highcharts.chart('cityChart', {
                     chart: { type: 'pie' },
                     title: { text: 'Paquetes por Ciudad' },
-                    tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                    // tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
                     accessibility: { point: { valueSuffix: '%' } },
                     plotOptions: {
                         pie: {
