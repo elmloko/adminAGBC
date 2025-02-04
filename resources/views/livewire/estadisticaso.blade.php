@@ -328,7 +328,7 @@
                 Highcharts.chart('ventanillaByServiceChart', {
                     chart: { type: 'pie' },
                     title: { text: 'Paquetes en Ventanilla por Servicio' },
-                    tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                    // tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
                     plotOptions: {
                         pie: {
                             allowPointSelect: true,
@@ -409,7 +409,7 @@
                 Highcharts.chart('entregadoByServiceChart', {
                     chart: { type: 'pie' },
                     title: { text: 'Paquetes Entregados por Servicio' },
-                    tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
+                    // tooltip: { pointFormat: '{series.name}: <b>{point.percentage:.2f}%</b>' },
                     plotOptions: {
                         pie: {
                             allowPointSelect: true,
