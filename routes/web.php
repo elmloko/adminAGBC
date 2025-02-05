@@ -64,7 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/ventanilla', [PackageController::class, 'getVentanilla']);
     Route::get('/generados', [PackageController::class, 'getGenerados']);
     Route::get('/estadisticaso', [PackageController::class, 'getEstadisticaso']);
-    Route::get('/estadisticasdespachos', [DespachosController::class, 'getEstadisticasdespachos']);
     Route::get('/packagesdd', [PackageController::class, 'getPackagesDD']);
     Route::get('/ventanilladd', [PackageController::class, 'getVentanillaDD']);
     Route::get('/generadosdd', [PackageController::class, 'getGeneradosDD']);
@@ -85,6 +84,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/ventanillaencomiendas', [PackageController::class, 'getVentanillaENCOMIENDAS']);
     Route::get('/generadosencomiendas', [PackageController::class, 'getGeneradosENCOMIENDAS']);
     Route::get('/estadisticasoencomiendas', [PackageController::class, 'getEstadisticasoENCOMIENDAS']);
+    Route::get('/estadisticasdespachos', [DespachosController::class, 'getEstadisticasdespachos']);
+    Route::get('/apertura', [DespachosController::class, 'getApertura']);
+    Route::get('/cerrado', [DespachosController::class, 'getCerrado']);
+    Route::get('/expedicion', [DespachosController::class, 'getExpedicion']);
+    Route::get('/observado', [DespachosController::class, 'getObservado']);
+    Route::get('/admitido', [DespachosController::class, 'getAdmitido']);
 
     Route::get('/alquiladas', [CasillasController::class, 'getAlquiladas']);
     Route::get('/libres', [CasillasController::class, 'getLibres']);

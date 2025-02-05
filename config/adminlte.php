@@ -426,27 +426,27 @@ return [
                         ],
                         [
                             'text' => 'Despachos en Apertura',
-                            'url' => '',
+                            'url' => 'apertura',
                             'icon' => 'fas fa-user',
                         ],
                         [
                             'text' => 'Despachos en Cierre',
-                            'url' => '',
+                            'url' => 'cerrado',
                             'icon' => 'fas fa-user',
                         ],
                         [
                             'text' => 'Despachos en Expedicion',
-                            'url' => '',
+                            'url' => 'expedicion',
                             'icon' => 'fas fa-user',
                         ],
                         [
                             'text' => 'Despachos en Observacion',
-                            'url' => '',
+                            'url' => 'observado',
                             'icon' => 'fas fa-user',
                         ],
                         [
                             'text' => 'Despachos en Admitido',
-                            'url' => '',
+                            'url' => 'admitido',
                             'icon' => 'fas fa-user',
                         ],
                     ],

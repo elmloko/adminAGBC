@@ -7,6 +7,6 @@
 @endsection
 
 @section('content')
-    @livewire('estadisticasdespachos')
+    @livewire('cerrado')
     @include('footer')
 @stop
