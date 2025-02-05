@@ -4,6 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\DespachosExport;
 
 class Apertura extends Component
 {
@@ -77,6 +80,19 @@ class Apertura extends Component
                 return $apertura['oforigen'] === $this->categoria;
             });
         }
+    }
+
+    public function generateExcel()
+    {
+        return Excel::download(new DespachosExport($this->aperturas), 'Despachos Aperturas.xlsx');
+    }
+
+    public function generatePDF()
+    {
+        $pdf = Pdf::loadView('livewire.despachos-pdf', ['aperturas' => $this->aperturas]);
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->stream();
+        }, 'Despachos Aperturas.pdf');
     }
 
     public function render()

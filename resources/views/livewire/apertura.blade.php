@@ -25,6 +25,8 @@
                         <option value="BOSRE">BOSRE - SUCRE</option>
                         <option value="BOSRZ">BOSRZ - SANTA CRUZ</option>
                     </select>
+                    <button wire:click="generateExcel" class="btn btn-success">Generar Excel</button>
+                    <button wire:click="generatePDF" class="btn btn-danger">Generar PDF</button>
                     <button wire:click="applyFilters" class="btn btn-primary mr-2">Buscar</button>
                 </div>
                 @if (session()->has('success'))
