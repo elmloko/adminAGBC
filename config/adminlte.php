@@ -353,7 +353,7 @@ return [
                     'icon' => 'fas fa-envelope',
                     'submenu' => [
                         [
-                            'text' => 'Estadisticas Ordinaria',
+                            'text' => 'Estadisticas Ordinarias',
                             'url' => 'estadisticaso',
                             'icon' => 'fas fa-user',
                         ],
@@ -422,6 +422,31 @@ return [
                         [
                             'text' => 'Estadisticas Despachos',
                             'url' => 'estadisticasdespachos',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Apertura',
+                            'url' => '',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Cierre',
+                            'url' => '',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Expedicion',
+                            'url' => '',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Observacion',
+                            'url' => '',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Admitido',
+                            'url' => '',
                             'icon' => 'fas fa-user',
                         ],
                     ],
