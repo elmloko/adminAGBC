@@ -349,7 +349,7 @@ return [
             // 'can'  => 'users.index',
             'submenu' => [
                 [
-                    'text' => 'Paqueteria Ordinaria',
+                    'text' => 'TRACKINGBO',
                     'icon' => 'fas fa-envelope',
                     'submenu' => [
                         [
@@ -375,7 +375,7 @@ return [
                     ],
                 ],
                 [
-                    'text' => 'Casillas',
+                    'text' => 'SENCA',
                     'icon' => 'fas fa-envelope',
                     'submenu' => [
                         [
@@ -411,6 +411,17 @@ return [
                         [
                             'text' => 'Casillas Reservadas',
                             'url' => 'reservadas',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'GESPA',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Estadisticas Despachos',
+                            'url' => 'estadisticasdespachos',
                             'icon' => 'fas fa-user',
                         ],
                     ],

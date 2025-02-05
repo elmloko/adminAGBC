@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CasillasController;
+use App\Http\Controllers\DespachosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,6 +79,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ventanilla', [PackageController::class, 'getVentanilla']);
     Route::get('/generados', [PackageController::class, 'getGenerados']);
     Route::get('/estadisticaso', [PackageController::class, 'getEstadisticaso']);
+    Route::get('/estadisticasdespachos', [DespachosController::class, 'getEstadisticasdespachos']);
     Route::get('/packagesdd', [PackageController::class, 'getPackagesDD']);
     Route::get('/ventanilladd', [PackageController::class, 'getVentanillaDD']);
     Route::get('/generadosdd', [PackageController::class, 'getGeneradosDD']);
