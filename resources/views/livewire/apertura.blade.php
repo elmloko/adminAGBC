@@ -66,8 +66,8 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
             {{ $aperturas->links('pagination::bootstrap-4') }}
-        </div> --}}
+        </div>
         </div>
     </div>
