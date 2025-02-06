@@ -36,9 +36,9 @@
                 @endif
                 <div class="card-body">
                     <div class="table-responsive">
-                        {{-- <div class="d-flex justify-content-center">
-                        Se encontraron {{ $aperturas->total() }} registros en total
-                    </div> --}}
+                        <div class="d-flex justify-content-center">
+                            Se encontraron {{ $aperturas->total() }} registros en total
+                        </div>
                         <table class="table table-striped table-hover">
                             <thead class="thead">
                                 <tr>
@@ -67,7 +67,8 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-            {{ $aperturas->links('pagination::bootstrap-4') }}
-        </div>
+                {{ $aperturas->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </div>
+</div>
