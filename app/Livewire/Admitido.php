@@ -49,18 +49,24 @@ class admitido extends Component
         $response = Http::withOptions([
             'verify' => false,
         ])->get('https://correos.gob.bo:8005/api/admitido');
-
+    
         $admitidos = [];
-
+    
         if ($response->successful()) {
             $data = $response->json();
             if ($data['success'] && isset($data['data'])) {
                 $admitidos = array_map(function ($item) {
+                    $createdAt = Carbon::parse($item['created_at']);
+                    $updatedAt = Carbon::parse($item['updated_at']);
+                    $dias_transcurridos = $createdAt->diffInDays($updatedAt);
+    
                     return [
                         'oforigen' => $item['oforigen'],
                         'ofdestino' => $item['ofdestino'],
                         'identificador' => $item['identificador'],
-                        'created_at' => Carbon::parse($item['created_at'])->format('Y-m-d H:i:s'),
+                        'created_at' => $createdAt->format('Y-m-d H:i:s'),
+                        'updated_at' => $updatedAt->format('Y-m-d H:i:s'),
+                        'dias_transcurridos' => $dias_transcurridos,
                         'peso_total' => array_sum(array_column($item['sacas'], 'peso')),
                         'paquetes_total' => array_reduce($item['sacas'], function ($carry, $saca) {
                             return $carry + array_reduce($saca['contenidos'], function ($subcarry, $contenido) {
@@ -71,31 +77,32 @@ class admitido extends Component
                 }, $data['data']);
             }
         }
-
+    
         if (!empty($this->search)) {
             $admitidos = array_filter($admitidos, function ($admitido) {
                 return stripos($admitido['identificador'], $this->search) !== false;
             });
         }
-
+    
         if (!empty($this->date)) {
             $admitidos = array_filter($admitidos, function ($admitido) {
                 return Carbon::parse($admitido['created_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
             });
         }
-
+    
         if (!empty($this->categoria)) {
             $admitidos = array_filter($admitidos, function ($admitido) {
                 return $admitido['oforigen'] == $this->categoria;
             });
         }
-
+    
         usort($admitidos, function ($a, $b) {
             return ($this->sortDirection === 'asc' ? 1 : -1) * strcmp($a[$this->sortBy], $b[$this->sortBy]);
         });
-
+    
         return $admitidos;
     }
+    
 
     public function generatePDF()
     {

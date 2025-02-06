@@ -47,6 +47,7 @@
                                     <th>Oficina Destino</th>
                                     <th>Peso Total</th>
                                     <th>Paquetes Totales</th>
+                                    <th>Estado</th>
                                     <th>Fecha cerrado</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,11 @@
                                         <td>{{ $cerrado['ofdestino'] }}</td>
                                         <td>{{ $cerrado['peso_total'] }} kg</td>
                                         <td>{{ $cerrado['paquetes_total'] }}</td>
+                                        <td>
+                                            <span class="badge {{ $cerrado['estado'] == 'A TIEMPO' ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $cerrado['estado'] }}
+                                            </span>
+                                        </td>
                                         <td>{{ $cerrado['created_at'] }}</td>
                                     </tr>
                                 @endforeach

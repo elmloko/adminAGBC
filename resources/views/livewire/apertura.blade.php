@@ -47,6 +47,7 @@
                                     <th>Oficina Destino</th>
                                     <th>Peso Total</th>
                                     <th>Paquetes Totales</th>
+                                    <th>Siguente Estado</th>
                                     <th>Fecha Apertura</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,7 @@
                                         <td>{{ $apertura['ofdestino'] }}</td>
                                         <td>{{ $apertura['peso_total'] }} kg</td>
                                         <td>{{ $apertura['paquetes_total'] }}</td>
+                                        <td>CERRAR SACA</td>
                                         <td>{{ $apertura['created_at'] }}</td>
                                     </tr>
                                 @endforeach

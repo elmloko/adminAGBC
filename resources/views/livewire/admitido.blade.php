@@ -47,6 +47,7 @@
                                     <th>Oficina Destino</th>
                                     <th>Peso Total</th>
                                     <th>Paquetes Totales</th>
+                                    <th>Días Transcurridos</th>
                                     <th>Fecha admitido</th>
                                 </tr>
                             </thead>
@@ -58,6 +59,16 @@
                                         <td>{{ $admitido['ofdestino'] }}</td>
                                         <td>{{ $admitido['peso_total'] }} kg</td>
                                         <td>{{ $admitido['paquetes_total'] }}</td>
+                                        <td>
+                                            <span class="badge 
+                                                @if ($admitido['dias_transcurridos'] < 1) badge-success 
+                                                @elseif ($admitido['dias_transcurridos'] == 1) badge-success 
+                                                @elseif ($admitido['dias_transcurridos'] == 2) badge-warning 
+                                                @else badge-danger 
+                                                @endif">
+                                                {{ $admitido['dias_transcurridos'] }} días
+                                            </span>
+                                        </td>
                                         <td>{{ $admitido['created_at'] }}</td>
                                     </tr>
                                 @endforeach

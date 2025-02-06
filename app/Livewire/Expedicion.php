@@ -56,17 +56,21 @@ class expedicion extends Component
             $data = $response->json();
             if ($data['success'] && isset($data['data'])) {
                 $expedicions = array_map(function ($item) {
+                    $createdAt = Carbon::parse($item['updated_at']);
+                    $estado = Carbon::now()->diffInDays($createdAt) > 1 ? 'DEMORADO' : 'A TIEMPO';
+
                     return [
                         'oforigen' => $item['oforigen'],
                         'ofdestino' => $item['ofdestino'],
                         'identificador' => $item['identificador'],
-                        'created_at' => Carbon::parse($item['created_at'])->format('Y-m-d H:i:s'),
+                        'updated_at' => $createdAt->format('Y-m-d H:i:s'),
                         'peso_total' => array_sum(array_column($item['sacas'], 'peso')),
                         'paquetes_total' => array_reduce($item['sacas'], function ($carry, $saca) {
                             return $carry + array_reduce($saca['contenidos'], function ($subcarry, $contenido) {
                                 return $subcarry + array_sum(array_values($contenido));
                             }, 0);
                         }, 0),
+                        'estado' => $estado,
                     ];
                 }, $data['data']);
             }

@@ -47,6 +47,7 @@
                                     <th>Oficina Destino</th>
                                     <th>Peso Total</th>
                                     <th>Paquetes Totales</th>
+                                    <th>Estado</th>
                                     <th>Fecha expedicion</th>
                                 </tr>
                             </thead>
@@ -58,7 +59,12 @@
                                         <td>{{ $expedicion['ofdestino'] }}</td>
                                         <td>{{ $expedicion['peso_total'] }} kg</td>
                                         <td>{{ $expedicion['paquetes_total'] }}</td>
-                                        <td>{{ $expedicion['created_at'] }}</td>
+                                        <td>
+                                            <span class="badge {{ $expedicion['estado'] == 'A TIEMPO' ? 'badge-success' : 'badge-danger' }}">
+                                                {{ $expedicion['estado'] }}
+                                            </span>
+                                        </td>
+                                        <td>{{ $expedicion['updated_at'] }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
