@@ -451,6 +451,37 @@ return [
                         ],
                     ],
                 ],
+                [
+                    'text' => 'SIRECO',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Estadisticas Reclamos',
+                            'url' => 'estadisticasr',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Informaciones',
+                            'url' => 'informaciones',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Quejas',
+                            'url' => 'quejas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Reclamos',
+                            'url' => 'reclamos',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Sugerencias',
+                            'url' => 'sugerencias',
+                            'icon' => 'fas fa-user',
+                        ],  
+                    ],
+                ],
                 // [
                 //     'text' => 'Paqueteria XX',
                 //     'icon' => 'fas fa-envelope',

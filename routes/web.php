@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleHasPermissionController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\CasillasController;
 use App\Http\Controllers\DespachosController;
+use App\Http\Controllers\ReclamosController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -85,6 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/generadosencomiendas', [PackageController::class, 'getGeneradosENCOMIENDAS']);
     Route::get('/estadisticasoencomiendas', [PackageController::class, 'getEstadisticasoENCOMIENDAS']);
     Route::get('/estadisticasdespachos', [DespachosController::class, 'getEstadisticasdespachos']);
+
     Route::get('/apertura', [DespachosController::class, 'getApertura']);
     Route::get('/cerrado', [DespachosController::class, 'getCerrado']);
     Route::get('/expedicion', [DespachosController::class, 'getExpedicion']);
@@ -98,6 +100,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/correspondencia', [CasillasController::class, 'getCorrespondencia']);
     Route::get('/reservadas', [CasillasController::class, 'getReservadas']);
     Route::get('/estadisticasc', [CasillasController::class, 'getEstadisticasc']);
+
+    Route::get('/estadisticasr', [ReclamosController::class, 'getEstadisticasr']);
+    Route::get('/informaciones', [ReclamosController::class, 'getInformaciones']);
+    Route::get('/quejas', [ReclamosController::class, 'getQuejas']);
+    Route::get('/reclamos', [ReclamosController::class, 'getReclamos']);
+    Route::get('/sugerencias', [ReclamosController::class, 'getSugerencias']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
