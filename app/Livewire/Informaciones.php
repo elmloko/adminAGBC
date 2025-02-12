@@ -17,11 +17,11 @@ class Informaciones extends Component
     public $search = '';
     public $date = '';
     public $ciudad = '';
+    public $estado = '';
     public $filteredInformaciones = [];
     public $sortBy = 'created_at';
     public $sortDirection = 'asc';
 
-    // Resetea la paginación al cambiar el valor de búsqueda
     public function updatingSearch()
     {
         $this->resetPage();
@@ -46,37 +46,41 @@ class Informaciones extends Component
 
     public function getFilteredInformaciones()
     {
-        // Consumir la API de informaciones
-        $response = Http::withOptions([
-            'verify' => false,
-        ])->get('https://correos.gob.bo:8002/api/informations');
+        $urls = [
+            'https://correos.gob.bo:8002/api/informations',
+            'https://correos.gob.bo:8002/api/informationll',
+            'https://correos.gob.bo:8002/api/informationsm'
+        ];
 
         $informaciones = [];
 
-        if ($response->successful()) {
-            // Suponemos que la respuesta es un arreglo de objetos
-            $data = $response->json();
-            $informaciones = array_map(function ($item) {
-                // Convertir las fechas con Carbon
-                $createdAt = Carbon::parse($item['created_at']);
-                $lastDate  = Carbon::parse($item['last_date']);
-                return [
-                    'id'            => $item['id'],
-                    'correlativo'   => $item['correlativo'],
-                    'codigo'        => $item['codigo'],
-                    'ventanilla'    => $item['ventanilla'],
-                    'feedback'      => $item['feedback'],
-                    'destinatario'  => $item['destinatario'],
-                    'last_event'    => $item['last_event'],
-                    'ciudad'        => $item['ciudad'],
-                    'estado'        => $item['estado'],
-                    'last_date'     => $lastDate->format('Y-m-d H:i:s'),
-                    'created_at'    => $createdAt->format('Y-m-d H:i:s'),
-                ];
-            }, $data);
+        foreach ($urls as $url) {
+            $response = Http::withOptions(['verify' => false])->get($url);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                foreach ($data as $item) {
+                    $createdAt = Carbon::parse($item['created_at']);
+                    $lastDate  = isset($item['last_date']) ? Carbon::parse($item['last_date']) : null;
+
+                    $informaciones[] = [
+                        'id'            => $item['id'],
+                        'correlativo'   => $item['correlativo'] ?? '',
+                        'codigo'        => $item['codigo'] ?? '',
+                        'ventanilla'    => $item['ventanilla'] ?? '',
+                        'feedback'      => $item['feedback'] ?? '',
+                        'destinatario'  => $item['destinatario'] ?? '',
+                        'last_event'    => $item['last_event'] ?? '',
+                        'ciudad'        => $item['ciudad'] ?? '',
+                        'estado'        => $item['estado'] ?? '',
+                        'last_date'     => $lastDate ? $lastDate->format('Y-m-d H:i:s') : '',
+                        'created_at'    => $createdAt->format('Y-m-d H:i:s'),
+                    ];
+                }
+            }
         }
 
-        // Filtro por búsqueda (en destinatario, código o correlativo)
+        // Filtro por búsqueda
         if (!empty($this->search)) {
             $informaciones = array_filter($informaciones, function ($info) {
                 return stripos($info['destinatario'], $this->search) !== false ||
@@ -85,10 +89,17 @@ class Informaciones extends Component
             });
         }
 
-        // Filtro por fecha (usando la fecha de creación)
+        // Filtro por fecha
         if (!empty($this->date)) {
             $informaciones = array_filter($informaciones, function ($info) {
                 return Carbon::parse($info['created_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
+            });
+        }
+
+        // Filtro por estado
+        if (!empty($this->estado)) {
+            $informaciones = array_filter($informaciones, function ($info) {
+                return $info['estado'] == $this->estado;
             });
         }
 
@@ -109,17 +120,13 @@ class Informaciones extends Component
 
     public function generatePDF()
     {
-        // Obtén la información filtrada y la asignas a la variable $reclamos
         $informaciones = $this->getFilteredInformaciones();
-        
-        // Carga la vista 'livewire.reclamos-pdf' pasando la variable $reclamos
         $pdf = PDF::loadView('livewire.reclamos-pdf', compact('informaciones'));
-        
+
         return response()->streamDownload(function () use ($pdf) {
             echo $pdf->stream();
         }, 'Informaciones.pdf');
     }
-    
 
     public function generateExcel()
     {

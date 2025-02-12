@@ -28,6 +28,12 @@
                             <option value="SUCRE">SUCRE</option>
                             <!-- Agrega más opciones según corresponda -->
                         </select>
+                        <select wire:model="estado" class="form-control mr-2">
+                            <option value="">Todos los estados</option>
+                            <option value="SAC MANUAL">REGISTRO MANUAL</option>
+                            <option value="SAC">REGISTRO AUTOMÁTICO</option>
+                            <option value="LLAMADA">REGISTRO DE LLAMADA</option>
+                        </select>
                         <button wire:click="generateExcel" class="btn btn-success mr-2">Generar Excel</button>
                         <button wire:click="generatePDF" class="btn btn-danger mr-2">Generar PDF</button>
                         <button wire:click="applyFilters" class="btn btn-primary">Buscar</button>
@@ -56,7 +62,7 @@
                                     <th>Destinatario</th>
                                     <th>Ciudad</th>
                                     <th>Calificacion</th>
-                                    <th>Estado</th>
+                                    <th>Registro</th>
                                     <th>Fecha</th>
                                 </tr>
                             </thead>
@@ -71,7 +77,22 @@
                                         <td>{{ $info['destinatario'] }}</td>
                                         <td>{{ $info['ciudad'] }}</td>
                                         <td>{{ $info['feedback'] }}</td>
-                                        <td>{{ $info['estado'] }}</td>
+                                        <td>
+                                            @switch($info['estado'])
+                                                @case('SAC MANUAL')
+                                                    REGISTRO MANUAL
+                                                    @break
+                                                @case('SAC')
+                                                    REGISTRO AUTOMÁTICO
+                                                    @break
+                                                @case('LLAMADA')
+                                                    REGISTRO DE LLAMADA
+                                                    @break
+                                                @default
+                                                    {{ $info['estado'] }}
+                                            @endswitch
+                                        </td>
+                                        
                                         <td>{{ $info['created_at'] }}</td>
                                     </tr>
                                 @endforeach
