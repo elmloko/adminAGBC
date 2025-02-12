@@ -17,6 +17,7 @@ class Reclamos extends Component
     public $search = '';
     public $date = '';
     public $ciudad = '';
+    public $tipo_envio = '';
     public $filteredInformaciones = [];
     public $sortBy = 'created_at';
     public $sortDirection = 'asc';
@@ -58,26 +59,81 @@ class Reclamos extends Component
             $data = $response->json();
             $informaciones = array_map(function ($item) {
                 // Convertir las fechas con Carbon
-                $createdAt = Carbon::parse($item['created_at']);
-                $fecha_envio  = Carbon::parse($item['fecha_envio']);
+                $createdAt   = Carbon::parse($item['created_at']);
+                $fecha_envio = Carbon::parse($item['fecha_envio']);
+            
+                // Suponemos que viene un campo 'tipo_envio' en el registro. Si no, se puede definir un valor por defecto.
+                $tipo_envio = isset($item['tipo_envio']) ? $item['tipo_envio'] : 'NACIONAL';
+            
+                // Inicializamos variables
+                $timeDifference = 0;
+                $timeUnit       = '';
+                $color          = '';
+            
+                // Lógica según el tipo de envío
+                if ($tipo_envio == 'LOCAL') {
+                    // Calcular en horas
+                    $timeDifference = now()->diffInHours($createdAt);
+                    $timeUnit = 'horas';
+                    if ($timeDifference >= 0 && $timeDifference <= 8) {
+                        $color = 'green';
+                    } elseif ($timeDifference >= 9 && $timeDifference <= 16) {
+                        $color = 'yellow';
+                    } else {
+                        $color = 'red';
+                    }
+                } elseif ($tipo_envio == 'NACIONAL') {
+                    // Calcular en días
+                    $timeDifference = now()->diffInDays($createdAt);
+                    $timeUnit = 'días';
+                    if ($timeDifference >= 0 && $timeDifference <= 5) {
+                        $color = 'green';
+                    } elseif ($timeDifference >= 6 && $timeDifference <= 10) {
+                        $color = 'yellow';
+                    } else {
+                        $color = 'red';
+                    }
+                } elseif ($tipo_envio == 'INTERNACIONAL') {
+                    // Calcular en días
+                    $timeDifference = now()->diffInDays($createdAt);
+                    $timeUnit = 'días';
+                    if ($timeDifference >= 0 && $timeDifference <= 2) {
+                        $color = 'green';
+                    } elseif ($timeDifference >= 3 && $timeDifference <= 5) {
+                        $color = 'yellow';
+                    } else {
+                        $color = 'red';
+                    }
+                } else {
+                    // En caso de no coincidir, se puede definir un valor por defecto
+                    $timeDifference = now()->diffInDays($createdAt);
+                    $timeUnit = 'días';
+                    $color = 'grey';
+                }
+            
                 return [
-                    'id'            => $item['id'],
-                    'correlativo'   => $item['correlativo'],
-                    'remitente'        => $item['remitente'],
+                    'id'              => $item['id'],
+                    'correlativo'     => $item['correlativo'],
+                    'remitente'       => $item['remitente'],
                     'telf_remitente'  => $item['telf_remitente'],
-                    'email_r'    => $item['email_r'],
-                    'origen'        => $item['origen'],
-                    'destinatario'        => $item['destinatario'],
-                    'telf_destinatario'        => $item['telf_destinatario'],
-                    'email_d'        => $item['email_d'],
-                    'destino'        => $item['destino'],
-                    'codigo'        => $item['codigo'],
-                    'contenido'        => $item['contenido'],
-                    'ciudad'        => $item['ciudad'],
-                    'estado'        => $item['estado'],
-                    'reclamo'        => $item['reclamo'],
+                    'email_r'         => $item['email_r'],
+                    'origen'          => $item['origen'],
+                    'destinatario'    => $item['destinatario'],
+                    'telf_destinatario'=> $item['telf_destinatario'],
+                    'email_d'         => $item['email_d'],
+                    'destino'         => $item['destino'],
+                    'codigo'          => $item['codigo'],
+                    'contenido'       => $item['contenido'],
+                    'ciudad'          => $item['ciudad'],
+                    'estado'          => $item['estado'],
+                    'reclamo'         => $item['reclamo'],
                     'fecha_envio'     => $fecha_envio->format('Y-m-d H:i:s'),
-                    'created_at'    => $createdAt->format('Y-m-d H:i:s'),
+                    'created_at'      => $createdAt->format('Y-m-d H:i:s'),
+                    // Campos nuevos:
+                    'tipo_envio'      => $tipo_envio,
+                    'tiempo_transcurrido' => $timeDifference,  // Número (horas o días)
+                    'unidad_tiempo'   => $timeUnit,             // 'horas' o 'días'
+                    'color'           => $color,                // 'green', 'yellow', 'red' (o 'grey' por defecto)
                 ];
             }, $data);
         }
@@ -101,6 +157,13 @@ class Reclamos extends Component
         if (!empty($this->ciudad)) {
             $informaciones = array_filter($informaciones, function ($info) {
                 return $info['ciudad'] == $this->ciudad;
+            });
+        }
+
+        // Filtro por ciudad
+        if (!empty($this->tipo_envio)) {
+            $informaciones = array_filter($informaciones, function ($info) {
+                return $info['tipo_envio'] == $this->tipo_envio;
             });
         }
 
