@@ -28,6 +28,11 @@
                             <option value="SUCRE">SUCRE</option>
                             <!-- Agrega más opciones según corresponda -->
                         </select>
+                        <select wire:model="tipo" class="form-control mr-2">
+                            <option value="">Todos los estados</option>
+                            <option value="OPERATIVO">QUEJAS OPERATIVAS</option>
+                            <option value="ADMINISTRATIVO">QUEJAS ADMINISTRATIVAS</option>
+                        </select>
                         <button wire:click="generateExcel" class="btn btn-success mr-2">Generar Excel</button>
                         <button wire:click="generatePDF" class="btn btn-danger mr-2">Generar PDF</button>
                         <button wire:click="applyFilters" class="btn btn-primary">Buscar</button>

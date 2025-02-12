@@ -16,6 +16,7 @@ class Quejas extends Component
 
     public $search = '';
     public $date = '';
+    public $tipo = '';
     public $ciudad = '';
     public $filteredInformaciones = [];
     public $sortBy = 'created_at';
@@ -46,35 +47,38 @@ class Quejas extends Component
 
     public function getFilteredInformaciones()
     {
-        // Consumir la API de informaciones
-        $response = Http::withOptions([
-            'verify' => false,
-        ])->get('https://correos.gob.bo:8002/api/complaintso');
+        $urls = [
+            'https://correos.gob.bo:8002/api/complaintso',
+            'https://correos.gob.bo:8002/api/complaintsa',
+        ];
 
         $informaciones = [];
 
-        if ($response->successful()) {
-            // Suponemos que la respuesta es un arreglo de objetos
-            $data = $response->json();
-            $informaciones = array_map(function ($item) {
-                // Convertir las fechas con Carbon
-                $createdAt = Carbon::parse($item['created_at']);
-                return [
-                    'id'            => $item['id'],
-                    'correlativo'   => $item['correlativo'],
-                    'cliente'        => $item['cliente'],
-                    'telf'    => $item['telf'],
-                    'ci'      => $item['ci'],
-                    'email'  => $item['email'],
-                    'queja'    => $item['queja'],
-                    'funcionario'        => $item['funcionario'],
-                    'tipo'        => $item['tipo'],
-                    'estado'        => $item['estado'],
-                    'feedback'        => $item['feedback'],
-                    'ciudad'        => $item['ciudad'],
-                    'created_at'    => $createdAt->format('Y-m-d H:i:s'),
-                ];
-            }, $data);
+        foreach ($urls as $url) {
+            $response = Http::withOptions(['verify' => false])->get($url);
+
+            if ($response->successful()) {
+                $data = $response->json();
+                foreach ($data as $item) {
+                    $createdAt = Carbon::parse($item['created_at']);
+
+                    $informaciones[] = [
+                        'id'            => $item['id'],
+                        'correlativo'   => $item['correlativo'],
+                        'cliente'        => $item['cliente'],
+                        'telf'    => $item['telf'],
+                        'ci'      => $item['ci'],
+                        'email'  => $item['email'],
+                        'queja'    => $item['queja'],
+                        'funcionario'        => $item['funcionario'],
+                        'tipo'        => $item['tipo'],
+                        'estado'        => $item['estado'],
+                        'feedback'        => $item['feedback'],
+                        'ciudad'        => $item['ciudad'],
+                        'created_at'    => $createdAt->format('Y-m-d H:i:s'),
+                    ];
+                }
+            }
         }
 
         // Filtro por búsqueda (en destinatario, código o correlativo)
@@ -96,6 +100,12 @@ class Quejas extends Component
         if (!empty($this->ciudad)) {
             $informaciones = array_filter($informaciones, function ($info) {
                 return $info['ciudad'] == $this->ciudad;
+            });
+        }
+        // Filtro por estado
+        if (!empty($this->tipo)) {
+            $informaciones = array_filter($informaciones, function ($info) {
+                return $info['tipo'] == $this->tipo;
             });
         }
 
