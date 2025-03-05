@@ -368,6 +368,9 @@
                 opacity: 1;
             }
         }
+        .centrado {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -377,8 +380,13 @@
                 <div class="login100-pic js-tilt" data-tilt>
                     <img src="{{ url('images/MONITO.png') }}" alt="IMG">
                 </div>
+                
                 <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                     @csrf
+                    <div class="centrado">
+                        <h2>SISTEMA INTEGRAL DE GESTIÓN PARA LA OPTIMIZACIÓN DEL SERVICIO POSTAL</h2>
+                        <h3>"ADMINAGBC"</h3><br>
+                    </div>
                     <span class="login100-form-title">
                         Iniciar Session
                     </span>
