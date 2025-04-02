@@ -44,7 +44,7 @@ class Ventanilla extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('http://correos.gob.bo:8000/api/callventanilla');
+        ])->get('https://correos.gob.bo:8000/api/callventanilla');
 
         $packages = [];
         if ($response->successful()) {
