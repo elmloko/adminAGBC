@@ -45,7 +45,7 @@ class Packagednd extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://correos.gob.bo:8000/api/softdeletesUDND');
+        ])->get('http://correos.gob.bo:8000/api/softdeletesUDND');
 
         $packages = [];
         if ($response->successful()) {
