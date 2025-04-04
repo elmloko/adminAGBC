@@ -45,7 +45,7 @@ class Generadosencomiendas extends Component
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
         ])->withOptions([
             'verify' => false,
-        ])->get('https://correos.gob.bo:8000/api/callclasiUENCOMIENDAS');
+        ])->get('http://correos.gob.bo:8000/api/callclasiUENCOMIENDAS');
 
         $packages = [];
         if ($response->successful()) {
