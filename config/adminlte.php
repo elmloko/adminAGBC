@@ -374,114 +374,114 @@ return [
                         ],
                     ],
                 ],
-                // [
-                //     'text' => 'SENCA',
-                //     'icon' => 'fas fa-envelope',
-                //     'submenu' => [
-                //         [
-                //             'text' => 'Estadisticas Casillas',
-                //             'url' => 'estadisticasc',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Casillas Alquiladas',
-                //             'url' => 'alquiladas',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Casillas Libres',
-                //             'url' => 'libres',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Casillas Vencidas',
-                //             'url' => 'vencidas',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Casillas Mantenimiento',
-                //             'url' => 'mantenimiento',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Casillas con Correspondencia',
-                //             'url' => 'correspondencia',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Casillas Reservadas',
-                //             'url' => 'reservadas',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //     ],
-                // ],
-                // [
-                //     'text' => 'GESPA',
-                //     'icon' => 'fas fa-envelope',
-                //     'submenu' => [
-                //         [
-                //             'text' => 'Estadisticas Despachos',
-                //             'url' => 'estadisticasdespachos',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Despachos en Apertura',
-                //             'url' => 'apertura',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Despachos en Cierre',
-                //             'url' => 'cerrado',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Despachos en Expedicion',
-                //             'url' => 'expedicion',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Despachos en Observacion',
-                //             'url' => 'observado',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Despachos en Admitido',
-                //             'url' => 'admitido',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //     ],
-                // ],
-                // [
-                //     'text' => 'SIRECO',
-                //     'icon' => 'fas fa-envelope',
-                //     'submenu' => [
-                //         [
-                //             'text' => 'Estadisticas Reclamos',
-                //             'url' => 'estadisticasr',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Informaciones',
-                //             'url' => 'informaciones',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Quejas',
-                //             'url' => 'quejas',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Reclamos',
-                //             'url' => 'reclamos',
-                //             'icon' => 'fas fa-user',
-                //         ],
-                //         [
-                //             'text' => 'Sugerencias',
-                //             'url' => 'sugerencias',
-                //             'icon' => 'fas fa-user',
-                //         ],  
-                //     ],
-                // ],
+                [
+                    'text' => 'SENCA',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Estadisticas Casillas',
+                            'url' => 'estadisticasc',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Alquiladas',
+                            'url' => 'alquiladas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Libres',
+                            'url' => 'libres',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Vencidas',
+                            'url' => 'vencidas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Mantenimiento',
+                            'url' => 'mantenimiento',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas con Correspondencia',
+                            'url' => 'correspondencia',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Casillas Reservadas',
+                            'url' => 'reservadas',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'GESPA',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Estadisticas Despachos',
+                            'url' => 'estadisticasdespachos',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Apertura',
+                            'url' => 'apertura',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Cierre',
+                            'url' => 'cerrado',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Expedicion',
+                            'url' => 'expedicion',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Observacion',
+                            'url' => 'observado',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Despachos en Admitido',
+                            'url' => 'admitido',
+                            'icon' => 'fas fa-user',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'SIRECO',
+                    'icon' => 'fas fa-envelope',
+                    'submenu' => [
+                        [
+                            'text' => 'Estadisticas Reclamos',
+                            'url' => 'estadisticasr',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Informaciones',
+                            'url' => 'informaciones',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Quejas',
+                            'url' => 'quejas',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Reclamos',
+                            'url' => 'reclamos',
+                            'icon' => 'fas fa-user',
+                        ],
+                        [
+                            'text' => 'Sugerencias',
+                            'url' => 'sugerencias',
+                            'icon' => 'fas fa-user',
+                        ],  
+                    ],
+                ],
                 // [
                 //     'text' => 'Paqueteria XX',
                 //     'icon' => 'fas fa-envelope',
