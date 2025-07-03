@@ -311,175 +311,176 @@ return [
             'text' => 'search',
         ],
         ['header' => 'SISTEMA DE INFORMACION'],
+        // [
+        //     'text' => 'Dashboard',
+        //     'url' => '/dashboard',
+        //     'icon' => 'fas fa-user',
+        // ],
         [
-            'text' => 'Dashboard',
-            'url' => '/dashboard',
-            'icon' => 'fas fa-user',
-        ],
-        [
-            'text' => 'Gestion Usuarios',
-            'icon' => 'fas fa-users',
+            'text' => 'Gestión Usuarios',
+            'icon' => 'fas fa-users', // Grupo de usuarios
             'can'  => 'users.index',
             'submenu' => [
                 [
                     'text' => 'Personal AGBC',
                     'url' => 'users',
-                    'icon' => 'fas fa-user',
+                    'icon' => 'fas fa-id-badge', // Identificación del personal
                 ],
                 [
                     'text' => 'Roles',
                     'url' => 'roles',
-                    'icon' => 'fas fa-users-cog',
+                    'icon' => 'fas fa-user-shield', // Representa roles con privilegios
                 ],
                 [
                     'text' => 'Permisos',
                     'url' => 'permissions',
-                    'icon' => 'fas fa-key',
+                    'icon' => 'fas fa-unlock-alt', // Permiso, acceso autorizado
                 ],
                 [
                     'text' => 'Accesos',
                     'url' => 'role-has-permissions',
-                    'icon' => 'fas fa-key',
+                    'icon' => 'fas fa-door-open', // Acceso físico o lógico
                 ],
             ],
         ],
+
         [
-            'text' => 'Consultas Informacion',
-            'icon' => 'fas fa-users',
+            'text' => 'Consultas Información',
+            'icon' => 'fas fa-search', // Representa consultas, búsquedas
             // 'can'  => 'users.index',
             'submenu' => [
                 [
                     'text' => 'TRACKINGBO',
-                    'icon' => 'fas fa-envelope',
+                    'icon' => 'fas fa-mail-bulk', // Correspondencia agrupada
                     'submenu' => [
                         [
-                            'text' => 'Estadisticas Ordinarias',
+                            'text' => 'Estadísticas Ordinarias',
                             'url' => 'estadisticaso',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-chart-pie',
                         ],
                         [
                             'text' => 'Correspondencia Registrada',
                             'url' => 'generados',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-envelope-open-text',
                         ],
                         [
                             'text' => 'Correspondencia Ventanilla',
                             'url' => 'ventanilla',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-window-restore',
                         ],
                         [
                             'text' => 'Correspondencia Entregada',
                             'url' => 'packages',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-check-circle',
                         ],
                     ],
                 ],
                 [
                     'text' => 'SENCA',
-                    'icon' => 'fas fa-envelope',
+                    'icon' => 'fas fa-th', // Representa casillas
                     'submenu' => [
                         [
-                            'text' => 'Estadisticas Casillas',
+                            'text' => 'Estadísticas Casillas',
                             'url' => 'estadisticasc',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-chart-bar',
                         ],
                         [
                             'text' => 'Casillas Alquiladas',
                             'url' => 'alquiladas',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-box',
                         ],
                         [
                             'text' => 'Casillas Libres',
                             'url' => 'libres',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-door-open',
                         ],
                         [
                             'text' => 'Casillas Vencidas',
                             'url' => 'vencidas',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-calendar-times',
                         ],
                         [
                             'text' => 'Casillas Mantenimiento',
                             'url' => 'mantenimiento',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-tools',
                         ],
                         [
                             'text' => 'Casillas con Correspondencia',
                             'url' => 'correspondencia',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-envelope',
                         ],
                         [
                             'text' => 'Casillas Reservadas',
                             'url' => 'reservadas',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-bookmark',
                         ],
                     ],
                 ],
                 [
                     'text' => 'GESPA',
-                    'icon' => 'fas fa-envelope',
+                    'icon' => 'fas fa-clipboard-list', // Gestión de despachos
                     'submenu' => [
                         [
-                            'text' => 'Estadisticas Despachos',
+                            'text' => 'Estadísticas Despachos',
                             'url' => 'estadisticasdespachos',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-chart-line',
                         ],
                         [
                             'text' => 'Despachos en Apertura',
                             'url' => 'apertura',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-door-open',
                         ],
                         [
                             'text' => 'Despachos en Cierre',
                             'url' => 'cerrado',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-lock',
                         ],
                         [
-                            'text' => 'Despachos en Expedicion',
+                            'text' => 'Despachos en Expedición',
                             'url' => 'expedicion',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-truck',
                         ],
                         [
-                            'text' => 'Despachos en Observacion',
+                            'text' => 'Despachos en Observación',
                             'url' => 'observado',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-exclamation-triangle',
                         ],
                         [
-                            'text' => 'Despachos en Admitido',
+                            'text' => 'Despachos Admitidos',
                             'url' => 'admitido',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-check',
                         ],
                     ],
                 ],
                 [
                     'text' => 'SIRECO',
-                    'icon' => 'fas fa-envelope',
+                    'icon' => 'fas fa-comments', // Para reclamos, quejas y sugerencias
                     'submenu' => [
                         [
-                            'text' => 'Estadisticas Reclamos',
+                            'text' => 'Estadísticas Reclamos',
                             'url' => 'estadisticasr',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-chart-area',
                         ],
                         [
                             'text' => 'Informaciones',
                             'url' => 'informaciones',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-info-circle',
                         ],
                         [
                             'text' => 'Quejas',
                             'url' => 'quejas',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-frown',
                         ],
                         [
                             'text' => 'Reclamos',
                             'url' => 'reclamos',
-                            'icon' => 'fas fa-user',
+                            'icon' => 'fas fa-exclamation-circle',
                         ],
                         [
                             'text' => 'Sugerencias',
                             'url' => 'sugerencias',
-                            'icon' => 'fas fa-user',
-                        ],  
+                            'icon' => 'fas fa-lightbulb',
+                        ],
                     ],
                 ],
             ],
@@ -487,13 +488,13 @@ return [
         [
             'text' => 'Logs',
             'url' => '/log-viewer',
-            'icon' => 'fas fa-user',
+            'icon' => 'fas fa-file-alt', // Representa claramente registros/logs
             'can'  => 'packages',
         ],
         [
             'text' => 'Rendimiento',
             'url' => '/pulse',
-            'icon' => 'fas fa-user',
+            'icon' => 'fas fa-tachometer-alt', // Icono de panel o rendimiento
             'can'  => 'packages',
         ],
     ],
