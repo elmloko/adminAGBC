@@ -92,18 +92,19 @@ class Estadisticasr extends Component
         return view('livewire.estadisticasr');
     }
 
-    /**
-     * Obtiene los conteos de registros agrupados por fecha (created_at)
-     * para un conjunto de URLs.
-     *
-     * @param array $urls
-     * @return array  [ 'YYYY-MM-DD' => count, ... ]
-     */
+
     private function getCreatedAtCounts($urls)
     {
         $counts = [];
         foreach ($urls as $url) {
-            $response = Http::withOptions(['verify' => false])->get($url);
+            $response = Http::withOptions([
+                'verify' => false,
+                'curl' => [
+                    CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+                ],
+            ])->get($url);
             if ($response->successful()) {
                 $data = $response->json();
                 foreach ($data as $item) {
@@ -121,13 +122,6 @@ class Estadisticasr extends Component
         return $counts;
     }
 
-    /**
-     * Completa los datos de una serie para el gráfico de líneas.
-     *
-     * @param array $allDates  Fechas del eje X
-     * @param array $groupData Datos agrupados por fecha (array asociativo)
-     * @return array  Valores alineados a cada fecha
-     */
     private function fillSeriesData($allDates, $groupData)
     {
         $series = [];
@@ -137,17 +131,18 @@ class Estadisticasr extends Component
         return $series;
     }
 
-    /**
-     * Obtiene los conteos de registros agrupados por ciudad.
-     *
-     * @param array $urls
-     * @return array  [ 'ciudad' => count, ... ]
-     */
     private function getCityCounts($urls)
     {
         $counts = [];
         foreach ($urls as $url) {
-            $response = Http::withOptions(['verify' => false])->get($url);
+            $response = Http::withOptions([
+                'verify' => false,
+                'curl' => [
+                    CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+                ],
+            ])->get($url);
             if ($response->successful()) {
                 $data = $response->json();
                 foreach ($data as $item) {
@@ -164,12 +159,6 @@ class Estadisticasr extends Component
         return $counts;
     }
 
-    /**
-     * Formatea los datos de conteo por ciudad para el gráfico de torta.
-     *
-     * @param array $cityCounts [ 'ciudad' => count, ... ]
-     * @return array  Array de objetos: [ ['name' => ciudad, 'y' => count], ... ]
-     */
     private function formatPieData($cityCounts)
     {
         $pieData = [];

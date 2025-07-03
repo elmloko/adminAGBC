@@ -48,6 +48,11 @@ class cerrado extends Component
     {
         $response = Http::withOptions([
             'verify' => false,
+            'curl' => [
+                CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+            ],
         ])->get('https://correos.gob.bo:8005/api/cerrado');
     
         $cerrados = [];

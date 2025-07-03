@@ -19,20 +19,27 @@ class Estadisticasdespachos extends Component
             'observado' => 'https://correos.gob.bo:8005/api/observado',
             'admitido' => 'https://correos.gob.bo:8005/api/admitido'
         ];
-        
+
         foreach ($apis as $key => $url) {
             $response = Cache::remember($key, now()->addMinutes(10), function () use ($url) {
-                return Http::withOptions(['verify' => false])->get($url)->json();
+                return Http::withOptions([
+                    'verify' => false,
+                    'curl' => [
+                        CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+                    ],
+                ])->get($url)->json();
             });
-            
+
             if (!isset($response['success']) || !$response['success']) {
                 continue; // Evita procesar respuestas inválidas
             }
-            
+
             if (!isset($response['data']) || empty($response['data'])) {
                 continue; // Evita errores si la API devuelve datos vacíos
             }
-            
+
             $this->data[$key] = $this->formatData($response['data']);
         }
     }
@@ -41,7 +48,7 @@ class Estadisticasdespachos extends Component
     {
         $countByDepto = collect($items)->groupBy('depto')->map->count();
         $total = $countByDepto->sum();
-        
+
         return $countByDepto->map(function ($count, $depto) use ($total) {
             return [
                 'name' => $depto,

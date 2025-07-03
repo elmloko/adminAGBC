@@ -42,7 +42,13 @@ class Generados extends Component
     {
         $response = Http::withHeaders([
             'Authorization' => 'Bearer eZMlItx6mQMNZjxoijEvf7K3pYvGGXMvEHmQcqvtlAPOEAPgyKDVOpyF7JP0ilbK'
-        ])->withOptions([ 'verify' => false,
+        ])->withOptions([
+            'verify' => false,
+            'curl' => [
+                CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+            ],
         ])->get('https://correos.gob.bo:8000/api/callclasi');
 
         $packages = [];

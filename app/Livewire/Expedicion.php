@@ -19,7 +19,7 @@ class expedicion extends Component
     public $date = '';
     public $categoria = '';
     public $filteredexpedicions = [];
-    public $sortBy = 'created_at';
+    public $sortBy = 'updated_at';
     public $sortDirection = 'asc';
 
     public function updatingSearch()
@@ -48,6 +48,11 @@ class expedicion extends Component
     {
         $response = Http::withOptions([
             'verify' => false,
+            'curl' => [
+                CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+            ],
         ])->get('https://correos.gob.bo:8005/api/expedicion');
 
         $expedicions = [];
@@ -67,7 +72,9 @@ class expedicion extends Component
                         'peso_total' => array_sum(array_column($item['sacas'], 'peso')),
                         'paquetes_total' => array_reduce($item['sacas'], function ($carry, $saca) {
                             return $carry + array_reduce($saca['contenidos'], function ($subcarry, $contenido) {
-                                return $subcarry + array_sum(array_values($contenido));
+                                return $subcarry + array_sum(array_map(function ($value) {
+                                    return is_numeric($value) ? (int)$value : 0;
+                                }, array_values($contenido)));
                             }, 0);
                         }, 0),
                         'estado' => $estado,
@@ -84,7 +91,7 @@ class expedicion extends Component
 
         if (!empty($this->date)) {
             $expedicions = array_filter($expedicions, function ($expedicion) {
-                return Carbon::parse($expedicion['created_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
+                return Carbon::parse($expedicion['updated_at'])->toDateString() == Carbon::parse($this->date)->toDateString();
             });
         }
 

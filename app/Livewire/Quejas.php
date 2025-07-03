@@ -55,7 +55,14 @@ class Quejas extends Component
         $informaciones = [];
 
         foreach ($urls as $url) {
-            $response = Http::withOptions(['verify' => false])->get($url);
+            $response = Http::withOptions([
+                'verify' => false,
+                'curl' => [
+                    CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+                ],
+            ])->get($url);
 
             if ($response->successful()) {
                 $data = $response->json();

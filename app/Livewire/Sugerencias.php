@@ -49,6 +49,11 @@ class Sugerencias extends Component
         // Consumir la API de informaciones
         $response = Http::withOptions([
             'verify' => false,
+            'curl' => [
+                    CURLOPT_SSLVERSION   => CURL_SSLVERSION_TLSv1_2,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_IPRESOLVE    => CURL_IPRESOLVE_V4,
+                ],
         ])->get('https://correos.gob.bo:8002/api/suggestion');
 
         $informaciones = [];
