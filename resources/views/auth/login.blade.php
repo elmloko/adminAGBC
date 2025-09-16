@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>adminAGBC|AGBC</title>
     <meta charset="UTF-8">
@@ -16,29 +17,36 @@
         /* Aquí va el CSS que tenías en el archivo HTML */
         @font-face {
             font-family: Poppins-Regular;
-            src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+            src: url('../fonts/poppins/Poppins-Regular.ttf');
         }
+
         @font-face {
             font-family: Poppins-Bold;
-            src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+            src: url('../fonts/poppins/Poppins-Bold.ttf');
         }
+
         @font-face {
             font-family: Poppins-Medium;
-            src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+            src: url('../fonts/poppins/Poppins-Medium.ttf');
         }
+
         @font-face {
             font-family: Montserrat-Bold;
-            src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
+            src: url('../fonts/montserrat/Montserrat-Bold.ttf');
         }
+
         * {
-            margin: 0px; 
-            padding: 0px; 
+            margin: 0px;
+            padding: 0px;
             box-sizing: border-box;
         }
-        body, html {
+
+        body,
+        html {
             height: 100%;
             font-family: Poppins-Regular, sans-serif;
         }
+
         a {
             font-family: Poppins-Regular;
             font-size: 14px;
@@ -50,16 +58,25 @@
             -o-transition: all 0.4s;
             -moz-transition: all 0.4s;
         }
+
         a:focus {
             outline: none !important;
         }
+
         a:hover {
             text-decoration: none;
             color: #34447C;
         }
-        h1,h2,h3,h4,h5,h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             margin: 0px;
         }
+
         p {
             font-family: Poppins-Regular;
             font-size: 14px;
@@ -67,66 +84,127 @@
             color: #666666;
             margin: 0px;
         }
-        ul, li {
+
+        ul,
+        li {
             margin: 0px;
             list-style-type: none;
         }
+
         input {
             outline: none;
             border: none;
         }
+
         textarea {
             outline: none;
             border: none;
         }
-        textarea:focus, input:focus {
+
+        textarea:focus,
+        input:focus {
             border-color: transparent !important;
         }
-        input:focus::-webkit-input-placeholder { color:transparent; }
-        input:focus:-moz-placeholder { color:transparent; }
-        input:focus::-moz-placeholder { color:transparent; }
-        input:focus:-ms-input-placeholder { color:transparent; }
-        textarea:focus::-webkit-input-placeholder { color:transparent; }
-        textarea:focus:-moz-placeholder { color:transparent; }
-        textarea:focus::-moz-placeholder { color:transparent; }
-        textarea:focus:-ms-input-placeholder { color:transparent; }
-        input::-webkit-input-placeholder { color: #999999; }
-        input:-moz-placeholder { color: #999999; }
-        input::-moz-placeholder { color: #999999; }
-        input:-ms-input-placeholder { color: #999999; }
-        textarea::-webkit-input-placeholder { color: #999999; }
-        textarea:-moz-placeholder { color: #999999; }
-        textarea::-moz-placeholder { color: #999999; }
-        textarea:-ms-input-placeholder { color: #999999; }
+
+        input:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        input:focus:-moz-placeholder {
+            color: transparent;
+        }
+
+        input:focus::-moz-placeholder {
+            color: transparent;
+        }
+
+        input:focus:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        textarea:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        textarea:focus:-moz-placeholder {
+            color: transparent;
+        }
+
+        textarea:focus::-moz-placeholder {
+            color: transparent;
+        }
+
+        textarea:focus:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        input::-webkit-input-placeholder {
+            color: #999999;
+        }
+
+        input:-moz-placeholder {
+            color: #999999;
+        }
+
+        input::-moz-placeholder {
+            color: #999999;
+        }
+
+        input:-ms-input-placeholder {
+            color: #999999;
+        }
+
+        textarea::-webkit-input-placeholder {
+            color: #999999;
+        }
+
+        textarea:-moz-placeholder {
+            color: #999999;
+        }
+
+        textarea::-moz-placeholder {
+            color: #999999;
+        }
+
+        textarea:-ms-input-placeholder {
+            color: #999999;
+        }
+
         button {
             outline: none !important;
             border: none;
             background: transparent;
         }
+
         button:hover {
             cursor: pointer;
         }
+
         iframe {
             border: none !important;
         }
+
         .txt1 {
             font-family: Poppins-Regular;
             font-size: 13px;
             line-height: 1.5;
             color: #999999;
         }
+
         .txt2 {
             font-family: Poppins-Regular;
             font-size: 13px;
             line-height: 1.5;
             color: #666666;
         }
+
         .limiter {
             width: 100%;
             margin: 0 auto;
         }
+
         .container-login100 {
-            width: 100%;  
+            width: 100%;
             min-height: 100vh;
             display: -webkit-box;
             display: -webkit-flex;
@@ -143,6 +221,7 @@
             background: -moz-linear-gradient(-135deg, #B99C46, #34447C);
             background: linear-gradient(-135deg, #B99C46, #34447C);
         }
+
         .wrap-login100 {
             width: 960px;
             background: #fff;
@@ -157,15 +236,19 @@
             justify-content: space-between;
             padding: 177px 130px 33px 95px;
         }
+
         .login100-pic {
             width: 316px;
         }
+
         .login100-pic img {
             max-width: 100%;
         }
+
         .login100-form {
             width: 290px;
         }
+
         .login100-form-title {
             font-family: Poppins-Bold;
             font-size: 24px;
@@ -176,12 +259,14 @@
             display: block;
             padding-bottom: 54px;
         }
+
         .wrap-input100 {
             position: relative;
             width: 100%;
             z-index: 1;
             margin-bottom: 10px;
         }
+
         .input100 {
             font-family: Poppins-Medium;
             font-size: 15px;
@@ -194,6 +279,7 @@
             border-radius: 25px;
             padding: 0 30px 0 68px;
         }
+
         .focus-input100 {
             display: block;
             position: absolute;
@@ -206,22 +292,26 @@
             box-shadow: 0px 0px 0px 0px;
             color: #B99C46;
         }
-        .input100:focus + .focus-input100 {
+
+        .input100:focus+.focus-input100 {
             -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
             animation: anim-shadow 0.5s ease-in-out forwards;
         }
+
         @-webkit-keyframes anim-shadow {
             to {
                 box-shadow: 0px 0px 70px 25px;
                 opacity: 0;
             }
         }
+
         @keyframes anim-shadow {
             to {
                 box-shadow: 0px 0px 70px 25px;
                 opacity: 0;
             }
         }
+
         .symbol-input100 {
             font-size: 15px;
             display: -webkit-box;
@@ -244,10 +334,12 @@
             -moz-transition: all 0.4s;
             transition: all 0.4s;
         }
-        .input100:focus + .focus-input100 + .symbol-input100 {
+
+        .input100:focus+.focus-input100+.symbol-input100 {
             color: #57b846;
             padding-left: 28px;
         }
+
         .container-login100-form-btn {
             width: 100%;
             display: -webkit-box;
@@ -259,6 +351,7 @@
             justify-content: center;
             padding-top: 20px;
         }
+
         .login100-form-btn {
             font-family: Montserrat-Bold;
             font-size: 15px;
@@ -282,39 +375,49 @@
             -moz-transition: all 0.4s;
             transition: all 0.4s;
         }
+
         .login100-form-btn:hover {
             background: #333333;
         }
+
         @media (max-width: 992px) {
             .wrap-login100 {
                 padding: 177px 90px 33px 85px;
             }
+
             .login100-pic {
                 width: 35%;
             }
+
             .login100-form {
                 width: 50%;
             }
         }
+
         @media (max-width: 768px) {
             .wrap-login100 {
                 padding: 100px 80px 33px 80px;
             }
+
             .login100-pic {
                 display: none;
             }
+
             .login100-form {
                 width: 100%;
             }
         }
+
         @media (max-width: 576px) {
             .wrap-login100 {
                 padding: 100px 15px 33px 15px;
             }
         }
+
         .validate-input {
             position: relative;
         }
+
         .alert-validate::before {
             content: attr(data-validate);
             position: absolute;
@@ -343,6 +446,7 @@
             -moz-transition: opacity 0.4s;
             transition: opacity 0.4s;
         }
+
         .alert-validate::after {
             content: "\f06a";
             font-family: FontAwesome;
@@ -358,21 +462,25 @@
             transform: translateY(-50%);
             right: 13px;
         }
+
         .alert-validate:hover:before {
             visibility: visible;
             opacity: 1;
         }
+
         @media (max-width: 992px) {
             .alert-validate::before {
                 visibility: visible;
                 opacity: 1;
             }
         }
+
         .centrado {
             text-align: center;
         }
     </style>
 </head>
+
 <body>
     <div class="limiter">
         <div class="container-login100">
@@ -380,7 +488,7 @@
                 <div class="login100-pic js-tilt" data-tilt>
                     <img src="{{ url('images/MONITO.png') }}" alt="IMG">
                 </div>
-                
+
                 <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="centrado">
@@ -390,7 +498,8 @@
                     <span class="login100-form-title">
                         Iniciar Session
                     </span>
-                    <div class="wrap-input100 validate-input" data-validate="Se requiere un correo electrónico válido: ex@abc.xyz">
+                    <div class="wrap-input100 validate-input"
+                        data-validate="Se requiere un correo electrónico válido: ex@abc.xyz">
                         <input class="input100" type="email" name="email" placeholder="Correo Electronico">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
@@ -424,44 +533,62 @@
         });
     </script>
     <script>
-        (function ($) {
+        (function($) {
             "use strict";
             var input = $('.validate-input .input100');
-            $('.validate-form').on('submit', function(){
+            $('.validate-form').on('submit', function() {
                 var check = true;
-                for(var i=0; i<input.length; i++) {
-                    if(validate(input[i]) == false){
+                for (var i = 0; i < input.length; i++) {
+                    if (validate(input[i]) == false) {
                         showValidate(input[i]);
-                        check=false;
+                        check = false;
                     }
                 }
                 return check;
             });
-            $('.validate-form .input100').each(function(){
-                $(this).focus(function(){
+            $('.validate-form .input100').each(function() {
+                $(this).focus(function() {
                     hideValidate(this);
                 });
             });
-            function validate (input) {
-                if($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
-                    if($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+
+            function validate(input) {
+                if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+                    if ($(input).val().trim().match(
+                            /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+                            ) == null) {
                         return false;
                     }
                 } else {
-                    if($(input).val().trim() == ''){
+                    if ($(input).val().trim() == '') {
                         return false;
                     }
                 }
             }
+
             function showValidate(input) {
                 var thisAlert = $(input).parent();
                 $(thisAlert).addClass('alert-validate');
             }
+
             function hideValidate(input) {
                 var thisAlert = $(input).parent();
                 $(thisAlert).removeClass('alert-validate');
             }
         })(jQuery);
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KG6059QG44"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-KG6059QG44');
+    </script>
 </body>
+
 </html>
